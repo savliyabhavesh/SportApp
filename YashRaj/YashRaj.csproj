@@ -1,0 +1,1012 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{D8408D2E-0862-4D19-B1DE-B6B9FDEB3485}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>YashAksh</RootNamespace>
+    <AssemblyName>ShubhLabh</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>Icon2.ico</ApplicationIcon>
+    <StartupObject>YashAksh.My.MyApplication</StartupObject>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Cricket|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Cricket\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Algo.License, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Reference\Algo.License.dll</HintPath>
+    </Reference>
+    <Reference Include="App.DbUp.MSAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Reference\App.DbUp.MSAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="App.Logs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Reference\App.Logs.dll</HintPath>
+    </Reference>
+    <Reference Include="Control.Draggable, Version=1.0.5049.269, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Control.Draggable.1.0.5049.269\lib\net35-Client\Control.Draggable.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DotNetZip, Version=1.15.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.15.0\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <HintPath>..\packages\CrystalReports.FlashControlV71.13.0.3500\lib\net20\FlashControlV71.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net40\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SHAI9167111516">
+      <HintPath>..\..\SHAI9167111516.dll</HintPath>
+    </Reference>
+    <Reference Include="ShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <HintPath>..\packages\CrystalReports.FlashControlV71.13.0.3500\lib\net20\ShockwaveFlashObjects.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountLedger.Designer.cs">
+      <DependentUpon>AccountLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AgentC_Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgentC_Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Agent_abntie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agent_abntie.Designer.cs">
+      <DependentUpon>Agent_abntie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Agent_CUP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agent_CUP.Designer.cs">
+      <DependentUpon>Agent_CUP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Agent_Connect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agent_Connect.Designer.cs">
+      <DependentUpon>Agent_Connect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Agent_match.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agent_match.Designer.cs">
+      <DependentUpon>Agent_match.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="Balance_Message.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Balance_Message.Designer.cs">
+      <DependentUpon>Balance_Message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NTDataGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NTDataGrid.Designer.cs">
+      <DependentUpon>NTDataGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CUP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CUP.Designer.cs">
+      <DependentUpon>CUP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cup_match_Book.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cup_match_Book.Designer.cs">
+      <DependentUpon>Cup_match_Book.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cup_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cup_Report.Designer.cs">
+      <DependentUpon>Cup_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="C_Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>C_Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Declear_New_Sesstions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Declear_New_Sesstions.Designer.cs">
+      <DependentUpon>Declear_New_Sesstions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_PriDATA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_PriDATA.Designer.cs">
+      <DependentUpon>Dialog_PriDATA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DPP_AbnTie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DPP_AbnTie.Designer.cs">
+      <DependentUpon>DPP_AbnTie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DPP_CUP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DPP_CUP.Designer.cs">
+      <DependentUpon>DPP_CUP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DPP_Match.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DPP_Match.Designer.cs">
+      <DependentUpon>DPP_Match.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DPP_Toss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DPP_Toss.Designer.cs">
+      <DependentUpon>DPP_Toss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinalTB_Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalTB_Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Final_Trial_Balance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Final_Trial_Balance.Designer.cs">
+      <DependentUpon>Final_Trial_Balance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3_SESSION.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3_SESSION.Designer.cs">
+      <DependentUpon>Form3_SESSION.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formDPPSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formDPPSession.Designer.cs">
+      <DependentUpon>formDPPSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLicenseInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLicenseInfo.designer.cs">
+      <DependentUpon>frmLicenseInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegistration.Designer.cs">
+      <DependentUpon>frmRegistration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegistrationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegistrationInfo.designer.cs">
+      <DependentUpon>frmRegistrationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fromAbn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fromAbn.Designer.cs">
+      <DependentUpon>fromAbn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fromAgentSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fromAgentSession.Designer.cs">
+      <DependentUpon>fromAgentSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fromCUP_Winar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fromCUP_Winar.Designer.cs">
+      <DependentUpon>fromCUP_Winar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frommatchDecleard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frommatchDecleard.Designer.cs">
+      <DependentUpon>frommatchDecleard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Hawala_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hawala_Report.Designer.cs">
+      <DependentUpon>Hawala_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IMP_DATA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IMP_DATA.Designer.cs">
+      <DependentUpon>IMP_DATA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mareport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Match.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Match.Designer.cs">
+      <DependentUpon>Match.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatchBOOKPOPUP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MatchBOOKPOPUP.Designer.cs">
+      <DependentUpon>MatchBOOKPOPUP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Match_Book.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Match_Book.Designer.cs">
+      <DependentUpon>Match_Book.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Match_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Match_Report.Designer.cs">
+      <DependentUpon>Match_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module1.cs" />
+    <Compile Include="mod_serial_id.cs" />
+    <Compile Include="My\MyApplication.cs" />
+    <Compile Include="My\MyComputer.cs" />
+    <Compile Include="My\MyProject.cs" />
+    <Compile Include="My\MySettings.cs" />
+    <Compile Include="My\MySettings.Designer.cs">
+      <DependentUpon>MySettings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="My\MySettingsProperty.cs" />
+    <Compile Include="My\Program.cs" />
+    <Compile Include="My\Resources\Resources.cs" />
+    <Compile Include="MY_DBDataSet.cs">
+      <DependentUpon>MY_DBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MY_DBDataSet.Designer.cs">
+      <DependentUpon>MY_DBDataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New_Connect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New_Connect.Designer.cs">
+      <DependentUpon>New_Connect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New_Match.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New_Match.Designer.cs">
+      <DependentUpon>New_Match.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New_Party.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New_Party.Designer.cs">
+      <DependentUpon>New_Party.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New_Session.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New_Session.Designer.cs">
+      <DependentUpon>New_Session.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Party_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Party_Report.Designer.cs">
+      <DependentUpon>Party_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrevoiusData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrevoiusData.Designer.cs">
+      <DependentUpon>PrevoiusData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="print_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="print_view.Designer.cs">
+      <DependentUpon>print_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RPT\AgentC_Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgentC_Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\bookprint.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bookprint.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\CupDPP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CupDPP.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\Cupreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cupreport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\cup_book.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cup_book.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\C_Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>C_Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\FinalTB_Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalTB_Report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\HReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HReport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\mareport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mareport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\TossDPP.cs">
+      <DependentUpon>TossDPP.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\MatchDPP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MatchDPP.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\Matchreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Matchreport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\Privesdata.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Privesdata.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\SDDPreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SDDPreport.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\Sessionreportprint.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sessionreportprint.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\T_report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T_report.rpt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Session_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Session_Report.Designer.cs">
+      <DependentUpon>Session_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setings.Designer.cs">
+      <DependentUpon>Setings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setlement_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setlement_Report.Designer.cs">
+      <DependentUpon>Setlement_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Toss_Delcler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Toss_Delcler.Designer.cs">
+      <DependentUpon>Toss_Delcler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Toss_Match.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Toss_Match.Designer.cs">
+      <DependentUpon>Toss_Match.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Toss_Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Toss_Reports.Designer.cs">
+      <DependentUpon>Toss_Reports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="T_report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T_report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AccountLedger.resx">
+      <DependentUpon>AccountLedger.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgentC_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AgentC_Report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agent_abntie.resx">
+      <DependentUpon>Agent_abntie.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agent_CUP.resx">
+      <DependentUpon>Agent_CUP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agent_Connect.resx">
+      <DependentUpon>Agent_Connect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Agent_match.resx">
+      <DependentUpon>Agent_match.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Balance_Message.resx">
+      <DependentUpon>Balance_Message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NTDataGrid.resx">
+      <DependentUpon>NTDataGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CUP.resx">
+      <DependentUpon>CUP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cup_match_Book.resx">
+      <DependentUpon>Cup_match_Book.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cup_Report.resx">
+      <DependentUpon>Cup_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="C_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>C_Report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Declear_New_Sesstions.resx">
+      <DependentUpon>Declear_New_Sesstions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog1.resources" />
+    <EmbeddedResource Include="Dialog_PriDATA.resources" />
+    <EmbeddedResource Include="DPP_AbnTie.resx">
+      <DependentUpon>DPP_AbnTie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DPP_CUP.resx">
+      <DependentUpon>DPP_CUP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DPP_Match.resx">
+      <DependentUpon>DPP_Match.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DPP_Toss.resx">
+      <DependentUpon>DPP_Toss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinalTB_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FinalTB_Report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Final_Trial_Balance.resx">
+      <DependentUpon>Final_Trial_Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3_SESSION.resx">
+      <DependentUpon>Form3_SESSION.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formDPPSession.resx">
+      <DependentUpon>formDPPSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLicenseInfo.resx">
+      <DependentUpon>frmLicenseInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistration.resx">
+      <DependentUpon>frmRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegistrationInfo.resx">
+      <DependentUpon>frmRegistrationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fromAbn.resx">
+      <DependentUpon>fromAbn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fromAgentSession.resx">
+      <DependentUpon>fromAgentSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fromCUP_Winar.resx">
+      <DependentUpon>fromCUP_Winar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frommatchDecleard.resx">
+      <DependentUpon>frommatchDecleard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hawala_Report.resx">
+      <DependentUpon>Hawala_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hawla_Print.resources" />
+    <EmbeddedResource Include="HReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IMP_DATA.resx">
+      <DependentUpon>IMP_DATA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kbys.resources" />
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Match.resx">
+      <DependentUpon>Match.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchBOOKPOPUP.resx">
+      <DependentUpon>MatchBOOKPOPUP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Match_Book.resx">
+      <DependentUpon>Match_Book.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Match_Report.resx">
+      <DependentUpon>Match_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New_Connect.resx">
+      <DependentUpon>New_Connect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New_Match.resx">
+      <DependentUpon>New_Match.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New_Party.resx">
+      <DependentUpon>New_Party.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New_Session.resx">
+      <DependentUpon>New_Session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partyname_Print.resources" />
+    <EmbeddedResource Include="Party_Report.resx">
+      <DependentUpon>Party_Report.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrevoiusData.resx">
+      <DependentUpon>PrevoiusData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="print_view.resx">
+      <DependentUpon>print_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="Reference\Algo.License.dll" />
+    <Content Include="Reference\Algo.License.pdb" />
+    <Content Include="Reference\App.Logs.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reference\App.Logs.pdb" />
+    <Content Include="RPT\AgentC_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AgentC_Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\bookprint.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>bookprint.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\CupDPP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CupDPP.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\Cupreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Cupreport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\cup_book.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>cup_book.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\C_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>C_Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\FinalTB_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>FinalTB_Report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\HReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HReport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\mareport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>mareport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\MatchDPP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MatchDPP.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\Matchreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Matchreport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\Privesdata.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Privesdata.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\SDDPreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SDDPreport.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\Sessionreportprint.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Sessionreportprint.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\T_report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>T_report.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPT\TossDPP.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TossDPP.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Session_Report.resx">
+      <DependentUpon>Session_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setings.resx">
+      <DependentUpon>Setings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setlement_Report.resx">
+      <DependentUpon>Setlement_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Toss_Delcler.resx">
+      <DependentUpon>Toss_Delcler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Toss_Match.resx">
+      <DependentUpon>Toss_Match.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Toss_Reports.resx">
+      <DependentUpon>Toss_Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="T_report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>T_report.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="My\MySettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MySettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MY_DBDataSet.xsc">
+      <DependentUpon>MY_DBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MY_DBDataSet.xsd" />
+    <None Include="MY_DBDataSet.xss">
+      <DependentUpon>MY_DBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataSet1TableAdapters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon1.ico" />
+    <Content Include="Icon2.ico" />
+    <Content Include="ProtectedEXE\Control.Draggable.dll" />
+    <Content Include="ProtectedEXE\ShubhLabh.vmp.exe" />
+    <Content Include="Reference\App.DbUp.MSAccess.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reference\App.DbUp.MSAccess.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script00011.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script00012.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0004.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0003.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0002.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0005.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script00010.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0009.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0008.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0007.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\Script0006.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\App.Service\App.Service.csproj">
+      <Project>{c89e3fa6-50bb-443b-927a-1bd0a803267e}</Project>
+      <Name>App.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\App.Utility\App.Utility.csproj">
+      <Project>{92f83762-0766-4275-9d35-067889a6ddb6}</Project>
+      <Name>App.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd $(TargetDir)/RPT
+del *.cs</PostBuildEvent>
+  </PropertyGroup>
+</Project>
