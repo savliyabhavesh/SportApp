@@ -636,6 +636,17 @@ namespace YashAksh
                     this.txtK.Text = Conversions.ToString(Conversion.Val(this.txtamount.Text) * Conversion.Val(this.txtrate.Text));
                     this.txtL.Text = Conversions.ToString(Convert.ToDouble(this.txtamount.Text) - Convert.ToDouble(this.txtamount.Text) - Convert.ToDouble(this.txtamount.Text));
                 }
+                if (Operators.CompareString(this.txtmodeKL.Text, "N", false) == 0)
+                {
+                    this.txtK.Text = Conversions.ToString(Conversion.Val(this.txtamount.Text) * Conversion.Val(this.txtrate.Text));
+                    this.txtK.Text = Conversions.ToString(Conversion.Val(this.txtK.Text) - Conversion.Val(this.txtK.Text) - Conversion.Val(this.txtK.Text));
+                    this.txtL.Text = this.txtamount.Text;
+                }
+                if (Operators.CompareString(this.txtmodeKL.Text, "Y", false) == 0)
+                {
+                    this.txtK.Text = Conversions.ToString(Conversion.Val(this.txtamount.Text) * Conversion.Val(this.txtrate.Text));
+                    this.txtL.Text = Conversions.ToString(Convert.ToDouble(this.txtamount.Text) - Convert.ToDouble(this.txtamount.Text) - Convert.ToDouble(this.txtamount.Text));
+                }
             }
             catch (Exception ex)
             {
@@ -1386,6 +1397,14 @@ namespace YashAksh
                 if (e.KeyCode == Keys.NumPad2)
                 {
                     this.txtmodeKL.SelectedItem = "L";
+                }
+                if (e.KeyCode == Keys.NumPad2)
+                {
+                    this.txtmodeKL.SelectedItem = "Y";
+                }
+                if (e.KeyCode == Keys.NumPad2)
+                {
+                    this.txtmodeKL.SelectedItem = "N";
                 }
             }
             catch (Exception ex)

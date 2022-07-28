@@ -953,6 +953,9 @@
     <Content Include="Scripts\Script00012.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Script00013.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\Script0004.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -14,19 +14,13 @@ using App.Service;
 
 namespace YashAksh
 {
-    // Token: 0x0200004A RID: 74
-    //[DesignerGenerated]
     public partial class fromCUP_Winar : Form
     {
-        // Token: 0x060012D4 RID: 4820 RVA: 0x0034294C File Offset: 0x00340D4C
         public fromCUP_Winar()
         {
-            //base.Load += this.fromCUP_Winar_Load;			
-            this.txtTeamOut = new TextBox();
             this.InitializeComponent();
         }
 
-        // Token: 0x0600136B RID: 4971 RVA: 0x00345D44 File Offset: 0x00344144
         private void fromCUP_Winar_Load(object sender, EventArgs e)
         {
             try
@@ -109,92 +103,92 @@ namespace YashAksh
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[5], null, false))
                     {
                         this.txt1.Text = Conversions.ToString(oleDbDataReader[5]);
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[5]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt1.Text);
                     }
                     if (Operators.CompareString(oleDbDataReader[6].ToString(), null, false) != 0)
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[6]);
                         this.txt2.Text = Conversions.ToString(oleDbDataReader[6]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt2.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[7], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[7]);
                         this.txt3.Text = Conversions.ToString(oleDbDataReader[7]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt3.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[8], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[8]);
                         this.txt4.Text = Conversions.ToString(oleDbDataReader[8]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt4.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[9], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[9]);
                         this.txt5.Text = Conversions.ToString(oleDbDataReader[9]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt5.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[10], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[10]);
                         this.txt6.Text = Conversions.ToString(oleDbDataReader[10]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt6.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[11], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[11]);
                         this.txt7.Text = Conversions.ToString(oleDbDataReader[11]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt7.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[12], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[12]);
                         this.txt8.Text = Conversions.ToString(oleDbDataReader[12]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt8.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[13], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[13]);
                         this.txt9.Text = Conversions.ToString(oleDbDataReader[13]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt9.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[14], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[14]);
                         this.txt10.Text = Conversions.ToString(oleDbDataReader[14]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt10.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[15], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[15]);
                         this.txt11.Text = Conversions.ToString(oleDbDataReader[15]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt11.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[16], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[16]);
                         this.txt12.Text = Conversions.ToString(oleDbDataReader[16]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt12.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[17], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[17]);
                         this.txt13.Text = Conversions.ToString(oleDbDataReader[17]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt13.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[18], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[18]);
                         this.txt14.Text = Conversions.ToString(oleDbDataReader[18]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt14.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[19], null, false))
                     {
-                        this.txtTeamOut.Text = Conversions.ToString(oleDbDataReader[19]);
                         this.txt15.Text = Conversions.ToString(oleDbDataReader[19]);
-                        this.Non_Tem_Out();
+                        //this.Non_Tem_Out();
+                        this.ComboBox1.Items.Add(this.txt15.Text);
                     }
                 }
             }
@@ -208,44 +202,40 @@ namespace YashAksh
             }
         }
 
-        // Token: 0x0600136E RID: 4974 RVA: 0x003463CC File Offset: 0x003447CC
-        public void Non_Tem_Out()
-        {
-            try
-            {
-                if (Module1.conn.State == ConnectionState.Closed)
-                {
-                    Module1.conn.Open();
-                }
-                string cmdText = string.Concat(new string[]
-                {
-                    "SELECT m_id, m_team, M_Tem_Out, m_checked FROM(CupTrans) WHERE (m_id =",
-                    this.txtid.Text,
-                    ") AND  (m_team = '",
-                    this.txtTeamOut.Text,
-                    "')"
-                });
-                OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
-                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-                if (oleDbDataReader.Read())
-                {
-                    if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader["M_Tem_Out"], "1", false))
-                    {
-                        this.ComboBox1.Items.Add(this.txtTeamOut.Text);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
-                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
-            }
-            finally
-            {
-            }
-        }
+        //public void Non_Tem_Out()
+        //{
+        //    try
+        //    {
+        //        if (Module1.conn.State == ConnectionState.Closed)
+        //        {
+        //            Module1.conn.Open();
+        //        }
+        //        string cmdText = string.Concat(new string[]
+        //        {
+        //            "SELECT m_id, m_team, M_Tem_Out, m_checked FROM(CupTrans) WHERE (m_team = '",
+        //            this.txtTeamOut.Text,
+        //            "')"
+        //        });
+        //        OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
+        //        OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+        //        if (oleDbDataReader.Read())
+        //        {
+        //            if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader["M_Tem_Out"], "1", false))
+        //            {
+        //                this.ComboBox1.Items.Add(this.txtTeamOut.Text);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+        //        Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+        //    }
+        //    finally
+        //    {
+        //    }
+        //}
 
-        // Token: 0x0600136F RID: 4975 RVA: 0x003464C8 File Offset: 0x003448C8
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -1013,8 +1003,5 @@ namespace YashAksh
 
         // Token: 0x04000811 RID: 2065
         private object SRHINAME;
-
-        // Token: 0x04000813 RID: 2067
-        private TextBox txtTeamOut;
     }
 }

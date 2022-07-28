@@ -1638,12 +1638,6 @@ namespace YashAksh
             {
                 this.Cmboid.SelectedIndex = this.txtpartiname.SelectedIndex;
                 this.cmbostus.SelectedIndex = this.txtpartiname.SelectedIndex;
-                //this.smatch.SelectedIndex = this.txtpartiname.SelectedIndex;
-                //this.amatch.SelectedIndex = this.txtpartiname.SelectedIndex;
-                //this.tmatch.SelectedIndex = this.txtpartiname.SelectedIndex;
-                //this.subtotal.Text = Conversions.ToString(Conversion.Val(this.smatch.Text) + Conversion.Val(this.amatch.Text) + Conversion.Val(this.tmatch.Text));
-                //this.Label7.Text = "Party Position Of   " + this.txtpartiname.Text;
-                //this.Partposion();
             }
             catch (Exception ex)
             {
@@ -1652,7 +1646,6 @@ namespace YashAksh
             }
         }
 
-        // Token: 0x06002432 RID: 9266 RVA: 0x003C8424 File Offset: 0x003C6824
         private void txtpage_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1832,7 +1825,6 @@ namespace YashAksh
             }
         }
 
-        // Token: 0x06002439 RID: 9273 RVA: 0x003C87C0 File Offset: 0x003C6BC0
         private void txtpartiname_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1847,8 +1839,6 @@ namespace YashAksh
                         }
                         else
                         {
-                            //this.btnok_Click(sender, e);
-                            //SendKeys.Send("{Tab}");
                             this.btnok.Focus();
                         }
                     }
@@ -1856,22 +1846,12 @@ namespace YashAksh
                     {
                         this.Button1.Focus();
                     }
+                }
 
-                    //if (this.btnok.Visible)
-                    //{
-                    //	if (Operators.CompareString(this.txtpartiname.Text, null, false) == 0)
-                    //	{
-                    //		this.Focus();
-                    //	}
-                    //	else
-                    //	{
-                    //		this.btnok.Focus();
-                    //	}
-                    //}
-                    //else
-                    //{
-                    //	this.Button1.Focus();
-                    //}
+                if (e.KeyCode == Keys.Back)
+                {
+                    this.txtpartiname.Text = null;
+                    this.txtpartiname.Focus();
                 }
             }
             catch (Exception ex)
@@ -1881,7 +1861,6 @@ namespace YashAksh
             }
         }
 
-        // Token: 0x0600243A RID: 9274 RVA: 0x003C884C File Offset: 0x003C6C4C
         private void txtpartiname_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
@@ -1889,6 +1868,7 @@ namespace YashAksh
                 ComboBox txtpartiname = this.txtpartiname;
                 this.AutoComplete(ref txtpartiname, e, false);
                 this.txtpartiname = txtpartiname;
+
                 Module1.TotalAmount = 0.0;
                 Module1.CustBalance = 0.0;
                 if (Module1.conn.State == ConnectionState.Closed)

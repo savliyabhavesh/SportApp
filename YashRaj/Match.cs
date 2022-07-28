@@ -846,10 +846,14 @@ namespace YashAksh
                     this.DataGridView1.Columns[7].HeaderText = this.Te2;
                     this.DataGridView1.Columns[8].HeaderText = this.Te3;
                     this.DataGridView1.Columns[9].HeaderText = this.Te4;
-                    if (Operators.CompareString(this.DataGridView1.Columns[8].HeaderText, null, false) == 0)
-                    {
+                   
+                    //if (Operators.CompareString(this.DataGridView1.Columns[8].HeaderText, null, false) == 0)
+                    //{
+                    if (this.DataGridView1.Columns[8].HeaderText.ToString() == "DRW")
+                        this.DataGridView1.Columns[8].Visible = true;
+                    else
                         this.DataGridView1.Columns[8].Visible = false;
-                    }
+                    //}
                     if (Operators.CompareString(this.DataGridView1.Columns[9].HeaderText, null, false) == 0)
                     {
                         this.DataGridView1.Columns[9].Visible = false;
@@ -1381,18 +1385,18 @@ namespace YashAksh
             }
         }
 
-        private void txtpartiname_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                this.Label7.Text = "Party Position Of   " + this.txtpartiname.Text;
-            }
-            catch (Exception ex)
-            {
-                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
-                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
-            }
-        }
+        //private void txtpartiname_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        this.Label7.Text = "Party Position Of   " + this.txtpartiname.Text;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+        //        Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+        //    }
+        //}
 
         public void hidetextbox()
         {
@@ -1505,7 +1509,7 @@ namespace YashAksh
                 {
                     Module1.name1 = this.txtpartiname.Text;
                     this.Partposion1();
-                    this.Customer_OpningBalance();
+                   // this.Customer_OpningBalance();
                 }
             }
             catch (Exception ex)
@@ -1711,7 +1715,6 @@ namespace YashAksh
                     this.deleteno = Conversions.ToInteger(this.DataGridView1.CurrentRow.Cells[0].Value);
                     this.modify = Conversions.ToInteger(this.DataGridView1.CurrentRow.Cells[13].Value);
                     Module1.name1 = RuntimeHelpers.GetObjectValue(this.DataGridView1.CurrentRow.Cells[5].Value);
-                    this.Label7.Text = "Party Position Of   " + this.txtpartiname.Text;
                     this.Partposion1();
                 }
             }
@@ -3662,8 +3665,6 @@ namespace YashAksh
                         }
                         else
                         {
-                            //this.btnOk_Click(sender, e);
-                            //SendKeys.Send("{Tab}");
                             btnOk.Focus();
                         }
                     }
@@ -3671,22 +3672,6 @@ namespace YashAksh
                     {
                         this.Button1.Focus();
                     }
-
-                    //if (this.btnok.Visible)
-                    //{
-                    //	if (Operators.CompareString(this.txtpartiname.Text, null, false) == 0)
-                    //	{
-                    //		this.Focus();
-                    //	}
-                    //	else
-                    //	{
-                    //		this.btnok.Focus();
-                    //	}
-                    //}
-                    //else
-                    //{
-                    //	this.Button1.Focus();
-                    //}
                 }
 
                 if (e.KeyCode == Keys.Back)

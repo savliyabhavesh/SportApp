@@ -39,6 +39,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.cmbNumberFormat = new System.Windows.Forms.ComboBox();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbClinetReport = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.cmbNTPosition = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -46,13 +49,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.chkLock = new System.Windows.Forms.CheckBox();
-            this.txtOpeningBalance = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtdate = new System.Windows.Forms.DateTimePicker();
-            this.cmbClinetReport = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.Panel3.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +82,7 @@
             this.txtpassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtpassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtpassword.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.txtpassword.Location = new System.Drawing.Point(203, 124);
+            this.txtpassword.Location = new System.Drawing.Point(203, 91);
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.PasswordChar = '*';
             this.txtpassword.Size = new System.Drawing.Size(179, 22);
@@ -97,7 +94,7 @@
             this.Label14.AutoSize = true;
             this.Label14.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.Label14.ForeColor = System.Drawing.Color.Black;
-            this.Label14.Location = new System.Drawing.Point(7, 124);
+            this.Label14.Location = new System.Drawing.Point(7, 91);
             this.Label14.Name = "Label14";
             this.Label14.Size = new System.Drawing.Size(90, 22);
             this.Label14.TabIndex = 23;
@@ -109,7 +106,7 @@
             this.btnsave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnsave.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.btnsave.ForeColor = System.Drawing.Color.White;
-            this.btnsave.Location = new System.Drawing.Point(204, 321);
+            this.btnsave.Location = new System.Drawing.Point(204, 288);
             this.btnsave.Name = "btnsave";
             this.btnsave.Size = new System.Drawing.Size(86, 35);
             this.btnsave.TabIndex = 4;
@@ -124,7 +121,7 @@
             this.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Button2.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.Button2.ForeColor = System.Drawing.Color.White;
-            this.Button2.Location = new System.Drawing.Point(298, 320);
+            this.Button2.Location = new System.Drawing.Point(298, 287);
             this.Button2.Name = "Button2";
             this.Button2.Size = new System.Drawing.Size(85, 35);
             this.Button2.TabIndex = 5;
@@ -163,7 +160,6 @@
             this.txtCompanyAccount.Name = "txtCompanyAccount";
             this.txtCompanyAccount.Size = new System.Drawing.Size(179, 22);
             this.txtCompanyAccount.TabIndex = 1;
-            this.txtCompanyAccount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCompanyAccount_KeyDown);
             // 
             // Label1
             // 
@@ -181,7 +177,7 @@
             this.Label15.AutoSize = true;
             this.Label15.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.Label15.ForeColor = System.Drawing.Color.Black;
-            this.Label15.Location = new System.Drawing.Point(183, 124);
+            this.Label15.Location = new System.Drawing.Point(183, 91);
             this.Label15.Name = "Label15";
             this.Label15.Size = new System.Drawing.Size(15, 22);
             this.Label15.TabIndex = 48;
@@ -227,9 +223,6 @@
             this.GroupBox1.Controls.Add(this.label3);
             this.GroupBox1.Controls.Add(this.label5);
             this.GroupBox1.Controls.Add(this.chkLock);
-            this.GroupBox1.Controls.Add(this.txtOpeningBalance);
-            this.GroupBox1.Controls.Add(this.label4);
-            this.GroupBox1.Controls.Add(this.label6);
             this.GroupBox1.Controls.Add(this.cmbNumberFormat);
             this.GroupBox1.Controls.Add(this.label13);
             this.GroupBox1.Controls.Add(this.Label15);
@@ -249,6 +242,43 @@
             this.GroupBox1.TabIndex = 0;
             this.GroupBox1.TabStop = false;
             // 
+            // cmbClinetReport
+            // 
+            this.cmbClinetReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClinetReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbClinetReport.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbClinetReport.FormattingEnabled = true;
+            this.cmbClinetReport.ItemHeight = 19;
+            this.cmbClinetReport.Items.AddRange(new object[] {
+            "TWO",
+            "THREE"});
+            this.cmbClinetReport.Location = new System.Drawing.Point(207, 192);
+            this.cmbClinetReport.Name = "cmbClinetReport";
+            this.cmbClinetReport.Size = new System.Drawing.Size(179, 27);
+            this.cmbClinetReport.TabIndex = 69;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(184, 193);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 22);
+            this.label10.TabIndex = 71;
+            this.label10.Text = ":";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(8, 193);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(121, 22);
+            this.label11.TabIndex = 70;
+            this.label11.Text = "Agent Report";
+            // 
             // cmbNTPosition
             // 
             this.cmbNTPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -259,7 +289,7 @@
             this.cmbNTPosition.Items.AddRange(new object[] {
             "TOP",
             "BOTTOM"});
-            this.cmbNTPosition.Location = new System.Drawing.Point(206, 190);
+            this.cmbNTPosition.Location = new System.Drawing.Point(206, 157);
             this.cmbNTPosition.Name = "cmbNTPosition";
             this.cmbNTPosition.Size = new System.Drawing.Size(179, 27);
             this.cmbNTPosition.TabIndex = 66;
@@ -269,7 +299,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(183, 191);
+            this.label7.Location = new System.Drawing.Point(183, 158);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(15, 22);
             this.label7.TabIndex = 68;
@@ -280,7 +310,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(7, 191);
+            this.label9.Location = new System.Drawing.Point(7, 158);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(106, 22);
             this.label9.TabIndex = 67;
@@ -296,7 +326,7 @@
             this.cmbEntryOrder.Items.AddRange(new object[] {
             "FIRST AMOUNT",
             "FIRST RATE"});
-            this.cmbEntryOrder.Location = new System.Drawing.Point(204, 155);
+            this.cmbEntryOrder.Location = new System.Drawing.Point(204, 122);
             this.cmbEntryOrder.Name = "cmbEntryOrder";
             this.cmbEntryOrder.Size = new System.Drawing.Size(179, 27);
             this.cmbEntryOrder.TabIndex = 63;
@@ -306,7 +336,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(183, 156);
+            this.label3.Location = new System.Drawing.Point(183, 123);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(15, 22);
             this.label3.TabIndex = 65;
@@ -317,7 +347,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(7, 156);
+            this.label5.Location = new System.Drawing.Point(7, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 22);
             this.label5.TabIndex = 64;
@@ -329,45 +359,12 @@
             this.chkLock.BackColor = System.Drawing.Color.Transparent;
             this.chkLock.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold);
             this.chkLock.ForeColor = System.Drawing.Color.Red;
-            this.chkLock.Location = new System.Drawing.Point(203, 288);
+            this.chkLock.Location = new System.Drawing.Point(203, 255);
             this.chkLock.Name = "chkLock";
             this.chkLock.Size = new System.Drawing.Size(69, 26);
             this.chkLock.TabIndex = 62;
             this.chkLock.Text = "Lock";
             this.chkLock.UseVisualStyleBackColor = false;
-            // 
-            // txtOpeningBalance
-            // 
-            this.txtOpeningBalance.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtOpeningBalance.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtOpeningBalance.Location = new System.Drawing.Point(203, 93);
-            this.txtOpeningBalance.Name = "txtOpeningBalance";
-            this.txtOpeningBalance.Size = new System.Drawing.Size(179, 22);
-            this.txtOpeningBalance.TabIndex = 2;
-            this.txtOpeningBalance.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOpeningBalance_KeyDown);
-            this.txtOpeningBalance.Leave += new System.EventHandler(this.txtOpeningBalance_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(183, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(15, 22);
-            this.label4.TabIndex = 60;
-            this.label4.Text = ":";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(7, 93);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(150, 22);
-            this.label6.TabIndex = 58;
-            this.label6.Text = "Opening Balance";
             // 
             // txtdate
             // 
@@ -376,43 +373,6 @@
             this.txtdate.Name = "txtdate";
             this.txtdate.Size = new System.Drawing.Size(10, 22);
             this.txtdate.TabIndex = 66;
-            // 
-            // cmbClinetReport
-            // 
-            this.cmbClinetReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClinetReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbClinetReport.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbClinetReport.FormattingEnabled = true;
-            this.cmbClinetReport.ItemHeight = 19;
-            this.cmbClinetReport.Items.AddRange(new object[] {
-            "TWO",
-            "THREE"});
-            this.cmbClinetReport.Location = new System.Drawing.Point(207, 225);
-            this.cmbClinetReport.Name = "cmbClinetReport";
-            this.cmbClinetReport.Size = new System.Drawing.Size(179, 27);
-            this.cmbClinetReport.TabIndex = 69;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(184, 226);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(15, 22);
-            this.label10.TabIndex = 71;
-            this.label10.Text = ":";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(8, 226);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(121, 22);
-            this.label11.TabIndex = 70;
-            this.label11.Text = "Agent Report";
             // 
             // Setings
             // 
@@ -452,9 +412,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbNumberFormat;
         private System.Windows.Forms.GroupBox GroupBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtOpeningBalance;
         private System.Windows.Forms.CheckBox chkLock;
         private System.Windows.Forms.ComboBox cmbEntryOrder;
         private System.Windows.Forms.Label label3;

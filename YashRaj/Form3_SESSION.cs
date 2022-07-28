@@ -2335,10 +2335,11 @@ namespace YashAksh
                     ComboBox txtpartiname = this.txtpartiname;
                     this.AutoComplete(ref txtpartiname, e, false);
                     this.txtpartiname = txtpartiname;
+
                     Module1.CustBalance = 0.0;
                     Module1.TotalAmount = 0.0;
                     Module1.TotalAmount += Convert.ToDouble(this.txtamount.Text);
-                    this.Customer_OpningBalance();
+                    //this.Customer_OpningBalance();
                 }
             }
             catch (Exception ex)
