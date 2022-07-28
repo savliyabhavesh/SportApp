@@ -491,19 +491,37 @@ namespace YashAksh
                         OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
                         if (oleDbDataReader.Read())
                         {
-
-                            if (Operators.CompareString(oleDbDataReader["tns_Party"].ToString(), this.txtPartyName.Text, false) == 0)
+                            cmdText = "SELECT Id,tns_Party FROM Trans WHERE (tns_Type IN ('CR','DR')) AND (tns_IsAuto = 1) AND (tns_ModifyID = " + modifyid + ")";
+                            OleDbCommand oleDbCommand3 = new OleDbCommand(cmdText, Module1.conn);
+                            OleDbDataReader oleDbDataReader3 = oleDbCommand3.ExecuteReader();
+                            if (!oleDbDataReader3.Read())
                             {
-                                cmdText = "SELECT tns_Party, tns_Amount, tns_Remark, tns_ModifyID, tns_chk, tns_Type FROM Trans WHERE (tns_Type IN ('CR','DR')) AND (tns_chk = '0') AND (tns_ModifyID = " + modifyid + ") ORDER BY ID DESC";
-                                OleDbCommand oleDbCommand2 = new OleDbCommand(cmdText, Module1.conn);
-                                OleDbDataReader oleDbDataReader2 = oleDbCommand2.ExecuteReader();
-                                if (oleDbDataReader2.Read())
+
+                                if (Operators.CompareString(oleDbDataReader["tns_Party"].ToString(), this.txtPartyName.Text, false) == 0)
                                 {
-                                    this.txttraName.Text = oleDbDataReader2["tns_Party"].ToString();
-                                    this.txtamount.Text = Conversions.ToString(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader2["tns_Amount"])) - Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader2["tns_Amount"])) - Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader2["tns_Amount"])));
-                                    string text = oleDbDataReader2["tns_Remark"].ToString();
-                                    string text2 = text.Replace(this.txtPartyName.Text, "");
-                                    this.txtremark.Text = text2.ToString();
+                                    cmdText = "SELECT tns_Party, tns_Amount, tns_Remark, tns_ModifyID, tns_chk, tns_Type FROM Trans WHERE (tns_Type IN ('CR','DR')) AND (tns_chk = '0') AND (tns_ModifyID = " + modifyid + ") ORDER BY ID DESC";
+                                    OleDbCommand oleDbCommand2 = new OleDbCommand(cmdText, Module1.conn);
+                                    OleDbDataReader oleDbDataReader2 = oleDbCommand2.ExecuteReader();
+                                    if (oleDbDataReader2.Read())
+                                    {
+                                        this.txttraName.Text = oleDbDataReader2["tns_Party"].ToString();
+                                        this.txtamount.Text = Conversions.ToString(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader2["tns_Amount"])) - Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader2["tns_Amount"])) - Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader2["tns_Amount"])));
+                                        string text = oleDbDataReader2["tns_Remark"].ToString();
+                                        string text2 = text.Replace(this.txtPartyName.Text, "");
+                                        this.txtremark.Text = text2.ToString();
+                                        this.Button4.Show();
+                                        this.Button5.Show();
+                                        this.Button6.Hide();
+                                        this.txttraName.Focus();
+                                    }
+                                }
+                                else
+                                {
+                                    this.txttraName.Text = oleDbDataReader["tns_Party"].ToString();
+                                    this.txtamount.Text = Conversions.ToString(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["tns_Amount"])) - Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["tns_Amount"])) - Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["tns_Amount"])));
+                                    string text3 = oleDbDataReader["tns_Remark"].ToString();
+                                    string text4 = text3.Replace(this.txtPartyName.Text, "");
+                                    this.txtremark.Text = text4.ToString();
                                     this.Button4.Show();
                                     this.Button5.Show();
                                     this.Button6.Hide();
@@ -512,20 +530,12 @@ namespace YashAksh
                             }
                             else
                             {
-                                this.txttraName.Text = oleDbDataReader["tns_Party"].ToString();
-                                this.txtamount.Text = Conversions.ToString(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["tns_Amount"])) - Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["tns_Amount"])) - Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["tns_Amount"])));
-                                string text3 = oleDbDataReader["tns_Remark"].ToString();
-                                string text4 = text3.Replace(this.txtPartyName.Text, "");
-                                this.txtremark.Text = text4.ToString();
-                                this.Button4.Show();
-                                this.Button5.Show();
-                                this.Button6.Hide();
-                                this.txttraName.Focus();
+                                Interaction.MsgBox("Cannot Modify Auto Entry? Please Try Another..?", MsgBoxStyle.OkOnly, null);
                             }
                         }
                         else
                         {
-                            Interaction.MsgBox("Cannot modify this Records ? Please Try..?", MsgBoxStyle.OkOnly, null);
+                            Interaction.MsgBox("Cannot modify this Records ? Please Try Another..?", MsgBoxStyle.OkOnly, null);
                         }
                     }
                     else
@@ -561,25 +571,35 @@ namespace YashAksh
                     OleDbDataReader oleDbDataRdr = oleDbCmd.ExecuteReader();
                     if (!oleDbDataRdr.Read())
                     {
-                        if (Interaction.MsgBox("Do you want to delete this Record", MsgBoxStyle.YesNo, null) == MsgBoxResult.Yes)
+                        string cmdText = "SELECT Id,tns_Party FROM Trans WHERE (tns_Type IN ('CR','DR')) AND (tns_IsAuto = 1) AND (tns_ModifyID = " + modifyid + ")";
+                        OleDbCommand oleDbCommand3 = new OleDbCommand(cmdText, Module1.conn);
+                        OleDbDataReader oleDbDataReader3 = oleDbCommand3.ExecuteReader();
+                        if (!oleDbDataReader3.Read())
                         {
-                            if (Interaction.MsgBox("Are you sure want to delete this Entry", MsgBoxStyle.YesNo, null) == MsgBoxResult.Yes)
+                            if (Interaction.MsgBox("Do you want to delete this Record", MsgBoxStyle.YesNo, null) == MsgBoxResult.Yes)
                             {
-                                string cmdText = "select tns_ModifyID,tns_chk from Trans where tns_ModifyID=" + modifyid + " and tns_chk='1'";
-                                OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
-                                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-                                if (oleDbDataReader.Read())
+                                if (Interaction.MsgBox("Are you sure want to delete this Entry", MsgBoxStyle.YesNo, null) == MsgBoxResult.Yes)
                                 {
-                                    Interaction.MsgBox("Cannot delete this records?", MsgBoxStyle.OkOnly, null);
-                                }
-                                else
-                                {
-                                    string cmdText2 = "update Trans set tns_chk='1',modify_time='" + Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime) + "', modify_date='" + this.txtdate.Text + "' where tns_ModifyID=" + modifyid + " ";
-                                    OleDbCommand oleDbCommand2 = new OleDbCommand(cmdText2, Module1.conn);
-                                    oleDbCommand2.ExecuteNonQuery();
-                                    this.Opening_Balance();
+                                    cmdText = "select tns_ModifyID,tns_chk from Trans where tns_ModifyID=" + modifyid + " and tns_chk='1'";
+                                    OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
+                                    OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+                                    if (oleDbDataReader.Read())
+                                    {
+                                        Interaction.MsgBox("Cannot delete this records?", MsgBoxStyle.OkOnly, null);
+                                    }
+                                    else
+                                    {
+                                        string cmdText2 = "update Trans set tns_chk='1',modify_time='" + Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime) + "', modify_date='" + this.txtdate.Text + "' where tns_ModifyID=" + modifyid + " ";
+                                        OleDbCommand oleDbCommand2 = new OleDbCommand(cmdText2, Module1.conn);
+                                        oleDbCommand2.ExecuteNonQuery();
+                                        this.Opening_Balance();
+                                    }
                                 }
                             }
+                        }
+                        else
+                        {
+                            Interaction.MsgBox("Cannot Delete Auto Entry? Please Try Another..?", MsgBoxStyle.OkOnly, null);
                         }
                     }
                     else

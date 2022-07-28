@@ -30,7 +30,6 @@ namespace YashAksh.My
             try
             {
                 Application.SetCompatibleTextRenderingDefault(WindowsFormsApplicationBase.UseCompatibleTextRendering);
-
             }
             finally
             {

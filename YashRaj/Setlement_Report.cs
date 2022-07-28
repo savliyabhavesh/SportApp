@@ -55,6 +55,10 @@ namespace YashAksh
                     OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
                     if (oleDbDataReader.Read())
                     {
+                        Form fc = Application.OpenForms["AccountLedger"];
+                        if (fc != null)
+                            fc.Close();
+
                         Module1.tranID = this.txtname.Text;
                         MyProject.Forms.AccountLedger.MdiParent = this.MdiParent;
                         MyProject.Forms.AccountLedger.WindowState = FormWindowState.Maximized;
@@ -545,6 +549,10 @@ namespace YashAksh
                 {
                     if (!Operators.ConditionalCompareObjectEqual(this.DataGridView1.CurrentRow.Cells[1].Value, null, false))
                     {
+                        Form fc = Application.OpenForms["AccountLedger"];
+                        if (fc != null)
+                            fc.Close();
+
                         this.txtname.Text = Conversions.ToString(this.DataGridView1.CurrentRow.Cells[1].Value);
                         Module1.tranID = this.txtname.Text;
                         AccountLedger accountLedger = new AccountLedger();

@@ -906,6 +906,10 @@ namespace YashAksh
             {
                 try
                 {
+                    Form fc = Application.OpenForms["AccountLedger"];
+                    if (fc != null)
+                        fc.Close();
+
                     if (e.ColumnIndex == 1 && this.DataGridView10.CurrentRow.Cells[1].Value != null)
                     {
                         Module1.tranID = this.DataGridView10.CurrentRow.Cells[1].Value.ToString();
@@ -938,6 +942,10 @@ namespace YashAksh
             {
                 try
                 {
+                    Form fc = Application.OpenForms["AccountLedger"];
+                    if (fc != null)
+                        fc.Close();
+
                     if (e.ColumnIndex == 1 && this.DataGridView20.CurrentRow.Cells[1].Value != null)
                     {
                         Module1.tranID = this.DataGridView20.CurrentRow.Cells[1].Value.ToString();
@@ -1059,6 +1067,10 @@ namespace YashAksh
                 {
                     if (e.KeyData == Keys.Enter)
                     {
+                        Form fc = Application.OpenForms["AccountLedger"];
+                        if (fc != null)
+                            fc.Close();
+
                         int columnindex = DataGridView10.CurrentCell.ColumnIndex;
                         if ((columnindex == 1 || columnindex == 2) && this.DataGridView10.CurrentRow.Cells[1].Value != null)
                         {
@@ -1093,6 +1105,10 @@ namespace YashAksh
             {
                 if (e.KeyData == Keys.Enter)
                 {
+                    Form fc = Application.OpenForms["AccountLedger"];
+                    if (fc != null)
+                        fc.Close();
+
                     int columnindex = DataGridView20.CurrentCell.ColumnIndex;
                     if ((columnindex == 1 || columnindex == 2) && this.DataGridView20.CurrentRow.Cells[1].Value != null)
                     {
