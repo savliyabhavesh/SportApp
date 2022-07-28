@@ -409,7 +409,7 @@
             this.txtpartiname.Name = "txtpartiname";
             this.txtpartiname.Size = new System.Drawing.Size(140, 26);
             this.txtpartiname.TabIndex = 4;
-            this.txtpartiname.SelectedIndexChanged += new System.EventHandler(this.txtpartiname_SelectedIndexChanged);
+            //this.txtpartiname.SelectedIndexChanged += new System.EventHandler(this.txtpartiname_SelectedIndexChanged);
             this.txtpartiname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtpartiname_KeyDown);
             this.txtpartiname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpartiname_KeyPress);
             this.txtpartiname.Leave += new System.EventHandler(this.txtpartiname_Leave);

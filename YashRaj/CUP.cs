@@ -3056,6 +3056,7 @@ namespace YashAksh
                 ComboBox txtpartiname = this.txtpartiname;
                 this.AutoComplete(ref txtpartiname, e, false);
                 this.txtpartiname = txtpartiname;
+
                 Module1.TotalAmount = 0.0;
                 Module1.CustBalance = 0.0;
                 if (Module1.conn.State == ConnectionState.Closed)
@@ -3578,14 +3579,12 @@ namespace YashAksh
             }
         }
 
-        // Token: 0x06000665 RID: 1637 RVA: 0x002C7FC0 File Offset: 0x002C63C0
         private void txtpartiname_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Return)
                 {
-                    //if (modifyid == 0)
                     if (ismodify == false)
                     {
                         if (Operators.CompareString(this.txtpartiname.Text, null, false) == 0)
@@ -3594,8 +3593,6 @@ namespace YashAksh
                         }
                         else
                         {
-                            //this.btnOK_Click(sender, e);
-                            //SendKeys.Send("{Tab}");
                             this.btnOK.Focus();
                         }
                     }
@@ -3603,16 +3600,12 @@ namespace YashAksh
                     {
                         this.Button11.Focus();
                     }
+                }
 
-                    //if (Operators.CompareString(this.txtpartiname.Text, null, false) == 0)
-                    //{
-                    //	this.Focus();
-                    //}
-                    //else
-                    //{
-                    //	this.btnOK.Focus();
-                    //	this.Button11.Focus();
-                    //}
+                if (e.KeyCode == Keys.Back)
+                {
+                    this.txtpartiname.Text = null;
+                    this.txtpartiname.Focus();
                 }
             }
             catch (Exception ex)
@@ -3622,7 +3615,6 @@ namespace YashAksh
             }
         }
 
-        // Token: 0x06000667 RID: 1639 RVA: 0x002C8054 File Offset: 0x002C6454
         public void Regular_all_Tems()
         {
             try

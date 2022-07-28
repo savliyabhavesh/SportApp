@@ -48,6 +48,20 @@
             this.Label20 = new System.Windows.Forms.Label();
             this.Label19 = new System.Windows.Forms.Label();
             this.DataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modify_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modify_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Label2 = new System.Windows.Forms.Label();
             this.DataGridView1 = new System.Windows.Forms.DataGridView();
             this.Panel2 = new System.Windows.Forms.Panel();
@@ -98,20 +112,6 @@
             this.Label6 = new System.Windows.Forms.Label();
             this.Label7 = new System.Windows.Forms.Label();
             this.txtdate = new System.Windows.Forms.DateTimePicker();
-            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modify_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modify_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Panel1.SuspendLayout();
             this.Panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView2)).BeginInit();
@@ -231,7 +231,9 @@
             this.txtmodeKL.FormattingEnabled = true;
             this.txtmodeKL.Items.AddRange(new object[] {
             "K",
-            "L"});
+            "L",
+            "Y",
+            "N"});
             this.txtmodeKL.Location = new System.Drawing.Point(235, 31);
             this.txtmodeKL.Name = "txtmodeKL";
             this.txtmodeKL.Size = new System.Drawing.Size(55, 27);
@@ -420,6 +422,89 @@
             this.DataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
             this.DataGridView2.Click += new System.EventHandler(this.DataGridView1_Click);
             this.DataGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridView2_KeyDown);
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 20;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Sr.No.";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 60;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Amount";
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 110;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Rate";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 110;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Run";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 70;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Mode";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 30;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Bild";
+            this.Column4.Name = "Column4";
+            this.Column4.Visible = false;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Yes";
+            this.Column5.Name = "Column5";
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "No";
+            this.Column9.Name = "Column9";
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Time";
+            this.Column10.Name = "Column10";
+            this.Column10.Width = 120;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Page No.";
+            this.Column12.Name = "Column12";
+            this.Column12.Visible = false;
+            this.Column12.Width = 10;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Date";
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 120;
+            // 
+            // modify_time
+            // 
+            this.modify_time.HeaderText = "Modify Time";
+            this.modify_time.Name = "modify_time";
+            this.modify_time.Width = 120;
+            // 
+            // modify_date
+            // 
+            this.modify_date.HeaderText = "Modify Date";
+            this.modify_date.Name = "modify_date";
+            this.modify_date.Width = 120;
             // 
             // Label2
             // 
@@ -892,89 +977,6 @@
             this.txtdate.Name = "txtdate";
             this.txtdate.Size = new System.Drawing.Size(84, 22);
             this.txtdate.TabIndex = 140;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 20;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Sr.No.";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 60;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Amount";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 110;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Rate";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 110;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Run";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 70;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Mode";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 30;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Bild";
-            this.Column4.Name = "Column4";
-            this.Column4.Visible = false;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Yes";
-            this.Column5.Name = "Column5";
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "No";
-            this.Column9.Name = "Column9";
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Time";
-            this.Column10.Name = "Column10";
-            this.Column10.Width = 120;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Page No.";
-            this.Column12.Name = "Column12";
-            this.Column12.Visible = false;
-            this.Column12.Width = 10;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Date";
-            this.Column11.Name = "Column11";
-            this.Column11.Width = 120;
-            // 
-            // modify_time
-            // 
-            this.modify_time.HeaderText = "Modify Time";
-            this.modify_time.Name = "modify_time";
-            this.modify_time.Width = 120;
-            // 
-            // modify_date
-            // 
-            this.modify_date.HeaderText = "Modify Date";
-            this.modify_date.Name = "modify_date";
-            this.modify_date.Width = 120;
             // 
             // formDPPSession
             // 

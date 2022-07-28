@@ -90,23 +90,6 @@ namespace YashAksh
                         }
                     }
 
-                    if (Conversion.Val(txtOpeningBalance.Text) != 0)
-                    {
-                        string str = "select * from Trans where tns_party = '" + this.txtCompanyAccount.Text + "' AND tns_Type='BALANCE' ";
-                        OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(str, Module1.conn);
-                        DataTable dt = new DataTable();
-                        oleDbDataAdapter.Fill(dt);
-
-                        if (dt.Rows.Count == 0)
-                        {
-                            string cmdText32 = $"INSERT INTO Trans ([tns_party], [tns_Amount], [tns_Remark], [tns_MatchID], [tns_dt], [tns_Type], [tns_Vid], [tns_Monday], [tns_Sessionid], [tns_ModifyID], [tns_Monday_Final], [tns_Hawala], [tns_chk], [tns_time]) VALUES ('{this.txtCompanyAccount.Text.ToUpper()}',{this.txtOpeningBalance.Text}'Opening Balance','0','{this.txtdate.Text}','BALANCE',0,0,0,0,'No','','0','{Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime)}'";
-                            using (TransactionService transactionService = new TransactionService())
-                            {
-                                transactionService.Insert(cmdText32);
-                            }
-                        }
-                    }
-
                     Module1.NumFormat = this.cmbNumberFormat.Text == "FULL AMOUNT" ? "" : Conversions.ToString(this.cmbNumberFormat.Text);
                     Module1.decimalnumberformat = this.cmbNumberFormat.Text == "FULL AMOUNT" ? "" : Conversions.ToString(this.cmbNumberFormat.Text);
 
@@ -199,23 +182,6 @@ namespace YashAksh
                 Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
             }
         }
-
-        private void txtOpeningBalance_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.txtOpeningBalance.Text != "")
-                {
-                    this.txtOpeningBalance.Text = Module1.SetNumFormat(Conversion.Val(this.txtOpeningBalance.Text), Module1.decimalnumberformat);
-                }
-            }
-            catch (Exception ex)
-            {
-                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
-                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
-            }
-        }
-
         private void cmbNumberFormat_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -223,36 +189,6 @@ namespace YashAksh
                 if (e.KeyCode == Keys.Return && Conversions.ToString(this.cmbNumberFormat.Text) != "")
                 {
                     this.txtCompanyAccount.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
-            }
-        }
-
-        private void txtCompanyAccount_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Return && Conversions.ToString(this.txtCompanyAccount.Text) != "")
-                {
-                    this.txtOpeningBalance.Focus();
-                }
-            }
-            catch (Exception ex)
-            {
-                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
-            }
-        }
-
-        private void txtOpeningBalance_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Return && Conversion.Val(this.txtOpeningBalance.Text) != 0)
-                {
-                    this.txtpassword.Focus();
                 }
             }
             catch (Exception ex)

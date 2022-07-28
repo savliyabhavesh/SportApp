@@ -91,7 +91,7 @@ namespace YashAksh
                 DataTable dt = new DataTable();
                 this.ComboBox1.Items.Clear();
                 this.txtname.Items.Clear();
-                string cmdText = "SELECT Id, PartyName, Status, OpeningBalance, MatchCommiType, SMatch, SMatchCommi, AParty, AMatch, AMatchCommi, TParty, TMatch, TMatchCommi FROM PartyMaster WHERE Id<>1 ORDER BY PartyName";
+                string cmdText = "SELECT Id, PartyName, Status, BalanceLimit, MatchCommiType, SMatch, SMatchCommi, AParty, AMatch, AMatchCommi, TParty, TMatch, TMatchCommi FROM PartyMaster WHERE Id<>1 ORDER BY PartyName";
                 OleDbCommand selectCommand = new OleDbCommand(cmdText, Module1.conn);
                 oleDbDataAdapter.SelectCommand = selectCommand;
                 oleDbDataAdapter.Fill(ds);
@@ -101,10 +101,10 @@ namespace YashAksh
                 this.DataGridView1.Columns["Id"].Width = 50;
                 this.DataGridView1.Columns["PartyName"].Width = 150;
                 this.DataGridView1.Columns["Status"].Width = 100;
-                this.DataGridView1.Columns["OpeningBalance"].Width = 120;
-                this.DataGridView1.Columns["OpeningBalance"].HeaderText = "Opening Balance";
-                this.DataGridView1.Columns["OpeningBalance"].DefaultCellStyle.Format = Module1.NumFormat;
-                this.DataGridView1.Columns["OpeningBalance"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                this.DataGridView1.Columns["BalanceLimit"].Width = 120;
+                this.DataGridView1.Columns["BalanceLimit"].HeaderText = "Balance Limit";
+                this.DataGridView1.Columns["BalanceLimit"].DefaultCellStyle.Format = Module1.NumFormat;
+                this.DataGridView1.Columns["BalanceLimit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 this.DataGridView1.Columns["MatchCommiType"].Width = 150;
                 this.DataGridView1.Columns["MatchCommiType"].HeaderText = "Match Commission Type";
 
