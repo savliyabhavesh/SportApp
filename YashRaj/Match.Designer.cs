@@ -23,7 +23,6 @@
 		[System.Diagnostics.DebuggerStepThrough]
 		private void InitializeComponent()
 		{
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -149,7 +148,6 @@
             this.CheckBox2 = new System.Windows.Forms.CheckBox();
             this.Radiostandard = new System.Windows.Forms.CheckBox();
             this.partyfirst = new System.Windows.Forms.CheckBox();
-            this.Timer1 = new System.Windows.Forms.Timer(this.components);
             this.Label4 = new System.Windows.Forms.Label();
             this.CheckBox4 = new System.Windows.Forms.CheckBox();
             this.Panel1 = new System.Windows.Forms.Panel();
@@ -187,7 +185,7 @@
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datagridmen = new System.Windows.Forms.DataGridView();
+            this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -210,7 +208,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datagridmen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
             this.SuspendLayout();
             // 
             // btnprint
@@ -409,7 +407,6 @@
             this.txtpartiname.Name = "txtpartiname";
             this.txtpartiname.Size = new System.Drawing.Size(140, 26);
             this.txtpartiname.TabIndex = 4;
-            //this.txtpartiname.SelectedIndexChanged += new System.EventHandler(this.txtpartiname_SelectedIndexChanged);
             this.txtpartiname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtpartiname_KeyDown);
             this.txtpartiname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpartiname_KeyPress);
             this.txtpartiname.Leave += new System.EventHandler(this.txtpartiname_Leave);
@@ -1225,10 +1222,6 @@
             this.partyfirst.Text = "Partyname First";
             this.partyfirst.UseVisualStyleBackColor = true;
             // 
-            // Timer1
-            // 
-            this.Timer1.Interval = 1000;
-            // 
             // Label4
             // 
             this.Label4.AutoSize = true;
@@ -1847,12 +1840,12 @@
             this.Column17.ReadOnly = true;
             this.Column17.Width = 19;
             // 
-            // datagridmen
+            // dataGridView8
             // 
-            this.datagridmen.AllowUserToAddRows = false;
-            this.datagridmen.AllowUserToDeleteRows = false;
-            this.datagridmen.AllowUserToOrderColumns = true;
-            this.datagridmen.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView8.AllowUserToAddRows = false;
+            this.dataGridView8.AllowUserToDeleteRows = false;
+            this.dataGridView8.AllowUserToOrderColumns = true;
+            this.dataGridView8.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle32.BackColor = System.Drawing.Color.LightSteelBlue;
             dataGridViewCellStyle32.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1860,15 +1853,15 @@
             dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
             dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridmen.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
-            this.datagridmen.ColumnHeadersHeight = 33;
-            this.datagridmen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView8.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            this.dataGridView8.ColumnHeadersHeight = 33;
+            this.dataGridView8.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn15,
             this.dataGridViewTextBoxColumn16,
             this.Column18,
             this.Column19,
             this.Column20});
-            this.datagridmen.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dataGridView8.Cursor = System.Windows.Forms.Cursors.Default;
             dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle38.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1876,28 +1869,28 @@
             dataGridViewCellStyle38.SelectionBackColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle38.SelectionForeColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridmen.DefaultCellStyle = dataGridViewCellStyle38;
-            this.datagridmen.EnableHeadersVisualStyles = false;
-            this.datagridmen.GridColor = System.Drawing.SystemColors.Control;
-            this.datagridmen.Location = new System.Drawing.Point(618, 261);
-            this.datagridmen.Name = "datagridmen";
-            this.datagridmen.ReadOnly = true;
-            this.datagridmen.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView8.DefaultCellStyle = dataGridViewCellStyle38;
+            this.dataGridView8.EnableHeadersVisualStyles = false;
+            this.dataGridView8.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridView8.Location = new System.Drawing.Point(618, 261);
+            this.dataGridView8.Name = "dataGridView8";
+            this.dataGridView8.ReadOnly = true;
+            this.dataGridView8.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle39.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle39.SelectionForeColor = System.Drawing.Color.Black;
-            this.datagridmen.RowHeadersDefaultCellStyle = dataGridViewCellStyle39;
-            this.datagridmen.RowHeadersVisible = false;
-            this.datagridmen.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.datagridmen.RowTemplate.Height = 25;
-            this.datagridmen.RowTemplate.ReadOnly = true;
-            this.datagridmen.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridmen.Size = new System.Drawing.Size(377, 160);
-            this.datagridmen.TabIndex = 143;
-            this.datagridmen.Visible = false;
+            this.dataGridView8.RowHeadersDefaultCellStyle = dataGridViewCellStyle39;
+            this.dataGridView8.RowHeadersVisible = false;
+            this.dataGridView8.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView8.RowTemplate.Height = 25;
+            this.dataGridView8.RowTemplate.ReadOnly = true;
+            this.dataGridView8.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView8.Size = new System.Drawing.Size(377, 160);
+            this.dataGridView8.TabIndex = 143;
+            this.dataGridView8.Visible = false;
             // 
             // dataGridViewTextBoxColumn15
             // 
@@ -1953,7 +1946,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnexit;
             this.ClientSize = new System.Drawing.Size(1306, 626);
-            this.Controls.Add(this.datagridmen);
+            this.Controls.Add(this.dataGridView8);
             this.Controls.Add(this.Panel9);
             this.Controls.Add(this.Panel7);
             this.Controls.Add(this.Label6);
@@ -1993,7 +1986,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datagridmen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2080,7 +2073,6 @@
 		private System.Windows.Forms.CheckBox CheckBox2;
 		private System.Windows.Forms.CheckBox Radiostandard;
 		private System.Windows.Forms.CheckBox partyfirst;
-		private System.Windows.Forms.Timer Timer1;
 		private System.Windows.Forms.Label Label4;
 		private System.Windows.Forms.CheckBox CheckBox4;
 		private System.Windows.Forms.Panel Panel1;
@@ -2124,7 +2116,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn5;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.DataGridView datagridmen;
+        private System.Windows.Forms.DataGridView dataGridView8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column18;

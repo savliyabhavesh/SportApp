@@ -910,11 +910,44 @@ namespace YashAksh
                     this.DataGridView1.Columns[20].HeaderText = this.DataGridView2.Columns[15].HeaderText;
                     this.txtteam.Items.Add(this.DataGridView2.Columns[15].HeaderText);
                 }
+                this.Non_Tem_Out();
             }
             catch (Exception ex)
             {
                 App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void Non_Tem_Out()
+        {
+            try
+            {
+                if (Module1.conn.State == ConnectionState.Closed)
+                {
+                    Module1.conn.Open();
+                }
+                string cmdText = string.Concat(new string[]
+                {
+                    "SELECT distinct m_team FROM (CupTrans) WHERE (m_id = ",
+                    this.txtid.Text,
+                    " AND m_tem_out = 1",
+                    ")"
+                });
+                OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
+                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+                while (oleDbDataReader.Read())
+                {
+                    this.txtteam.Items.Remove(oleDbDataReader["m_team"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+            }
+            finally
+            {
             }
         }
 

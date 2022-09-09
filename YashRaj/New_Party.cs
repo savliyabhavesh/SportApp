@@ -209,14 +209,14 @@ namespace YashAksh
                             partyMasterService.Update(cmdText2);
                         }
 
-                        if (Conversion.Val(txtOpeningBal.Text) != 0)
-                        {
-                            string cmdText32 = $"INSERT INTO Trans ([tns_party], [tns_Amount], [tns_Remark], [tns_MatchID], [tns_dt], [tns_Type], [tns_Vid], [tns_Monday], [tns_Sessionid], [tns_ModifyID], [tns_Monday_Final], [tns_Hawala], [tns_chk], [tns_time]) VALUES ('{this.txtPartyName.Text.ToUpper()}',{this.txtOpeningBal.Text},'Opening Balance',0,'{this.txtdate.Text}','BALANCE','0','0',0,0,'No','','0','{Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime)}')";
-                            using (TransactionService transactionService = new TransactionService())
-                            {
-                                transactionService.Insert(cmdText32);
-                            }
-                        }
+                        //if (Conversion.Val(txtOpeningBal.Text) != 0)
+                        //{
+                        //    string cmdText32 = $"INSERT INTO Trans ([tns_party], [tns_Amount], [tns_Remark], [tns_MatchID], [tns_dt], [tns_Type], [tns_Vid], [tns_Monday], [tns_Sessionid], [tns_ModifyID], [tns_Monday_Final], [tns_Hawala], [tns_chk], [tns_time]) VALUES ('{this.txtPartyName.Text.ToUpper()}',{this.txtOpeningBal.Text},'Opening Balance',0,'{this.txtdate.Text}','BALANCE','0','0',0,0,'No','','0','{Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime)}')";
+                        //    using (TransactionService transactionService = new TransactionService())
+                        //    {
+                        //        transactionService.Insert(cmdText32);
+                        //    }
+                        //}
                         cmdText = $"UPDATE tb_MYID SET tb_PID = {this.txtId.Text}";
                         using (SettingService settingService = new SettingService())
                         {
@@ -311,7 +311,7 @@ namespace YashAksh
                             string cmdUpdateText4 = $"update MatchTrans1 set m_party = '{txtPartyName.Text}' where m_party = '{oldpartyname}'  ";
                             string cmdUpdateText5 = $"update SessionTrans set s_party = '{txtPartyName.Text}' where s_party = '{oldpartyname}'  ";
                             string cmdUpdateText6 = $"update temptbl set tns_party = '{txtPartyName.Text}' where tns_party = '{oldpartyname}'  ";
-                            string cmdUpdateText7 = $"update Trans set tns_party = '{txtPartyName.Text}',tns_Amount = '{txtOpeningBal.Text}' where tns_party = '{oldpartyname}'  ";
+                            string cmdUpdateText7 = $"update Trans set tns_party = '{txtPartyName.Text}' where tns_party = '{oldpartyname}'  ";
                             string cmdUpdateText8 = $"update PartyMaster set AParty = '{txtPartyName.Text}' where AParty = '{oldpartyname}'  ";
                             string cmdUpdateText9 = $"update PartyMaster set TParty = '{txtPartyName.Text}' where TParty = '{oldpartyname}'  ";
                             Module1.conn.Close();
@@ -330,46 +330,46 @@ namespace YashAksh
                             }
                         }
 
-                        if (Conversion.Val(txtOpeningBal.Text) != 0)
-                        {
-                            if (Module1.conn.State == ConnectionState.Closed)
-                            {
-                                Module1.conn.Open();
-                            }
-                            string str = "select * from Trans where tns_party = '" + this.txtPartyName.Text + "' AND tns_Type='BALANCE' ";
-                            OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(str, Module1.conn);
-                            DataTable dt = new DataTable();
-                            oleDbDataAdapter.Fill(dt);
+                        //if (Conversion.Val(txtOpeningBal.Text) != 0)
+                        //{
+                        //    if (Module1.conn.State == ConnectionState.Closed)
+                        //    {
+                        //        Module1.conn.Open();
+                        //    }
+                        //    string str = "select * from Trans where tns_party = '" + this.txtPartyName.Text + "' AND tns_Type='BALANCE' ";
+                        //    OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(str, Module1.conn);
+                        //    DataTable dt = new DataTable();
+                        //    oleDbDataAdapter.Fill(dt);
 
-                            if (dt.Rows.Count == 0)
-                            {
-                                string cmdText32 = $"INSERT INTO Trans ([tns_party], [tns_Amount], [tns_Remark], [tns_MatchID], [tns_dt], [tns_Type], [tns_Vid], [tns_Monday], [tns_Sessionid], [tns_ModifyID], [tns_Monday_Final], [tns_Hawala], [tns_chk], [tns_time]) VALUES ('{this.txtPartyName.Text.ToUpper()}',{this.txtOpeningBal.Text},'Opening Balance',0,'{this.txtdate.Text}','BALANCE','0','0',0,0,'No','','0','{Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime)}')";
-                                Module1.conn.Close();
-                                using (TransactionService transactionService = new TransactionService())
-                                {
-                                    transactionService.Insert(cmdText32);
-                                }
-                            }
-                            else
-                            {
-                                string cmdUpdateText = $"update Trans set tns_party = '{txtPartyName.Text}',tns_Amount = '{txtOpeningBal.Text}' where tns_party = '{oldpartyname}'  ";
-                                Module1.conn.Close();
-                                using (TransactionService transactionService = new TransactionService())
-                                {
-                                    transactionService.Insert(cmdUpdateText);
-                                }
-                            }
+                        //    if (dt.Rows.Count == 0)
+                        //    {
+                        //        string cmdText32 = $"INSERT INTO Trans ([tns_party], [tns_Amount], [tns_Remark], [tns_MatchID], [tns_dt], [tns_Type], [tns_Vid], [tns_Monday], [tns_Sessionid], [tns_ModifyID], [tns_Monday_Final], [tns_Hawala], [tns_chk], [tns_time]) VALUES ('{this.txtPartyName.Text.ToUpper()}',{this.txtOpeningBal.Text},'Opening Balance',0,'{this.txtdate.Text}','BALANCE','0','0',0,0,'No','','0','{Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime)}')";
+                        //        Module1.conn.Close();
+                        //        using (TransactionService transactionService = new TransactionService())
+                        //        {
+                        //            transactionService.Insert(cmdText32);
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        string cmdUpdateText = $"update Trans set tns_party = '{txtPartyName.Text}',tns_Amount = '{txtOpeningBal.Text}' where tns_party = '{oldpartyname}'  ";
+                        //        Module1.conn.Close();
+                        //        using (TransactionService transactionService = new TransactionService())
+                        //        {
+                        //            transactionService.Insert(cmdUpdateText);
+                        //        }
+                        //    }
 
-                        }
-                        else
-                        {
-                            string cmdUpdateText7 = $"update Trans set tns_party = '{txtPartyName.Text}',tns_Amount = '{txtOpeningBal.Text}' where tns_party = '{oldpartyname}'  ";
-                            Module1.conn.Close();
-                            using (TransactionService transactionService = new TransactionService())
-                            {
-                                transactionService.Insert(cmdUpdateText7);
-                            }
-                        }
+                        //}
+                        //else
+                        //{
+                        //    string cmdUpdateText7 = $"update Trans set tns_party = '{txtPartyName.Text}',tns_Amount = '{txtOpeningBal.Text}' where tns_party = '{oldpartyname}'  ";
+                        //    Module1.conn.Close();
+                        //    using (TransactionService transactionService = new TransactionService())
+                        //    {
+                        //        transactionService.Insert(cmdUpdateText7);
+                        //    }
+                        //}
                         Interaction.MsgBox("Record Updated..?", MsgBoxStyle.OkOnly, null);
                         this.Close();
                     }
@@ -888,12 +888,14 @@ namespace YashAksh
                 if (cmbMatchCommiType.Text == "No Commission")
                 {
                     this.txtSMatchCommi.Enabled = false;
+                    this.txtSSessionCommi.Enabled = false;
                     this.txtAMatchCommi.Enabled = false;
                     this.txtTMatchCommi.Enabled = false;
                 }
                 else
                 {
                     this.txtSMatchCommi.Enabled = true;
+                    this.txtSSessionCommi.Enabled = true;
                     if (cmbAParty.Text != "")
                         this.txtAMatchCommi.Enabled = true;
                     else

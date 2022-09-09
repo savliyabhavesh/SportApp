@@ -31,6 +31,7 @@ namespace YashAksh
         {
             try
             {
+                this.WindowState = FormWindowState.Maximized;
                 this.ShowCUPall();
             }
             catch (Exception ex)

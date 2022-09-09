@@ -94,7 +94,7 @@ namespace YashAksh
                 {
                     Module1.conn.Open();
                 }
-                string cmdText = "select* from Newmatch where Sr_No=" + this.txtid.Text + "";
+                string cmdText = "select * from Newmatch where Sr_No=" + this.txtid.Text + "";
                 OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
                 OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
                 if (oleDbDataReader.Read())
@@ -102,95 +102,80 @@ namespace YashAksh
                     this.DateTime.Text = oleDbDataReader["Date1"].ToString();
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[5], null, false))
                     {
-                        this.txt1.Text = Conversions.ToString(oleDbDataReader[5]);
-                        //this.Non_Tem_Out();
+                        this.txt1.Text = Conversions.ToString(oleDbDataReader[5]);                        
                         this.ComboBox1.Items.Add(this.txt1.Text);
                     }
                     if (Operators.CompareString(oleDbDataReader[6].ToString(), null, false) != 0)
                     {
                         this.txt2.Text = Conversions.ToString(oleDbDataReader[6]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt2.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[7], null, false))
                     {
                         this.txt3.Text = Conversions.ToString(oleDbDataReader[7]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt3.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[8], null, false))
                     {
                         this.txt4.Text = Conversions.ToString(oleDbDataReader[8]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt4.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[9], null, false))
                     {
                         this.txt5.Text = Conversions.ToString(oleDbDataReader[9]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt5.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[10], null, false))
                     {
                         this.txt6.Text = Conversions.ToString(oleDbDataReader[10]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt6.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[11], null, false))
                     {
                         this.txt7.Text = Conversions.ToString(oleDbDataReader[11]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt7.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[12], null, false))
                     {
                         this.txt8.Text = Conversions.ToString(oleDbDataReader[12]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt8.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[13], null, false))
                     {
                         this.txt9.Text = Conversions.ToString(oleDbDataReader[13]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt9.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[14], null, false))
                     {
                         this.txt10.Text = Conversions.ToString(oleDbDataReader[14]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt10.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[15], null, false))
                     {
                         this.txt11.Text = Conversions.ToString(oleDbDataReader[15]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt11.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[16], null, false))
                     {
                         this.txt12.Text = Conversions.ToString(oleDbDataReader[16]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt12.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[17], null, false))
                     {
                         this.txt13.Text = Conversions.ToString(oleDbDataReader[17]);
-                        //this.Non_Tem_Out();
-                        this.ComboBox1.Items.Add(this.txt13.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[18], null, false))
                     {
                         this.txt14.Text = Conversions.ToString(oleDbDataReader[18]);
-                        //this.Non_Tem_Out();
                         this.ComboBox1.Items.Add(this.txt14.Text);
                     }
                     if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader[19], null, false))
                     {
-                        this.txt15.Text = Conversions.ToString(oleDbDataReader[19]);
-                        //this.Non_Tem_Out();
+                        this.txt15.Text = Conversions.ToString(oleDbDataReader[19]);                        
                         this.ComboBox1.Items.Add(this.txt15.Text);
-                    }
+                    }                    
                 }
+                this.Non_Tem_Out();
             }
             catch (Exception ex)
             {
@@ -202,39 +187,37 @@ namespace YashAksh
             }
         }
 
-        //public void Non_Tem_Out()
-        //{
-        //    try
-        //    {
-        //        if (Module1.conn.State == ConnectionState.Closed)
-        //        {
-        //            Module1.conn.Open();
-        //        }
-        //        string cmdText = string.Concat(new string[]
-        //        {
-        //            "SELECT m_id, m_team, M_Tem_Out, m_checked FROM(CupTrans) WHERE (m_team = '",
-        //            this.txtTeamOut.Text,
-        //            "')"
-        //        });
-        //        OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
-        //        OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-        //        if (oleDbDataReader.Read())
-        //        {
-        //            if (!Operators.ConditionalCompareObjectEqual(oleDbDataReader["M_Tem_Out"], "1", false))
-        //            {
-        //                this.ComboBox1.Items.Add(this.txtTeamOut.Text);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
-        //        Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
-        //    }
-        //    finally
-        //    {
-        //    }
-        //}
+        public void Non_Tem_Out()
+        {
+            try
+            {
+                if (Module1.conn.State == ConnectionState.Closed)
+                {
+                    Module1.conn.Open();
+                }
+                string cmdText = string.Concat(new string[]
+                {
+                    "SELECT distinct m_team FROM (CupTrans) WHERE (m_id = ",
+                    this.txtid.Text,                    
+                    " AND m_tem_out = 1",
+                    ")"
+                });
+                OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
+                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+                while (oleDbDataReader.Read())
+                {
+                    this.ComboBox1.Items.Remove(oleDbDataReader["m_team"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+            }
+            finally
+            {
+            }
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {

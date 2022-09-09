@@ -26,8 +26,8 @@
 		//[System.Diagnostics.DebuggerStepThrough]
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Label1 = new System.Windows.Forms.Label();
             this.Panel1 = new System.Windows.Forms.Panel();
             this.Panel4 = new System.Windows.Forms.Panel();
@@ -382,14 +382,14 @@
             this.DataGridView2.AllowUserToResizeRows = false;
             this.DataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.DataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridView2.ColumnHeadersHeight = 25;
             this.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -526,14 +526,14 @@
             this.DataGridView1.AllowUserToResizeRows = false;
             this.DataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridView1.EnableHeadersVisualStyles = false;
@@ -678,6 +678,7 @@
             this.txtnu.Size = new System.Drawing.Size(84, 22);
             this.txtnu.TabIndex = 28;
             this.txtnu.Text = ".00";
+            this.txtnu.Visible = false;
             // 
             // Run
             // 
@@ -695,6 +696,7 @@
             this.txtparsent.Name = "txtparsent";
             this.txtparsent.Size = new System.Drawing.Size(100, 24);
             this.txtparsent.TabIndex = 30;
+            this.txtparsent.Visible = false;
             // 
             // txtp
             // 
@@ -702,6 +704,7 @@
             this.txtp.Name = "txtp";
             this.txtp.Size = new System.Drawing.Size(86, 22);
             this.txtp.TabIndex = 31;
+            this.txtp.Visible = false;
             // 
             // TextBox2
             // 
@@ -709,6 +712,7 @@
             this.TextBox2.Name = "TextBox2";
             this.TextBox2.Size = new System.Drawing.Size(86, 22);
             this.TextBox2.TabIndex = 32;
+            this.TextBox2.Visible = false;
             // 
             // CheckBox2
             // 
@@ -719,6 +723,7 @@
             this.CheckBox2.TabIndex = 35;
             this.CheckBox2.Text = "CheckBox2";
             this.CheckBox2.UseVisualStyleBackColor = true;
+            this.CheckBox2.Visible = false;
             // 
             // txtL
             // 
@@ -742,6 +747,7 @@
             this.txtmodify.Name = "txtmodify";
             this.txtmodify.Size = new System.Drawing.Size(100, 22);
             this.txtmodify.TabIndex = 38;
+            this.txtmodify.Visible = false;
             // 
             // txtsid
             // 
@@ -749,6 +755,7 @@
             this.txtsid.Name = "txtsid";
             this.txtsid.Size = new System.Drawing.Size(100, 22);
             this.txtsid.TabIndex = 39;
+            this.txtsid.Visible = false;
             // 
             // Cstaus
             // 
@@ -779,6 +786,7 @@
             this.txtpatnar.Name = "txtpatnar";
             this.txtpatnar.Size = new System.Drawing.Size(88, 24);
             this.txtpatnar.TabIndex = 90;
+            this.txtpatnar.Visible = false;
             // 
             // txtagent
             // 
@@ -787,6 +795,7 @@
             this.txtagent.Name = "txtagent";
             this.txtagent.Size = new System.Drawing.Size(88, 24);
             this.txtagent.TabIndex = 89;
+            this.txtagent.Visible = false;
             // 
             // txtself
             // 
@@ -795,6 +804,7 @@
             this.txtself.Name = "txtself";
             this.txtself.Size = new System.Drawing.Size(88, 24);
             this.txtself.TabIndex = 88;
+            this.txtself.Visible = false;
             // 
             // txtt_50
             // 
@@ -811,6 +821,7 @@
             this.txtt_40.Name = "txtt_40";
             this.txtt_40.Size = new System.Drawing.Size(88, 24);
             this.txtt_40.TabIndex = 93;
+            this.txtt_40.Visible = false;
             // 
             // txtt_20
             // 
@@ -827,6 +838,7 @@
             this.txtt.Name = "txtt";
             this.txtt.Size = new System.Drawing.Size(88, 24);
             this.txtt.TabIndex = 91;
+            this.txtt.Visible = false;
             // 
             // Label4
             // 
@@ -839,9 +851,9 @@
             // 
             // Panel5
             // 
-            this.Panel5.Location = new System.Drawing.Point(1237, 41);
+            this.Panel5.Location = new System.Drawing.Point(1120, 37);
             this.Panel5.Name = "Panel5";
-            this.Panel5.Size = new System.Drawing.Size(100, 382);
+            this.Panel5.Size = new System.Drawing.Size(278, 514);
             this.Panel5.TabIndex = 96;
             // 
             // ListView2

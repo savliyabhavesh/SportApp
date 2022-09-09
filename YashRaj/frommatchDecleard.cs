@@ -893,6 +893,7 @@ namespace YashAksh
                 {
                     Module1.conn.Open();
                 }
+
                 string cmdText = "SELECT DISTINCT PartyMaster.PartyName FROM (PartyMaster INNER JOIN  MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) WHERE (MatchTrans.m_checked = 0) AND (MatchTrans.m_id = " + Conversions.ToString(Module1.Matchdecalerd) + ") ORDER BY PartyMaster.PartyName";
                 OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
                 OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
@@ -900,6 +901,7 @@ namespace YashAksh
                 {
                     string text = oleDbDataReader["PartyName"].ToString();
 
+                    /// Start - No Commission, Match Total Minus And Entry Wise Calculation
                     string cmdText2 = string.Concat(new string[]
                     {
                         "SELECT * FROM (",
@@ -925,7 +927,8 @@ namespace YashAksh
                         double smatch = Convert.ToDouble(oleDbDataReader2["SMatch"].ToString());
                         double amatch = Convert.ToDouble(oleDbDataReader2["AMatch"].ToString());
                         double tmatch = Convert.ToDouble(oleDbDataReader2["TMatch"].ToString());
-                        double num4 = Conversion.Val(amatch) + Conversion.Val(tmatch);
+                        ////////double num4 = Conversion.Val(amatch) + Conversion.Val(tmatch);
+                        ///
                         double smatchcommi = Convert.ToDouble(oleDbDataReader2["SMatchCommi"].ToString());
                         double amatchcommi = Convert.ToDouble(oleDbDataReader2["AMatchCommi"].ToString());
                         double tmatchcommi = Convert.ToDouble(oleDbDataReader2["TMatchCommi"].ToString());
@@ -977,6 +980,12 @@ namespace YashAksh
                                     double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
                                     this.DataGridView3.Rows[index].Cells[11].Value = Conversion.Val(num112);
                                 }
+                                else
+                                {
+                                    this.DataGridView3.Rows[index].Cells[6].Value = aparty;
+                                    double num101 = Conversion.Val(afterldamt) * Conversion.Val(amatch) / 100;
+                                    this.DataGridView3.Rows[index].Cells[7].Value = Conversion.Val(num101);
+                                }
                             }
 
                             if (Operators.CompareString(tparty, null, false) != 0)
@@ -991,9 +1000,16 @@ namespace YashAksh
                                     double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
                                     this.DataGridView3.Rows[index].Cells[13].Value = Conversion.Val(num112);
                                 }
+                                else
+                                {
+                                    this.DataGridView3.Rows[index].Cells[8].Value = tparty;
+                                    double num101 = Conversion.Val(afterldamt) * Conversion.Val(tmatch) / 100;
+                                    this.DataGridView3.Rows[index].Cells[9].Value = Conversion.Val(num101);
+                                }
                             }
                         }
-                        else if (Operators.CompareString(status, "Regular", false) == 0)
+                        
+                        if (Operators.CompareString(status, "Regular", false) == 0)
                         {
                             if (num6 > 0)
                             {
@@ -1055,7 +1071,10 @@ namespace YashAksh
 
                     }
                     oleDbDataReader2.Close();
-                    ///For Per Peti Calculation
+                    /// End - No Commission, Match Total Minus And Entry Wise Calculation
+
+                    
+                    /// Start - Per Peti Calculation
                     string cmdTextPerPeti = string.Concat(new string[]
                     {
                         "SELECT PartyMaster.PartyName, PartyMaster.AParty, PartyMaster.TParty, PartyMaster.MatchCommiType, PartyMaster.Status, MatchTrans.m_id, MatchTrans.m_checked, (MatchTrans.m_team1) AS Expr1, (MatchTrans.m_team2) AS Expr2, (MatchTrans.m_team3) AS Expr3, (MatchTrans.m_team4)  AS Expr4, PartyMaster.SMatch, PartyMaster.SMatchCommi, PartyMaster.AMatch, PartyMaster.AMatchCommi, PartyMaster.TMatch, PartyMaster.TMatchCommi, MatchTrans.m_rate, MatchTrans.m_amt, PartyMaster.Rate FROM (MatchTrans INNER JOIN PartyMaster ON MatchTrans.m_party = PartyMaster.PartyName) ",
@@ -1074,18 +1093,18 @@ namespace YashAksh
                         double smatch = Conversion.Val(Conversion.Val(0.01) * Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["SMatch"])));
                         double amatch = Conversion.Val(Conversion.Val(0.01) * Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["AMatch"])));
                         double tmatch = Conversion.Val(Conversion.Val(0.01) * Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["TMatch"])));
-                        double totalld = amatch + tmatch;
+                        //double totalld = amatch + tmatch;
 
                         double smatchcommi = Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["SMatchCommi"]));
                         double amatchcommi = Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["AMatchCommi"]));
                         double tmatchcommi = Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["TMatchCommi"]));
-                        double totalcommi = smatchcommi + amatchcommi + tmatchcommi;
+                        
 
                         double m_rate = Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["m_rate"]));
                         double p_rate = Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["Rate"]));
                         double m_amt = Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderPerPeti["m_amt"]));
 
-                        double totalamt_afterselfld = m_amt - (m_amt * smatch);
+                        
 
                         string party = oleDbDataReaderPerPeti["PartyName"].ToString();
                         string aparty = oleDbDataReaderPerPeti["AParty"].ToString();
@@ -1107,12 +1126,24 @@ namespace YashAksh
                         this.DataGridView3.Rows[index].Cells[4].Value = party;
                         this.DataGridView3.Rows[index].Cells[5].Value = Conversion.Val(num6) * Conversion.Val(smatch);
 
-
-                        double totalcommiamt = (Conversion.Val(totalamt_afterselfld) / Conversion.Val(100000)) * Conversion.Val(totalcommi);
+                        double totalcommi = 0;
                         if (Operators.ConditionalCompareObjectGreaterEqual(m_rate, p_rate, false))
                         {
+                            totalcommi = smatchcommi + amatchcommi + tmatchcommi;
+                        }
+                        else
+                        {
+                            totalcommi = 0;smatchcommi = 0;amatchcommi = 0;tmatchcommi = 0;
+                        }
+
+                        double totalamt_afterselfld = m_amt - (m_amt * smatch);
+                        double totalcommiamt = (Conversion.Val(totalamt_afterselfld) / Conversion.Val(100000)) * Conversion.Val(totalcommi);
+
+
+                        //if (Operators.ConditionalCompareObjectGreaterEqual(m_rate, p_rate, false))
+                        //{
                             double exp2_selfld = num6 - (num6 * smatch);
-                            double exp2_afterldcommi = exp2_selfld - (exp2_selfld * amatch);
+                            double exp2_afterldcommi = 0; // exp2_selfld - (exp2_selfld * amatch);
 
                             if (Operators.CompareString(status, "Booky", false) == 0)
                             {
@@ -1126,13 +1157,26 @@ namespace YashAksh
                                     this.DataGridView3.Rows[index].Cells[6].Value = aparty;
                                     exp2_afterldcommi = Conversion.Val(exp2_selfld) * Conversion.Val(amatch);
                                     double numAgent = Conversion.Val(exp2_afterldcommi) + (numa);
-                                    this.DataGridView3.Rows[index].Cells[7].Value = Conversion.Val(numAgent) - Conversion.Val(numAgent) - Conversion.Val(numAgent);
+                                    this.DataGridView3.Rows[index].Cells[7].Value = Conversion.Val(numAgent); //- Conversion.Val(numAgent) - Conversion.Val(numAgent);
                                     this.DataGridView3.Rows[index].Cells[10].Value = aparty;
                                     double num112 = Conversion.Val(totalcommiamt) * Conversion.Val(amatch);
-                                    this.DataGridView3.Rows[index].Cells[11].Value = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                    this.DataGridView3.Rows[index].Cells[11].Value = Conversion.Val(num112); //- Conversion.Val(num112) - Conversion.Val(num112);
+                                }
+
+                                if (Operators.CompareString(tparty, null, false) != 0)
+                                {
+                                    double numa = (Conversion.Val(totalamt_afterselfld) / Conversion.Val(100000)) * Conversion.Val(tmatchcommi);
+                                    this.DataGridView3.Rows[index].Cells[6].Value = tparty;
+                                    exp2_afterldcommi = Conversion.Val(exp2_selfld) * Conversion.Val(tmatch);
+                                    double numAgent = Conversion.Val(exp2_afterldcommi) + (numa);
+                                    this.DataGridView3.Rows[index].Cells[7].Value = Conversion.Val(numAgent); //- Conversion.Val(numAgent) - Conversion.Val(numAgent);
+                                    this.DataGridView3.Rows[index].Cells[10].Value = tparty;
+                                    double num112 = Conversion.Val(totalcommiamt) * Conversion.Val(tmatch);
+                                    this.DataGridView3.Rows[index].Cells[11].Value = Conversion.Val(num112); //- Conversion.Val(num112) - Conversion.Val(num112);
                                 }
                             }
-                            else if (Operators.CompareString(status, "Regular", false) == 0)
+
+                            if (Operators.CompareString(status, "Regular", false) == 0)
                             {
                                 this.DataGridView3.Rows[index].Cells[2].Value = party;
                                 double num8 = (Conversion.Val(totalamt_afterselfld) * Conversion.Val(smatchcommi)) / 100000;
@@ -1160,7 +1204,7 @@ namespace YashAksh
                                     this.DataGridView3.Rows[index].Cells[13].Value = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
                                 }
                             }
-                        }
+                        //}
 
                         this.testtotal += Convert.ToDouble(num6);
 
@@ -1173,9 +1217,12 @@ namespace YashAksh
                         this.commiTotal += Convert.ToDouble(RuntimeHelpers.GetObjectValue(this.DataGridView3.Rows[index].Cells[13].Value));
                     }
                     oleDbDataReaderPerPeti.Close();
+                    /// End - Per Peti Calculation
                 }
                 oleDbDataReader.Close();
-                string cmdText3 = "select* from PartyMaster Where ID=1";
+
+
+                string cmdText3 = "select * from PartyMaster Where ID=1";
                 OleDbCommand oleDbCommand3 = new OleDbCommand(cmdText3, Module1.conn);
                 OleDbDataReader oleDbDataReader3 = oleDbCommand3.ExecuteReader();
                 string text4 = "";

@@ -2135,51 +2135,9 @@ namespace YashAksh
             {
                 App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
                 Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
-            }
-            //try
-            //{
-            //	if (this.txtrate.Text != "")
-            //	{
-            //		string text = this.txtrate.Text;
-            //		double num = (double)text.IndexOf(".");
-            //		if (num < 0.0)
-            //		{
-
-            //		}
-            //		this.txtrate.Text = this.txtrate.Text.Replace(this.txtrate.Text, "." + this.txtrate.Text);
-            //	}
-            //}
-            //catch (Exception ex)
-            //{
-            //}			
+            }            	
         }
 
-        //private void Timer1_Tick(object sender, EventArgs e)
-        //{
-        //	try
-        //	{
-        //		if (Convert.ToDouble(this.Label4.Text) <= 4.0)
-        //		{
-        //			Label label = this.Label4;
-        //			label.Text = Conversions.ToString(Convert.ToDouble(label.Text) + 1.0);
-        //		}
-        //		else
-        //		{
-        //			this.Timer1.Enabled = false;
-        //			this.listboxlode();
-        //			this.lod_newPartyname();
-        //			this.TOTAL_ALL();
-        //			this.Net_Postion();
-        //			this.Colore();
-        //			this.Label4.Text = "0";
-        //			this.Timer1.Enabled = true;
-        //		}
-        //	}
-        //	catch (Exception ex)
-        //	{
-        //		Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
-        //	}
-        //}
 
         public async Task TOTAL_ALL()
         {
@@ -2324,20 +2282,20 @@ namespace YashAksh
         {
             try
             {
-                double OpeningBalance = 0;
+                double BalanceLimit = 0;
                 if (Module1.conn.State == ConnectionState.Closed)
                 {
                     Module1.conn.Open();
                 }
 
-                string cmdText1 = "SELECT PartyMaster.PartyName,  PartyMaster.OpeningBalance FROM PartyMaster WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
+                string cmdText1 = "SELECT PartyMaster.PartyName, PartyMaster.BalanceLimit FROM PartyMaster WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
                 OleDbCommand oleDbCommand1 = new OleDbCommand(cmdText1, Module1.conn);
                 OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
                 while (oleDbDataReader1.Read())
                 {
-                    OpeningBalance = Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["OpeningBalance"]));
+                    BalanceLimit = Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["BalanceLimit"]));
                 }
-                if (OpeningBalance > 0)
+                if (BalanceLimit > 0)
                 {
                     if (Module1.conn.State == ConnectionState.Closed)
                     {
@@ -2350,256 +2308,220 @@ namespace YashAksh
                     double numCell2 = 0.0;
                     double numCell3 = 0.0;
                     double nuCellFinal = 0.0;
+                    double finalsessionamount = 0;
+                    double FinalBalanceLimit = 0;
 
-                    string cmdText = "SELECT SUM(tns_Amount) AS ColsingBalanceAmount, tns_Party FROM Trans WHERE (tns_chk = '0') AND (tns_Type <> 'Monday Settlement') AND (tns_Party = '" + this.txtpartiname.Text + "') GROUP BY tns_Party ";
+                    string cmdText = "SELECT SUM(tns_Amount) AS ClosingBalanceAmount, tns_Party FROM Trans WHERE (tns_chk = '0') AND (tns_Type <> 'Monday Settlement') AND (tns_Party = '" + this.txtpartiname.Text + "') GROUP BY tns_Party ";
                     OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
                     OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
                     while (oleDbDataReader.Read())
                     {
-                        num += Convert.ToDouble(oleDbDataReader["ColsingBalanceAmount"]);
+                        num += Convert.ToDouble(oleDbDataReader["ClosingBalanceAmount"]);
                     }
 
+                    FinalBalanceLimit = BalanceLimit + num;
 
-                    //double test1 = 0;
-                    //double test2 = 0;
-                    //double test3 = 0;
-                    //double test4 = 0;
-                    //double ssession = 0;
-                    //double ssessioncommi = 0;
-                    //if (Module1.conn.State == ConnectionState.Closed)
-                    //{
-                    //    Module1.conn.Open();
-                    //}
-                    //string cmdTextNewSess = "SELECT SessionTrans.id, SessionTrans.s_eid, SessionTrans.s_rate, SessionTrans.s_amt, SessionTrans.S_RUN, SessionTrans.s_bild, SessionTrans.s_mod, SessionTrans.s_yes, SessionTrans.s_no, SessionTrans.s_checked, PartyMaster.SSessionCommi,PartyMaster.SSession, PartyMaster.PartyName, SessionTrans.S_Sr_No, SessionTrans.Session_ID FROM (SessionTrans INNER JOIN PartyMaster ON SessionTrans.s_party = PartyMaster.PartyName ) WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') AND (SessionTrans.s_checked <> 1) AND (SessionTrans.S_Sr_No = " + this.testnu.Text + ") AND (SessionTrans.Session_ID IN (select Sr_no from ewSession where Match_id = " + this.testnu.Text + " AND Result <>'Declared'))";
-                    //OleDbCommand oleDbCommandNewSess = new OleDbCommand(cmdTextNewSess, Module1.conn);
-                    //OleDbDataReader oleDbDataReaderNewSess = oleDbCommandNewSess.ExecuteReader();
-                    //while (oleDbDataReaderNewSess.Read())
-                    //{
-                    //    ssession = Convert.ToDouble(oleDbDataReaderNewSess["SSession"]);
-                    //    ssessioncommi = Convert.ToDouble(oleDbDataReaderNewSess["SSessionCommi"]);
-                    //    if (!Operators.ConditionalCompareObjectEqual(oleDbDataReaderNewSess["s_checked"], "1", false))
-                    //    {
-                    //        double num3 = 0;
-                    //        double num4 = 0;
-                    //        double num5 = 0;
-                    //        unchecked
-                    //        {
-                    //            if (Operators.ConditionalCompareObjectEqual(oleDbDataReaderNewSess["PartyName"], this.txtpartiname.Text, false))
-                    //            {
-                    //                num3 = Convert.ToDouble(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderNewSess["s_yes"])) * Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderNewSess["SSession"])) / 100);
-                    //                num4 = Convert.ToDouble(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderNewSess["s_no"])) * Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderNewSess["SSession"])) / 100);
-                    //            }
-                    //            num3 = Conversion.Val(num3) - Conversion.Val(num3) - Conversion.Val(num3);
-                    //            num4 = Conversion.Val(num4) - Conversion.Val(num4) - Conversion.Val(num4);
-                    //            num5 = Convert.ToDouble(Operators.SubtractObject(oleDbDataReaderNewSess["S_RUN"], 1));
-                    //            test1 = Convert.ToDouble(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderNewSess["s_amt"])));
-                    //            test2 = Convert.ToDouble(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderNewSess["s_rate"])));
-                    //            test3 += (test1 * test2);
-                    //            test4 += Convert.ToDouble(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReaderNewSess["s_amt"])));
-                    //        }
-                    //    }
-                    //}
-                    //double aa15 = 0;
-                    //double aa16 = 0;
-                    //double aa17 = 0;
-                    //double testfi = Math.Abs(test4);
-                    //if (ssessioncommi > 0)
-                    //{
-                    //    if (ssession > 0)
-                    //    {
-                    //        aa15 = (testfi * ssession) / 100;
-                    //        aa16 = ((testfi - aa15) * ssessioncommi) / 100;
-                    //        aa17 = (test3 * ssession) / 100;
-                    //        sessionAmount = test3 - aa17;
-                    //        sessionAmount = sessionAmount - aa16;
-                    //    }
-                    //    else
-                    //    {
-                    //        aa16 = (testfi * ssessioncommi) / 100;
-                    //        sessionAmount = test3 - aa16;
-                    //    }
-                    //}
-
-                    GenrateGridRow(999);
-
-                    this.datagridmen.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                    this.datagridmen.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
-                    //if (Module1.conn.State == ConnectionState.Closed)
-                    //{
-                    //    Module1.conn.Open();
-                    //}
-                    string cmdTextSession = "SELECT PartyMaster.PartyName, PartyMaster.Status, PartyMaster.SSession, PartyMaster.SSessionCommi, PartyMaster.ASession, PartyMaster.ASessionCommi, PartyMaster.TSession, PartyMaster.TSessionCommi, SessionTrans.S_Sr_No, SessionTrans.s_checked, SessionTrans.Session_ID, SessionTrans.s_yes, SessionTrans.s_no, SessionTrans.S_RUN, SessionTrans.s_amt, SessionTrans.s_rate, SessionTrans.s_mod, SessionTrans.s_bild, SessionTrans.Comission FROM (PartyMaster INNER JOIN SessionTrans ON PartyMaster.PartyName = SessionTrans.s_party) WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') AND (SessionTrans.s_checked = 0) AND (SessionTrans.Session_ID IN (select Sr_no from ewSession where Match_id = " + this.testnu.Text + " )) AND (SessionTrans.S_Sr_No = " + this.testnu.Text + ")";
-                    OleDbCommand oleDbCommandSession = new OleDbCommand(cmdTextSession, Module1.conn);
-                    OleDbDataReader oleDbDataReaderSession = oleDbCommandSession.ExecuteReader();
-                    while (oleDbDataReaderSession.Read())
+                    /// Start - For Session Balance Limit
+                    string strsessionlimit = "SELECT Newmatch.Sr_No FROM Newmatch WHERE Result <> 'Declared'";
+                    OleDbCommand oleDbCommandSessionLimit = new OleDbCommand(strsessionlimit, Module1.conn);
+                    OleDbDataReader oleDbReaderSessionLimit = oleDbCommandSessionLimit.ExecuteReader();
+                    while (oleDbReaderSessionLimit.Read())
                     {
-                        double after_selfld = Convert.ToDouble(oleDbDataReaderSession["SSession"]);
-                        double after_totalld = Convert.ToDouble(Operators.AddObject(oleDbDataReaderSession["ASession"], oleDbDataReaderSession["TSession"]));
-                        double totalcommi = Convert.ToDouble(oleDbDataReaderSession["SSessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["ASessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["TSessionCommi"]);
+                        int match_id = 0;
+                        match_id = Conversions.ToInteger(oleDbReaderSessionLimit["Sr_No"]);
+                        bool isvalid = false;
 
-                        string comm = Conversions.ToString(oleDbDataReaderSession["Comission"]);
-                        string status = Conversions.ToString(oleDbDataReaderSession["Status"]);
-                        double run = Convert.ToDouble(oleDbDataReaderSession["S_RUN"]) - 1;
-                        double amt = Convert.ToDouble(oleDbDataReaderSession["s_amt"]);
-                        double rate = Convert.ToDouble(oleDbDataReaderSession["s_rate"]);
-
-                        double yes = Convert.ToDouble(oleDbDataReaderSession["s_yes"]);
-                        double no = Convert.ToDouble(oleDbDataReaderSession["s_no"]);
-
-                        double num9 = Conversion.Val(yes) * Conversion.Val(after_selfld) / 100 - yes;
-                        double num10 = Conversion.Val(no) * Conversion.Val(after_selfld) / 100 - no;
-                        double num11 = num9 - num9 - num9;
-                        double num12 = num10 - num10 - num10;
-                        double num13 = Conversion.Val(num9) * Conversion.Val(after_totalld) / 100 - num9;
-                        double num14 = Conversion.Val(num10) * Conversion.Val(after_totalld) / 100 - num10;
-
-                        if (comm == "YES")
+                        string str1 = "SELECT Sr_No FROM ewSession WHERE Match_ID = " + match_id + " AND Result <> 'Declared' ";
+                        OleDbCommand oleDbSes = new OleDbCommand(str1, Module1.conn);
+                        OleDbDataReader oleDbReaderSes = oleDbSes.ExecuteReader();
+                        while (oleDbReaderSes.Read())
                         {
-                            double commamt = 0;
-                            if (num13 > num14)
-                            {
-                                commamt = num14 - num14 - num14;
-                            }
-                            else
-                            {
-                                commamt = num14;
-                            }
+                            int ses_id = 0;
+                            ses_id = Conversions.ToInteger(oleDbReaderSes["Sr_No"]);
 
-                            if (status == "Booky")
+                            string str = "SELECT s_party, Min(S_RUN) as MinRun, Max(S_RUN) as MaxRun FROM (SessionTrans) WHERE (s_party = '" + this.txtpartiname.Text + "') AND (s_checked = 0) AND (Session_ID = " + ses_id + ") GROUP BY s_party HAVING Min(S_RUN) > 0 AND Max(S_RUN) > 0";
+                            OleDbCommand oleDbCommandBal = new OleDbCommand(str, Module1.conn);
+                            OleDbDataReader oleDbReaderBal = oleDbCommandBal.ExecuteReader();
+                            while (oleDbReaderBal.Read())
                             {
-                                if (num13 > 0)
-                                {
-                                    this.Yes1 = Conversion.Val(num13) + (Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
-                                }
-                                else
-                                {
-                                    this.Yes1 = Conversion.Val(num13) - (-Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
-                                }
+                                isvalid = true;
+                                int MinRun = Conversions.ToInteger(oleDbReaderBal["MinRun"] == null ? 0 : oleDbReaderBal["MinRun"]);
+                                int MaxRun = Conversions.ToInteger(oleDbReaderBal["MaxRun"] == null ? 0 : oleDbReaderBal["MaxRun"]);
 
-                                if (num14 > 0)
+                                if (MinRun > 0 && MaxRun > 0)
                                 {
-                                    this.No1 = Conversion.Val(num14) + (Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
-                                }
-                                else
-                                {
-                                    this.No1 = Conversion.Val(num14) - (-Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                    GenrateGridRow_From_To((MinRun - 1), (MaxRun + 1));
                                 }
                             }
-                            else if (status == "Regular")
-                            {
-                                if (num13 > 0)
-                                {
-                                    this.Yes1 = Conversion.Val(num13) - (Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
-                                }
-                                else
-                                {
-                                    this.Yes1 = Conversion.Val(num13) + (-Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
-                                }
 
-                                if (num14 > 0)
-                                {
-                                    this.No1 = Conversion.Val(num14) - (Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
-                                }
-                                else
-                                {
-                                    this.No1 = Conversion.Val(num14) + (-Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            this.Yes1 = Conversion.Val(num13);
-                            this.No1 = Conversion.Val(num14);
-                        }
-
-                        checked
-                        {
-                            for (int i = 0; i <= this.datagridmen.Rows.Count - 1; i++)
+                            string cmdTextSession = "SELECT PartyMaster.PartyName, PartyMaster.Status, PartyMaster.SSession, PartyMaster.SSessionCommi, PartyMaster.ASession, PartyMaster.ASessionCommi, PartyMaster.TSession, PartyMaster.TSessionCommi, SessionTrans.S_Sr_No, SessionTrans.s_checked, SessionTrans.Session_ID, SessionTrans.s_yes, SessionTrans.s_no, SessionTrans.S_RUN, SessionTrans.s_amt, SessionTrans.s_rate, SessionTrans.s_mod, SessionTrans.s_bild, SessionTrans.Comission FROM (PartyMaster INNER JOIN SessionTrans ON PartyMaster.PartyName = SessionTrans.s_party) WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') AND (SessionTrans.s_checked = 0) AND (SessionTrans.Session_ID = " + ses_id + ") ";
+                            OleDbCommand oleDbCommandSession = new OleDbCommand(cmdTextSession, Module1.conn);
+                            OleDbDataReader oleDbDataReaderSession = oleDbCommandSession.ExecuteReader();
+                            while (oleDbDataReaderSession.Read())
                             {
-                                if (Operators.ConditionalCompareObjectGreater(this.datagridmen.Rows[i].Cells[0].Value, run, false))
+                                double after_selfld = Convert.ToDouble(oleDbDataReaderSession["SSession"]);
+                                double after_totalld = Convert.ToDouble(Operators.AddObject(oleDbDataReaderSession["ASession"], oleDbDataReaderSession["TSession"]));
+                                double totalcommi = Convert.ToDouble(oleDbDataReaderSession["SSessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["ASessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["TSessionCommi"]);
+
+                                string comm = Conversions.ToString(oleDbDataReaderSession["Comission"]);
+                                string status = Conversions.ToString(oleDbDataReaderSession["Status"]);
+                                double run = Convert.ToDouble(oleDbDataReaderSession["S_RUN"]) - 1;
+                                double amt = Convert.ToDouble(oleDbDataReaderSession["s_amt"]);
+                                double rate = Convert.ToDouble(oleDbDataReaderSession["s_rate"]);
+
+                                double yes = Convert.ToDouble(oleDbDataReaderSession["s_yes"]);
+                                double no = Convert.ToDouble(oleDbDataReaderSession["s_no"]);
+
+                                double num9 = Conversion.Val(yes) * Conversion.Val(after_selfld) / 100 - yes;
+                                double num10 = Conversion.Val(no) * Conversion.Val(after_selfld) / 100 - no;
+                                double num11 = num9 - num9 - num9;
+                                double num12 = num10 - num10 - num10;
+                                double num13 = Conversion.Val(num9) * Conversion.Val(after_totalld) / 100 - num9;
+                                double num14 = Conversion.Val(num10) * Conversion.Val(after_totalld) / 100 - num10;
+
+                                if (comm == "YES")
                                 {
-                                    if (Operators.CompareString(status, "Regular", false) == 0)
+                                    double commamt = 0;
+                                    if (num13 > num14)
                                     {
-                                        DataGridViewCell dataGridViewCell = this.datagridmen.Rows[i].Cells[3];
-                                        dataGridViewCell.Value = Operators.AddObject(dataGridViewCell.Value, Conversion.Val(this.Yes1));
+                                        commamt = num14 - num14 - num14;
                                     }
-                                    else if (Operators.CompareString(status, "Booky", false) == 0)
+                                    else
                                     {
-                                        DataGridViewCell dataGridViewCell = this.datagridmen.Rows[i].Cells[4];
-                                        dataGridViewCell.Value = Operators.AddObject(dataGridViewCell.Value, Conversion.Val(this.Yes1));
+                                        commamt = num14;
+                                    }
+
+                                    if (status == "Booky")
+                                    {
+                                        if (num13 > 0)
+                                        {
+                                            this.Yes1 = Conversion.Val(num13) + (Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                        }
+                                        else
+                                        {
+                                            this.Yes1 = Conversion.Val(num13) - (-Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                        }
+
+                                        if (num14 > 0)
+                                        {
+                                            this.No1 = Conversion.Val(num14) + (Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                        }
+                                        else
+                                        {
+                                            this.No1 = Conversion.Val(num14) - (-Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                        }
+                                    }
+                                    else if (status == "Regular")
+                                    {
+                                        if (num13 > 0)
+                                        {
+                                            this.Yes1 = Conversion.Val(num13) - (Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                        }
+                                        else
+                                        {
+                                            this.Yes1 = Conversion.Val(num13) + (-Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                        }
+
+                                        if (num14 > 0)
+                                        {
+                                            this.No1 = Conversion.Val(num14) - (Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                        }
+                                        else
+                                        {
+                                            this.No1 = Conversion.Val(num14) + (-Conversion.Val(commamt) * Conversion.Val(totalcommi) / 100);
+                                        }
                                     }
                                 }
-                                else if (Operators.CompareString(status, "Regular", false) == 0)
-                                {
-                                    DataGridViewCell dataGridViewCell = this.datagridmen.Rows[i].Cells[3];
-                                    dataGridViewCell.Value = Operators.AddObject(dataGridViewCell.Value, Conversion.Val(this.No1));
-                                }
-                                else if (Operators.CompareString(status, "Booky", false) == 0)
-                                {
-                                    DataGridViewCell dataGridViewCell = this.datagridmen.Rows[i].Cells[4];
-                                    dataGridViewCell.Value = Operators.AddObject(dataGridViewCell.Value, Conversion.Val(this.No1));
-                                }
-                                this.datagridmen.Rows[i].Cells[1].Value = Strings.Format(unchecked(Conversion.Val(RuntimeHelpers.GetObjectValue(this.datagridmen.Rows[i].Cells[3].Value)) + Conversion.Val(RuntimeHelpers.GetObjectValue(this.datagridmen.Rows[i].Cells[4].Value))), this.txtnu.Text);
-                            }
-                        }
-
-                    }
-                    //oleDbCommandSession.Clone();
-                    //oleDbDataReaderSession.Close();
-
-                    //this.formatdatagrid();
-                    this.datagridmen.Columns[0].Width = 51;
-                    this.datagridmen.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-
-                    if (datagridmen.Rows.Count > 0)
-                    {
-                        double _sessionAmount = 0;
-                        Convert.ToDouble(datagridmen.Rows.Cast<DataGridViewRow>().Max(r => double.TryParse(r.Cells[3].Value.ToString(),out _sessionAmount)?_sessionAmount :0));
-
-                        sessionAmount = _sessionAmount;
-
-                        DataTable dt = new DataTable();
-
-                        //Adding the Columns.
-                        dt.Columns.Add("RUN", typeof(int));
-                        dt.Columns.Add("NP", typeof(double));
-                        dt.Columns.Add("DM", typeof(double));
-                        dt.Columns.Add("RG", typeof(double));
-                        dt.Columns.Add("BK", typeof(double));
-
-                        //Adding the Rows.
-                        foreach (DataGridViewRow row in datagridmen.Rows)
-                        {
-                            dt.Rows.Add();
-                            foreach (DataGridViewCell cell in row.Cells)
-                            {
-                                if (cell.Value != null)
-                                {
-                                    dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                                }
                                 else
                                 {
-                                    dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = (0).ToString();
+                                    this.Yes1 = Conversion.Val(num13);
+                                    this.No1 = Conversion.Val(num14);
+                                }
+
+                                checked
+                                {
+                                    for (int i = 0; i <= this.dataGridView8.Rows.Count - 1; i++)
+                                    {
+                                        if (Operators.ConditionalCompareObjectGreater(this.dataGridView8.Rows[i].Cells[0].Value, run, false))
+                                        {
+                                            if (Operators.CompareString(status, "Regular", false) == 0)
+                                            {
+                                                DataGridViewCell dataGridViewCell = this.dataGridView8.Rows[i].Cells[3];
+                                                dataGridViewCell.Value = Operators.AddObject(dataGridViewCell.Value, Conversion.Val(this.Yes1));
+                                            }
+                                            else if (Operators.CompareString(status, "Booky", false) == 0)
+                                            {
+                                                DataGridViewCell dataGridViewCell = this.dataGridView8.Rows[i].Cells[4];
+                                                dataGridViewCell.Value = Operators.AddObject(dataGridViewCell.Value, Conversion.Val(this.Yes1));
+                                            }
+                                        }
+                                        else if (Operators.CompareString(status, "Regular", false) == 0)
+                                        {
+                                            DataGridViewCell dataGridViewCell = this.dataGridView8.Rows[i].Cells[3];
+                                            dataGridViewCell.Value = Operators.AddObject(dataGridViewCell.Value, Conversion.Val(this.No1));
+                                        }
+                                        else if (Operators.CompareString(status, "Booky", false) == 0)
+                                        {
+                                            DataGridViewCell dataGridViewCell = this.dataGridView8.Rows[i].Cells[4];
+                                            dataGridViewCell.Value = Operators.AddObject(dataGridViewCell.Value, Conversion.Val(this.No1));
+                                        }
+                                        this.dataGridView8.Rows[i].Cells[1].Value = Strings.Format(unchecked(Conversion.Val(RuntimeHelpers.GetObjectValue(this.dataGridView8.Rows[i].Cells[3].Value)) + Conversion.Val(RuntimeHelpers.GetObjectValue(this.dataGridView8.Rows[i].Cells[4].Value))), this.txtnu.Text);
+                                    }
+                                }
+
+                                this.dataGridView8.Columns[0].Width = 51;
+                                this.dataGridView8.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+                                if (dataGridView8.Rows.Count > 0)
+                                {
+                                    DataTable dt = new DataTable();
+                                    dt.Columns.Add("RUN", typeof(int));
+                                    dt.Columns.Add("NP", typeof(double));
+                                    dt.Columns.Add("DM", typeof(double));
+                                    dt.Columns.Add("RG", typeof(double));
+                                    dt.Columns.Add("BK", typeof(double));
+
+                                    foreach (DataGridViewRow row in dataGridView8.Rows)
+                                    {
+                                        dt.Rows.Add();
+                                        foreach (DataGridViewCell cell in row.Cells)
+                                        {
+                                            if (cell.Value != null)
+                                            {
+                                                dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                                            }
+                                            else
+                                            {
+                                                dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = (0).ToString();
+                                            }
+                                        }
+                                    }
+                                    finalsessionamount = dt.AsEnumerable().Max(row => Convert.ToDouble(row["RG"]));
                                 }
                             }
+                            if (isvalid == true)
+                            {
+                                sessionAmount += finalsessionamount;
+                            }
                         }
-                        sessionAmount = dt.AsEnumerable().Max(row => Convert.ToDouble(row["RG"]));
                     }
+                    /// End - For Session Balance Limit
 
+
+                    ////Start - For Match Balance LImit
                     string cmdTextMatch = string.Concat(new string[]
                     {
                     "SELECT * FROM (",
                     "SELECT PartyMaster.PartyName, PartyMaster.MatchCommiType, PartyMaster.Status, MatchTrans.m_id, MatchTrans.m_checked, SUM(MatchTrans.m_team1) AS Expr1, SUM(MatchTrans.m_team2) AS Expr2, SUM(MatchTrans.m_team3) AS Expr3, SUM(MatchTrans.m_team4)  AS Expr4, PartyMaster.SMatchCommi, PartyMaster.SMatch FROM (MatchTrans INNER JOIN PartyMaster ON MatchTrans.m_party = PartyMaster.PartyName) GROUP BY PartyMaster.PartyName, PartyMaster.MatchCommiType, PartyMaster.Status, MatchTrans.m_id, MatchTrans.m_checked, PartyMaster.SMatchCommi, PartyMaster.SMatch HAVING (PartyMaster.PartyName = '",
                     this.txtpartiname.Text,
-                    "') AND (MatchTrans.m_id = ",
-                    this.testnu.Text,
+                    "') AND (MatchTrans.m_id IN (SELECT DISTINCT Sr_No FROM Newmatch WHERE Result <> 'Declared') ",
+                    //this.testnu.Text,
                     ") AND (MatchTrans.m_checked = 0) AND (PartyMaster.MatchCommiType IN ('No Commission','Match Total Minus')) ",
                     " UNION ALL ",
                     "SELECT PartyMaster.PartyName, PartyMaster.MatchCommiType, PartyMaster.Status, MatchTrans.m_id, MatchTrans.m_checked, (MatchTrans.m_team1) AS Expr1, (MatchTrans.m_team2) AS Expr2, (MatchTrans.m_team3) AS Expr3, (MatchTrans.m_team4)  AS Expr4, PartyMaster.SMatchCommi, PartyMaster.SMatch FROM (MatchTrans INNER JOIN PartyMaster ON MatchTrans.m_party = PartyMaster.PartyName) WHERE (PartyMaster.PartyName = '",
                     this.txtpartiname.Text,
-                    "') AND (MatchTrans.m_id = ",
-                    this.testnu.Text,
+                    "') AND (MatchTrans.m_id IN (SELECT DISTINCT Sr_No FROM Newmatch WHERE Result <> 'Declared') ",
+                    //this.testnu.Text,
                     ") AND (MatchTrans.m_checked = 0) AND (PartyMaster.MatchCommiType IN ('Entry Wise')) ",
                     ") ORDER BY PartyMaster.PartyName"
                     });
@@ -2685,41 +2607,16 @@ namespace YashAksh
                         }
                         numCell3 = Convert.ToDouble(Module1.SetNumFormat(Operators.AddObject(Conversion.Val(RuntimeHelpers.GetObjectValue(numCell3)), Conversion.Val(exp4_afterldcommi)), this.txtnu.Text));
                     }
+                    ////End - For Match Balance LImit
                     nuCellFinal = Math.Max(numCell0, Math.Max(numCell1, numCell2));
 
-                    Module1.balancelimits = "Yes";
+
                     this.Hours1 = Conversion.Val(nuCellFinal) + Conversion.Val(sessionAmount);
-                    double num42 = 0;
-                    if (0.0 > this.Hours1)
+                    if (Hours1 > FinalBalanceLimit)
                     {
-                        num42 = Convert.ToDouble(Module1.SetNumFormat(Conversion.Val(this.Hours1) + Conversion.Val(num), this.txtnu.Text));
-                    }
-                    else if (0.0 < this.Hours1)
-                    {
-                        num42 = Convert.ToDouble(Module1.SetNumFormat(Conversion.Val(this.Hours1) - Conversion.Val(num), this.txtnu.Text));
-                    }
-                    double num43 = 0;
-                    if (0.0 > this.Hours2)
-                    {
-                        num43 = Convert.ToDouble(Module1.SetNumFormat(Conversion.Val(this.Hours2) + Conversion.Val(num) + Conversion.Val(num), this.txtnu.Text));
-                    }
-                    else if (0.0 < this.Hours2)
-                    {
-                        num43 = Convert.ToDouble(Module1.SetNumFormat(Conversion.Val(this.Hours2) - Conversion.Val(num) + Conversion.Val(num), this.txtnu.Text));
-                    }
-                    this.BalanceAmount = Convert.ToDouble(Module1.SetNumFormat(Conversion.Val(Hours1) - Conversion.Val(num42), this.txtnu.Text));
-                    if (Operators.CompareString(this.DataGridView1.Columns[6].HeaderText, this.cmbteam.Text, false) == 0)
-                    {
-                        this.Label5.Text = "BALANCE IS : " + Module1.SetNumFormat(Conversion.Val(num42), this.txtnu.Text);
-                    }
-                    else if (Operators.CompareString(this.DataGridView1.Columns[7].HeaderText, this.cmbteam.Text, false) == 0)
-                    {
-                        this.Label5.Text = "BALANCE IS : " + Module1.SetNumFormat(Conversion.Val(num43), this.txtnu.Text);
-                    }
-                    if (Hours1 > this.BalanceAmount)
-                    {
+                        double limit = Hours1 - FinalBalanceLimit;
                         Balance_Message balance_Message = new Balance_Message();
-                        balance_Message.BalanceLimit = Module1.SetNumFormat(Conversion.Val(num42), this.txtnu.Text);
+                        balance_Message.BalanceLimit = Module1.SetNumFormat(Conversion.Val(limit), this.txtnu.Text);
                         balance_Message.ShowDialog();
                         this.txtpartiname.Text = null;
 
@@ -2733,6 +2630,7 @@ namespace YashAksh
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -2745,18 +2643,37 @@ namespace YashAksh
             }
         }
 
-        private async Task GenrateGridRow(int run)
+        //private async Task GenrateGridRow(int run)
+        //{
+        //    try
+        //    {
+        //        this.datagridmen.Rows.Clear();
+        //        int num = 0;
+        //        int num2 = (int)(Math.Round(unchecked(run + 0.0)) - 1);
+        //        for (int i = num; i <= num2; i++)
+        //        {
+        //            this.datagridmen.Columns[0].Width = 50;
+        //            int index = this.datagridmen.Rows.Add();
+        //            this.datagridmen.Rows[index].Cells[0].Value = i;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        App.Utility.ErrorLog.LogError("Form3_SESSION->GenerateGridRow", ex.Message);
+        //        Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+        //    }
+        //}
+
+        private async Task GenrateGridRow_From_To(int from, int to)
         {
             try
             {
-                this.datagridmen.Rows.Clear();
-                int num = 0;
-                int num2 = (int)(Math.Round(unchecked(run + 0.0)) - 1);
-                for (int i = num; i <= num2; i++)
+                this.dataGridView8.Rows.Clear();                
+                for (int i = from; i <= to; i++)
                 {
-                    this.datagridmen.Columns[0].Width = 50;
-                    int index = this.datagridmen.Rows.Add();
-                    this.datagridmen.Rows[index].Cells[0].Value = i;
+                    this.dataGridView8.Columns[0].Width = 50;
+                    int index = this.dataGridView8.Rows.Add();
+                    this.dataGridView8.Rows[index].Cells[0].Value = i;
                 }
             }
             catch (Exception ex)
@@ -2765,6 +2682,7 @@ namespace YashAksh
                 Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
             }
         }
+
         private void Button3_Click(object sender, EventArgs e)
         {
             try
@@ -3203,80 +3121,9 @@ namespace YashAksh
 
         public async Task Agent1()
         {
-            try
-            {
-                //if (Module1.conn.State == ConnectionState.Closed)
-                //{
-                //	Module1.conn.Open();
-                //}
-                //this.DataGridView4.Rows.Clear();
-                //this.DataGridView4.Rows.Add();
-                //string cmdText = string.Concat(new string[]
-                //{
-                //	"SELECT PartyMaster.PartyName, MatchTrans.m_id, MatchTrans.m_checked, SUM(MatchTrans.m_team1) AS Expr1, SUM(MatchTrans.m_team2) AS Expr2, SUM(MatchTrans.m_team3) AS Expr3, SUM(MatchTrans.m_team4)  AS Expr4, PartyMaster.SMatchCommi, PartyMaster.SMatch FROM (MatchTrans INNER JOIN PartyMaster ON MatchTrans.m_party = PartyMaster.PartyName) GROUP BY PartyMaster.PartyName, MatchTrans.m_id, MatchTrans.m_checked, PartyMaster.SMatchCommi, PartyMaster.SMatch HAVING (PartyMaster.PartyName = '",
-                //	this.ComboBox1.Text,
-                //	"') AND (MatchTrans.m_id = ",
-                //	this.testnu.Text,
-                //	") AND (MatchTrans.m_checked = 0)"
-                //});
-                //OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
-                //OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-                //while (oleDbDataReader.Read())
-                //{
-                //	double num = Conversion.Val(0.01) * Conversion.Val(oleDbDataReader["SMatchCommi"]);
-                //	double smatch = Conversion.Val(Conversion.Val(0.01) * Conversion.Val(oleDbDataReader["SMatch"]));
-
-                //	double num2 = Conversion.Val(oleDbDataReader["Expr1"]) * Conversion.Val(smatch);
-                //	this.DataGridView4.Rows[0].Cells[0].Value = Conversion.Val(oleDbDataReader["Expr1"]) - Conversion.Val(num2);
-                //	if (!Operators.ConditionalCompareObjectLess(this.DataGridView4.Rows[0].Cells[0].Value, 0, false))
-                //	{
-                //		double num3 = Conversion.Val(this.DataGridView4.Rows[0].Cells[0].Value) * Conversion.Val(num);
-                //		this.DataGridView4.Rows[0].Cells[0].Value = Operators.SubtractObject(this.DataGridView4.Rows[0].Cells[0].Value, num3);
-                //	}
-                //	this.DataGridView4.Rows[0].Cells[0].Value = Module1.SetNumFormat(Conversion.Val(this.DataGridView4.Rows[0].Cells[0].Value), this.txtnu.Text);
-
-                //	double num4 = Conversion.Val(oleDbDataReader["Expr2"]) * Conversion.Val(smatch);
-                //	this.DataGridView4.Rows[0].Cells[1].Value = Conversion.Val(oleDbDataReader["Expr2"]) - Conversion.Val(num4);
-                //	if (!Operators.ConditionalCompareObjectLess(this.DataGridView4.Rows[0].Cells[1].Value, 0, false))
-                //	{
-                //		double num5 = Conversion.Val(this.DataGridView4.Rows[0].Cells[1].Value) * Conversion.Val(num);
-                //		this.DataGridView4.Rows[0].Cells[1].Value = Operators.SubtractObject(this.DataGridView4.Rows[0].Cells[1].Value, num5);
-                //	}
-                //	this.DataGridView4.Rows[0].Cells[1].Value = Module1.SetNumFormat(Conversion.Val(this.DataGridView4.Rows[0].Cells[1].Value), this.txtnu.Text);
-
-                //	double num6 = Conversion.Val(oleDbDataReader["Expr3"]) * Conversion.Val(smatch);
-                //	this.DataGridView4.Rows[0].Cells[2].Value = Conversion.Val(oleDbDataReader["Expr3"]) - Conversion.Val(num6);
-                //	if (!Operators.ConditionalCompareObjectLess(this.DataGridView4.Rows[0].Cells[2].Value, 0, false))
-                //	{
-                //		double num7 = Conversion.Val(this.DataGridView4.Rows[0].Cells[2].Value) * Conversion.Val(num);
-                //		this.DataGridView4.Rows[0].Cells[2].Value = Operators.SubtractObject(this.DataGridView4.Rows[0].Cells[2].Value, num7);
-                //	}
-                //	this.DataGridView4.Rows[0].Cells[2].Value = Module1.SetNumFormat(Conversion.Val(this.DataGridView4.Rows[0].Cells[2].Value), this.txtnu.Text);
-
-                //	double num8 = Conversion.Val(oleDbDataReader["Expr4"]) * Conversion.Val(smatch);
-                //	this.DataGridView4.Rows[0].Cells[3].Value = Conversion.Val(oleDbDataReader["Expr4"]) - Conversion.Val(num8);
-                //	if (!Operators.ConditionalCompareObjectLess(this.DataGridView4.Rows[0].Cells[3].Value, 0, false))
-                //	{
-                //		double num9 = Conversion.Val(this.DataGridView4.Rows[0].Cells[3].Value) * Conversion.Val(num);
-                //		this.DataGridView4.Rows[0].Cells[3].Value = Operators.SubtractObject(this.DataGridView4.Rows[0].Cells[3].Value, num9);
-                //	}
-                //	this.DataGridView4.Rows[0].Cells[3].Value = Module1.SetNumFormat(Conversion.Val(this.DataGridView4.Rows[0].Cells[3].Value), this.txtnu.Text);
-                //}
-            }
-            catch (Exception ex)
-            {
-                App.Utility.ErrorLog.LogError("Match->Agent1", ex.Message);
-                //MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                this.Agent1_Total();
-                Module1.conn.Close();
-            }
-        }
-
-        public void Agent1_Total()
-        {
+            if (this.ComboBox1.Text == "")
+                return;
+            
             try
             {
                 if (Module1.conn.State == ConnectionState.Closed)
@@ -3287,65 +3134,279 @@ namespace YashAksh
                 this.DataGridView4.Rows.Add();
                 string cmdText = string.Concat(new string[]
                 {
-                    "SELECT PartyMaster.PartyName, PartyMaster.AParty, PartyMaster.AMatch, MAX(PartyMaster.SMatchCommi) AS SMatchCommi, SUM(MatchTrans.m_team1) AS Expr1, SUM(MatchTrans.m_team2) AS Expr2, SUM(MatchTrans.m_team3) AS Expr3, SUM(MatchTrans.m_team4) AS Expr4, MatchTrans.m_id, MatchTrans.m_checked, PartyMaster.SMatch, PartyMaster.TParty, PartyMaster.TMatch FROM (PartyMaster INNER JOIN MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) WHERE (MatchTrans.m_checked <> 1) GROUP BY PartyMaster.PartyName, PartyMaster.AParty, PartyMaster.AMatch, MatchTrans.m_id, MatchTrans.m_checked, PartyMaster.SMatch, PartyMaster.TParty, PartyMaster.TMatch HAVING (MatchTrans.m_id = ",
+                    "SELECT * FROM (",
+                    "SELECT PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, SUM(MatchTrans.m_team1) AS Expr1, SUM(MatchTrans.m_team2) AS Expr2, SUM(MatchTrans.m_team3) AS Expr3, SUM(MatchTrans.m_team4) AS Expr4, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType FROM (PartyMaster INNER JOIN  MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) GROUP BY PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType HAVING (MatchTrans.m_checked = 0) AND (MatchTrans.m_id = ",
                     this.testnu.Text.ToString(),
                     ") AND (PartyMaster.AParty = '",
                     this.ComboBox1.Text,
-					//"' OR PartyMaster.PartyName = '",
-					//this.ComboBox1.Text,
-					"' OR PartyMaster.TParty = '",
+                    "' OR PartyMaster.TParty = '",
                     this.ComboBox1.Text,
-                    "')"
+                    "') AND (PartyMaster.MatchCommiType IN ('No Commission','Match Total Minus'))",
+                    " UNION ALL ",
+                    "SELECT PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, (MatchTrans.m_team1) AS Expr1, (MatchTrans.m_team2) AS Expr2, (MatchTrans.m_team3) AS Expr3, (MatchTrans.m_team4) AS Expr4, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType FROM (PartyMaster INNER JOIN  MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) WHERE (MatchTrans.m_checked = 0) AND (MatchTrans.m_id = ",
+                    this.testnu.Text.ToString(),
+                    ") AND (PartyMaster.AParty = '",
+                    this.ComboBox1.Text,
+                    "' OR PartyMaster.TParty = '",
+                    this.ComboBox1.Text,
+                    "') AND (PartyMaster.MatchCommiType IN ('Entry Wise'))",
+                    ") ORDER BY PartyName"
                 });
+
                 OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
                 OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
 
-                double num9 = 0, num10 = 0, num11 = 0, num12 = 0, smatchcommi = 0;
+                double num501 = 0, num502 = 0, num503 = 0, num504 = 0;
                 while (oleDbDataReader.Read())
                 {
-                    smatchcommi = Conversion.Val(oleDbDataReader["SMatchCommi"]);
 
-                    double num = Convert.ToDouble(Conversion.Val(oleDbDataReader["Expr1"]) * Conversion.Val(oleDbDataReader["SMatch"]) / 100);
-                    double num2 = Convert.ToDouble(Conversion.Val(oleDbDataReader["Expr2"]) * Conversion.Val(oleDbDataReader["SMatch"]) / 100);
-                    double num3 = Convert.ToDouble(Conversion.Val(oleDbDataReader["Expr3"]) * Conversion.Val(oleDbDataReader["SMatch"]) / 100);
-                    double num4 = Convert.ToDouble(Conversion.Val(oleDbDataReader["Expr4"]) * Conversion.Val(oleDbDataReader["SMatch"]) / 100);
+                    double smatch = Convert.ToDouble(oleDbDataReader["SMatch"].ToString());
+                    double amatch = Convert.ToDouble(oleDbDataReader["AMatch"].ToString());
+                    double tmatch = Convert.ToDouble(oleDbDataReader["TMatch"].ToString());
 
-                    double num5 = Conversion.Val(oleDbDataReader["Expr1"]) - Conversion.Val(num);
-                    double num6 = Conversion.Val(oleDbDataReader["Expr2"]) - Conversion.Val(num2);
-                    double num7 = Conversion.Val(oleDbDataReader["Expr3"]) - Conversion.Val(num3);
-                    double num8 = Conversion.Val(oleDbDataReader["Expr4"]) - Conversion.Val(num4);
+                    double smatchcommi = Convert.ToDouble(oleDbDataReader["SMatchCommi"].ToString());
+                    double amatchcommi = Convert.ToDouble(oleDbDataReader["AMatchCommi"].ToString());
+                    double tmatchcommi = Convert.ToDouble(oleDbDataReader["TMatchCommi"].ToString());
+                    double totalcommi = Conversion.Val(smatchcommi) + Conversion.Val(amatchcommi) + Conversion.Val(tmatchcommi);
 
-                    if (Operators.CompareString(oleDbDataReader["PartyName"].ToString(), this.ComboBox1.Text, false) == 0)
+                    string party = oleDbDataReader["PartyName"].ToString();
+                    string aparty = oleDbDataReader["AParty"].ToString();
+                    string tparty = oleDbDataReader["TParty"].ToString();
+                    string status = oleDbDataReader["Status"].ToString();
+
+                    double num9 = 0, num10 = 0, num11 = 0, num12 = 0;
+                    num9 = Convert.ToDouble(oleDbDataReader["Expr1"]);
+                    num10 = Convert.ToDouble(oleDbDataReader["Expr2"]);
+                    num11 = Convert.ToDouble(oleDbDataReader["Expr3"]);
+                    num12 = Convert.ToDouble(oleDbDataReader["Expr4"]);
+
+                    double afterldamt1 = 0, afterldamt2 = 0, afterldamt3 = 0, afterldamt4 = 0;
+                    afterldamt1 = Conversion.Val(num9) - (Conversion.Val(num9) * Conversion.Val(smatch) / 100);
+                    afterldamt2 = Conversion.Val(num10) - (Conversion.Val(num10) * Conversion.Val(smatch) / 100);
+                    afterldamt3 = Conversion.Val(num11) - (Conversion.Val(num11) * Conversion.Val(smatch) / 100);
+                    afterldamt4 = Conversion.Val(num12) - (Conversion.Val(num12) * Conversion.Val(smatch) / 100);
+
+                    if (Operators.CompareString(status, "Booky", false) == 0)
                     {
-                        num9 += num;
-                        num10 += num2;
-                        num11 += num3;
-                        num12 += num4;
+                        if (Operators.CompareString(aparty, null, false) != 0)
+                        {
+                            if (num9 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(amatchcommi) / 100;
+                                num501 = Conversion.Val(num111);
+                            }
+                            else
+                            {                                
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+                                num501 = Conversion.Val(num101);
+                            }
+
+                            if (num10 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(amatchcommi) / 100;
+                                num502 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+                                num502 = Conversion.Val(num101);
+                            }
+
+                            if (num11 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(amatchcommi) / 100;
+                                num503 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+                                num503 = Conversion.Val(num101);
+                            }
+
+                            if (num12 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(amatchcommi) / 100;
+                                num504 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+                                num504 = Conversion.Val(num101);
+                            }
+                        }
+
+                        if (Operators.CompareString(tparty, null, false) != 0)
+                        {
+                            if (num9 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(tmatchcommi) / 100;
+                                num501 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+                                num501 = Conversion.Val(num101);
+                            }
+
+                            if (num10 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(tmatchcommi) / 100;
+                                num502 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+                                num502 = Conversion.Val(num101);
+                            }
+
+                            if (num11 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(tmatchcommi) / 100;
+                                num503 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+                                num503 = Conversion.Val(num101);
+                            }
+
+                            if (num12 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(tmatchcommi) / 100;
+                                num504 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+                                num504 = Conversion.Val(num101);
+                            }
+                        }
                     }
-                    if (Operators.CompareString(oleDbDataReader["AParty"].ToString(), this.ComboBox1.Text, false) == 0)
+
+                    if (Operators.CompareString(status, "Regular", false) == 0)
                     {
-                        num9 += Convert.ToDouble(Conversion.Val(num5) * Conversion.Val(oleDbDataReader["AMatch"]) / 100);
-                        num10 += Convert.ToDouble(Conversion.Val(num6) * Conversion.Val(oleDbDataReader["AMatch"]) / 100);
-                        num11 += Convert.ToDouble(Conversion.Val(num7) * Conversion.Val(oleDbDataReader["AMatch"]) / 100);
-                        num12 += Convert.ToDouble(Conversion.Val(num8) * Conversion.Val(oleDbDataReader["AMatch"]) / 100);
+                        if (Operators.CompareString(aparty, null, false) != 0)
+                        {
+                            if (num9 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(amatchcommi) / 100;
+                                num501 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+                                num501 = Conversion.Val(num101);
+                            }
+
+                            if (num10 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(amatchcommi) / 100;
+                                num502 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+                                num502 = Conversion.Val(num101);
+                            }
+
+                            if (num11 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(amatchcommi) / 100;
+                                num503 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+                                num503 = Conversion.Val(num101);
+                            }
+
+                            if (num12 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(amatchcommi) / 100;
+                                num504 = Conversion.Val(num111);                                
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+                                num504 = Conversion.Val(num101);
+                            }
+                        }
+
+                        if (Operators.CompareString(tparty, null, false) != 0)
+                        {
+                            if (num9 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(tmatchcommi) / 100;
+                                num501 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+                                num501 = Conversion.Val(num101);
+                            }
+
+                            if (num10 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(tmatchcommi) / 100;
+                                num502 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+                                num502 = Conversion.Val(num101);
+                            }
+
+                            if (num11 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(tmatchcommi) / 100;
+                                num503 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+                                num503 = Conversion.Val(num101);
+                            }
+
+                            if (num12 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(tmatchcommi) / 100;
+                                num504 = Conversion.Val(num111);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+                                num504 = Conversion.Val(num101);
+                            }
+                        }
                     }
-                    if (Operators.CompareString(oleDbDataReader["TParty"].ToString(), this.ComboBox1.Text, false) == 0)
-                    {
-                        num9 += Convert.ToDouble(Conversion.Val(num5) * Conversion.Val(oleDbDataReader["TMatch"]) / 100);
-                        num10 += Convert.ToDouble(Conversion.Val(num6) * Conversion.Val(oleDbDataReader["TMatch"]) / 100);
-                        num11 += Convert.ToDouble(Conversion.Val(num7) * Conversion.Val(oleDbDataReader["TMatch"]) / 100);
-                        num12 += Convert.ToDouble(Conversion.Val(num8) * Conversion.Val(oleDbDataReader["TMatch"]) / 100);
-                    }
+
+                    double num13 = Convert.ToDouble(this.DataGridView4.Rows[0].Cells[0].Value);
+                    double num14 = Convert.ToDouble(this.DataGridView4.Rows[0].Cells[1].Value);
+                    double num15 = Convert.ToDouble(this.DataGridView4.Rows[0].Cells[2].Value);
+                    double num16 = Convert.ToDouble(this.DataGridView4.Rows[0].Cells[3].Value);
+
+                    this.DataGridView4.Rows[0].Cells[0].Value = Module1.SetNumFormat((Conversion.Val(num13) + Conversion.Val(num501)), this.txtnu.Text);
+                    this.DataGridView4.Rows[0].Cells[1].Value = Module1.SetNumFormat((Conversion.Val(num14) + Conversion.Val(num502)), this.txtnu.Text);
+                    this.DataGridView4.Rows[0].Cells[2].Value = Module1.SetNumFormat((Conversion.Val(num15) + Conversion.Val(num503)), this.txtnu.Text);
+                    this.DataGridView4.Rows[0].Cells[3].Value = Module1.SetNumFormat((Conversion.Val(num16) + Conversion.Val(num504)), this.txtnu.Text);
                 }
-                double num13 = Convert.ToDouble(this.DataGridView4.Rows[0].Cells[0].Value);
-                double num14 = Convert.ToDouble(this.DataGridView4.Rows[0].Cells[1].Value);
-                double num15 = Convert.ToDouble(this.DataGridView4.Rows[0].Cells[2].Value);
-                double num16 = Convert.ToDouble(this.DataGridView4.Rows[0].Cells[3].Value);
 
-                this.DataGridView4.Rows[0].Cells[0].Value = Module1.SetNumFormat((Conversion.Val(num13) + Conversion.Val(num9)), this.txtnu.Text);
-                this.DataGridView4.Rows[0].Cells[1].Value = Module1.SetNumFormat((Conversion.Val(num14) + Conversion.Val(num10)), this.txtnu.Text);
-                this.DataGridView4.Rows[0].Cells[2].Value = Module1.SetNumFormat((Conversion.Val(num15) + Conversion.Val(num11)), this.txtnu.Text);
-                this.DataGridView4.Rows[0].Cells[3].Value = Module1.SetNumFormat((Conversion.Val(num16) + Conversion.Val(num12)), this.txtnu.Text);
 
                 if (Operators.ConditionalCompareObjectLess(this.DataGridView4.Rows[0].Cells[0].Value, 0, false))
                 {
@@ -3394,80 +3455,9 @@ namespace YashAksh
 
         public async Task Agent2()
         {
-            try
-            {
-                //if (Module1.conn.State == ConnectionState.Closed)
-                //{
-                //	Module1.conn.Open();
-                //}
-                //this.DataGridView7.Rows.Clear();
-                //this.DataGridView7.Rows.Add();
-                //string cmdText = string.Concat(new string[]
-                //{
-                //	"SELECT PartyMaster.PartyName, MatchTrans.m_id, MatchTrans.m_checked, SUM(MatchTrans.m_team1) AS Expr1, SUM(MatchTrans.m_team2) AS Expr2, SUM(MatchTrans.m_team3) AS Expr3, SUM(MatchTrans.m_team4)  AS Expr4, PartyMaster.SMatchCommi, PartyMaster.SMatch FROM (MatchTrans INNER JOIN PartyMaster ON MatchTrans.m_party = PartyMaster.PartyName) GROUP BY PartyMaster.PartyName, MatchTrans.m_id, MatchTrans.m_checked, PartyMaster.SMatchCommi, PartyMaster.SMatch HAVING (PartyMaster.PartyName = '",
-                //	this.ComboBox3.Text,
-                //	"') AND (MatchTrans.m_id = ",
-                //	this.testnu.Text,
-                //	") AND (MatchTrans.m_checked = 0)"
-                //});
-                //OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
-                //OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-                //while (oleDbDataReader.Read())
-                //{
-                //	double num = Conversion.Val(0.01) * Conversion.Val(oleDbDataReader["SMatchCommi"]);
-                //	double smatch = Conversion.Val(Conversion.Val(0.01) * Conversion.Val(oleDbDataReader["SMatch"]));
-
-                //	double num2 = Conversion.Val(oleDbDataReader["Expr1"]) * Conversion.Val(smatch);
-                //	this.DataGridView7.Rows[0].Cells[0].Value = Conversion.Val(oleDbDataReader["Expr1"]) - Conversion.Val(num2);
-                //	if (!Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[0].Value, 0, false))
-                //	{
-                //		double num3 = Conversion.Val(this.DataGridView7.Rows[0].Cells[0].Value) * Conversion.Val(num);
-                //		this.DataGridView7.Rows[0].Cells[0].Value = Operators.SubtractObject(this.DataGridView7.Rows[0].Cells[0].Value, num3);
-                //	}
-                //	this.DataGridView7.Rows[0].Cells[0].Value = Module1.SetNumFormat(Conversion.Val(this.DataGridView7.Rows[0].Cells[0].Value), this.txtnu.Text);
-
-                //	double num4 = Conversion.Val(oleDbDataReader["Expr2"]) * Conversion.Val(smatch);
-                //	this.DataGridView7.Rows[0].Cells[1].Value = Conversion.Val(oleDbDataReader["Expr2"]) - Conversion.Val(num4);
-                //	if (!Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[1].Value, 0, false))
-                //	{
-                //		double num5 = Conversion.Val(this.DataGridView7.Rows[0].Cells[1].Value) * Conversion.Val(num);
-                //		this.DataGridView7.Rows[0].Cells[1].Value = Operators.SubtractObject(this.DataGridView7.Rows[0].Cells[1].Value, num5);
-                //	}
-                //	this.DataGridView7.Rows[0].Cells[1].Value = Module1.SetNumFormat(Conversion.Val(this.DataGridView7.Rows[0].Cells[1].Value), this.txtnu.Text);
-
-                //	double num6 = Conversion.Val(oleDbDataReader["Expr3"]) * Conversion.Val(smatch);
-                //	this.DataGridView7.Rows[0].Cells[2].Value = Conversion.Val(oleDbDataReader["Expr3"]) - Conversion.Val(num6);
-                //	if (!Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[2].Value, 0, false))
-                //	{
-                //		double num7 = Conversion.Val(this.DataGridView7.Rows[0].Cells[2].Value) * Conversion.Val(num);
-                //		this.DataGridView7.Rows[0].Cells[2].Value = Operators.SubtractObject(this.DataGridView7.Rows[0].Cells[2].Value, num7);
-                //	}
-                //	this.DataGridView7.Rows[0].Cells[2].Value = Module1.SetNumFormat(Conversion.Val(this.DataGridView7.Rows[0].Cells[2].Value), this.txtnu.Text);
-
-                //	double num8 = Conversion.Val(oleDbDataReader["Expr4"]) * Conversion.Val(smatch);
-                //	this.DataGridView7.Rows[0].Cells[3].Value = Conversion.Val(oleDbDataReader["Expr4"]) - Conversion.Val(num8);
-                //	if (!Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[3].Value, 0, false))
-                //	{
-                //		double num9 = Conversion.Val(this.DataGridView7.Rows[0].Cells[3].Value) * Conversion.Val(num);
-                //		this.DataGridView7.Rows[0].Cells[3].Value = Operators.SubtractObject(this.DataGridView7.Rows[0].Cells[3].Value, num9);
-                //	}
-                //	this.DataGridView7.Rows[0].Cells[3].Value = Module1.SetNumFormat(Conversion.Val(this.DataGridView7.Rows[0].Cells[3].Value), this.txtnu.Text);
-                //}				
-            }
-            catch (Exception ex)
-            {
-                App.Utility.ErrorLog.LogError("Match->Agent2", ex.Message);
-                //MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                this.Agent2_Total();
-                Module1.conn.Close();
-            }
-        }
-
-        public void Agent2_Total()
-        {
+            if (this.ComboBox3.Text == "")
+                return;
+            
             try
             {
                 if (Module1.conn.State == ConnectionState.Closed)
@@ -3596,12 +3586,12 @@ namespace YashAksh
                 double num1 = 0.0;
                 this.lblOP.Text = "0";
 
-                string cmdText = "SELECT SUM(tns_Amount) AS ColsingBalanceAmount, tns_Party FROM Trans WHERE (tns_chk = '0') AND (tns_Type <> 'Monday Settlement') AND (tns_Party = '" + this.txtpartiname.Text + "') GROUP BY tns_Party ";
+                string cmdText = "SELECT SUM(tns_Amount) AS ClosingBalanceAmount, tns_Party FROM Trans WHERE (tns_chk = '0') AND (tns_Type <> 'Monday Settlement') AND (tns_Party = '" + this.txtpartiname.Text + "') GROUP BY tns_Party ";
                 OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
                 OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
                 while (oleDbDataReader.Read())
                 {
-                    num += Convert.ToDouble(oleDbDataReader["ColsingBalanceAmount"]);
+                    num += Convert.ToDouble(oleDbDataReader["ClosingBalanceAmount"]);
                 }
 
                 //string cmdText = "SELECT PartyMaster.PartyName, SUM(Trans.tns_Amount) AS Expr1 FROM (PartyMaster INNER JOIN Trans ON PartyMaster.PartyName = Trans.tns_party) GROUP BY PartyMaster.PartyName, Trans.tns_chk, Trans.tns_Type HAVING (Trans.tns_chk = '0') AND (Trans.tns_Type <> 'Monday Settlement') AND (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
@@ -3611,12 +3601,12 @@ namespace YashAksh
                 //{
                 //	num += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader["Expr1"]));
                 //}
-                string cmdText1 = "SELECT PartyMaster.PartyName,  PartyMaster.OpeningBalance FROM PartyMaster WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
+                string cmdText1 = "SELECT PartyMaster.PartyName,  PartyMaster.BalanceLimit FROM PartyMaster WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
                 OleDbCommand oleDbCommand1 = new OleDbCommand(cmdText1, Module1.conn);
                 OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
                 while (oleDbDataReader1.Read())
                 {
-                    num1 += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["OpeningBalance"]));
+                    num1 += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["BalanceLimit"]));
                 }
 
                 this.lblOP.Text = Module1.SetNumFormat(Conversion.Val(num - num1), this.txtnu.Text);
@@ -3866,5 +3856,6 @@ namespace YashAksh
                 }
             }
         }
+
     }
 }
