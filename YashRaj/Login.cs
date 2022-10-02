@@ -21,70 +21,71 @@ namespace YashAksh
         private async void Login_Load(object sender, EventArgs e)
         {
             try
-            {               
+            {                
+                string sFilePath = $"{Application.StartupPath}\\DB\\{BaseService.DbName}";
+                if (!File.Exists(sFilePath))
+                {
+                    Interaction.MsgBox("This Software is Expired");
+                    Application.Exit();
+                }
 
-                //string sFilePath = $"{Application.StartupPath}\\DB\\{BaseService.DbName}";`
-                //if (!File.Exists(sFilePath))
-                //{
-                //    Interaction.MsgBox("This Software is Expired");
-                //    Application.Exit();
-                //}
+                lblVersion.Text = $"Version: {BaseService.GetVersion()}";
+                if (Module1.conn.State == ConnectionState.Closed)
+                {
+                    Module1.conn.Open();
+                }
+                string ApiUrl = "";
+                string strRemark = "";
+                string cmdText = "select * from Settings";
+                OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
+                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+                if (oleDbDataReader.Read())
+                {
+                    ApiUrl = oleDbDataReader["s_Api_Url"].ToString();
 
-                //lblVersion.Text = $"Version: {BaseService.GetVersion()}";
-                //if (Module1.conn.State == ConnectionState.Closed)
-                //{
-                //    Module1.conn.Open();
-                //}
-                //string ApiUrl = "";
-                //string strRemark = "";
-                //string cmdText = "select * from Settings";
-                //OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
-                //OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-                //if (oleDbDataReader.Read())
-                //{
-                //    ApiUrl = oleDbDataReader["s_Api_Url"].ToString();
+                    if (string.IsNullOrEmpty(ApiUrl) || ApiUrl == "")
+                        throw new Exception("Invalid Configuration");
 
-                //    if (string.IsNullOrEmpty(ApiUrl) || ApiUrl == "")
-                //        throw new Exception("Invalid Configuration");
+                    BaseService.Name = oleDbDataReader["Name"].ToString();
+                    BaseService.MobileNo = oleDbDataReader["MobileNo"].ToString();
+                    strRemark = oleDbDataReader["Remark"].ToString();
+                    Algo.License.License license = new Algo.License.License();
 
-                //    BaseService.Name = oleDbDataReader["Name"].ToString();
-                //    BaseService.MobileNo = oleDbDataReader["MobileNo"].ToString();
-                //    strRemark = oleDbDataReader["Remark"].ToString();
-                //    Algo.License.License license = new Algo.License.License();
-                //    #region Get the Keys from the Database
-                //    LicensesService licensesService = new LicensesService();
-                //    var licenses = licensesService.GetLicenses();
-                //    //licensesService = null;
+                    #region Get the Keys from the Database
+                    LicensesService licensesService = new LicensesService();
+                    var licenses = licensesService.GetLicenses();
+                    //licensesService = null;
 
-                //    bool Licensed = false;
-                //    foreach (var Key in licenses)
-                //    {
-                //        var response = await license.CheckLicencing(ApiUrl, Key.Value, BaseService.Name, BaseService.MobileNo, strRemark);
-                //        if (response.result)
-                //        {
-                //            Licensed = true;
-                //            break;
-                //        }
-                //    }
+                    bool Licensed = false;
+                    foreach (var Key in licenses)
+                    {
+                        var response = await license.CheckLicencing(ApiUrl, Key.Value, BaseService.Name, BaseService.MobileNo, strRemark);
+                        if (response.result)
+                        {
+                            Licensed = true;
+                            break;
+                        }
+                    }
 
-                //    if (licenses.Count <= 0 && Licensed == false)
-                //    {
-                //        //var response = await license.CheckLicencing(ApiUrl, "", BaseService.Name, BaseService.MobileNo, strRemark);
-                //        frmRegistration frmRegistration = new frmRegistration();
-                //        frmRegistration.ShowDialog();
-                //    }
+                    if (licenses.Count <= 0 && Licensed == false)
+                    {
+                        //var response = await license.CheckLicencing(ApiUrl, "", BaseService.Name, BaseService.MobileNo, strRemark);
+                        frmRegistration frmRegistration = new frmRegistration();
+                        frmRegistration.ShowDialog();
+                    }
 
-                //    var licensesExpiry = licensesService.GetLicensesExpityDate();
-                //    licensesService = null;
-                //    foreach (var Key in licensesExpiry)
-                //    {
-                //        TimeSpan ts = (Convert.ToDateTime(Key.Value) - DateTime.Now);
-                //        int differenceInDays = ts.Days;
-                //        lblexpirydate.Text = lblexpirydate.Text + differenceInDays + " (" + Key.Value + ")";
-                //        break;
-                //    }
-                //    #endregion
-                //}
+                    var licensesExpiry = licensesService.GetLicensesExpityDate();
+                    licensesService = null;
+                    foreach (var Key in licensesExpiry)
+                    {
+                        TimeSpan ts = (Convert.ToDateTime(Key.Value) - DateTime.Now);
+                        int differenceInDays = ts.Days;
+                        lblexpirydate.Text = lblexpirydate.Text + differenceInDays + " (" + Key.Value + ")";
+                        break;
+                    }
+                    #endregion
+                    
+                }                
             }
             catch (Exception ex)
             {

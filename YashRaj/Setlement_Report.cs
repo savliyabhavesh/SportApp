@@ -17,6 +17,8 @@ namespace YashAksh
     [DesignerGenerated]
     public partial class Setlement_Report : Form
     {
+        bool isaccountledgerload = false;
+
         public Setlement_Report()
         {
             this.InitializeComponent();
@@ -87,6 +89,7 @@ namespace YashAksh
         {
             try
             {
+                isaccountledgerload = false;
                 //this.WindowState = FormWindowState.Maximized;
                 this.Page_Load(RuntimeHelpers.GetObjectValue(sender), e);
                 this.lod_valu();
@@ -515,20 +518,21 @@ namespace YashAksh
             }
         }
 
+        
         private void txtname_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
                 if (e.KeyCode == Keys.Return)
                 {
-                    this.DataGridView1_DoubleClick(RuntimeHelpers.GetObjectValue(sender), e);
-                }
-                else if (e.KeyCode == Keys.Down)
-                {
-                    //this.DataGridView1.Rows[0].Cells[1].Selected = true;
-                    //this.DataGridView1.Select();
                     //SendKeys.Send("{TAB}");
-                }
+                    if (isaccountledgerload == false)
+                    {
+                        this.DataGridView1_DoubleClick(RuntimeHelpers.GetObjectValue(sender), e);
+                        isaccountledgerload = true;
+                    }
+                    
+                }               
                 else if (e.KeyCode == Keys.Escape)
                 {
                     this.Close();

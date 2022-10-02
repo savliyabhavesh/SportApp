@@ -644,28 +644,28 @@ namespace YashAksh
                             }
                         }
                     }
-                    dataTable3.Rows.Add(new object[0]);
-                    dataTable3.Rows.Add(new object[0]);
-                    dataTable3.Rows.Add(new object[0]);
-                    dataTable3.Rows.Add(new object[]
-                    {
-                        "SESSION :-"
-                    });
-                    int num3 = 0;
-                    int num4 = this.DataGridView2.RowCount - 1;
-                    for (int j = num3; j <= num4; j++)
-                    {
-                        if (!Operators.ConditionalCompareObjectEqual(this.DataGridView2.Rows[j].Cells[1].Value, null, false))
-                        {
-                            if (Operators.ConditionalCompareObjectEqual(this.DataGridView2.Rows[j].Cells[0].Value, true, false))
-                            {
-                                dataTable3.Rows.Add(new object[]
-                                {
-                                    Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(this.DataGridView2.Rows[j].Cells[4].Value, " =    "), this.DataGridView2.Rows[j].Cells[5].Value), ", ")
-                                });
-                            }
-                        }
-                    }
+                    //dataTable3.Rows.Add(new object[0]);
+                    //dataTable3.Rows.Add(new object[0]);
+                    //dataTable3.Rows.Add(new object[0]);
+                    //dataTable3.Rows.Add(new object[]
+                    //{
+                    //    "SESSION :-"
+                    //});
+                    //int num3 = 0;
+                    //int num4 = this.DataGridView2.RowCount - 1;
+                    //for (int j = num3; j <= num4; j++)
+                    //{
+                    //    if (!Operators.ConditionalCompareObjectEqual(this.DataGridView2.Rows[j].Cells[1].Value, null, false))
+                    //    {
+                    //        if (Operators.ConditionalCompareObjectEqual(this.DataGridView2.Rows[j].Cells[0].Value, true, false))
+                    //        {
+                    //            dataTable3.Rows.Add(new object[]
+                    //            {
+                    //                Operators.ConcatenateObject(Operators.ConcatenateObject(Operators.ConcatenateObject(this.DataGridView2.Rows[j].Cells[4].Value, " =    "), this.DataGridView2.Rows[j].Cells[5].Value), ", ")
+                    //            });
+                    //        }
+                    //    }
+                    //}
                     dataSet.Tables.Add(dataTable3);
 
                     print_view printView = new print_view();

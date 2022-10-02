@@ -947,7 +947,7 @@ namespace YashAksh
                         {
                             int ses_id = 0;
                             ses_id = Conversions.ToInteger(oleDbReaderSes["Sr_No"]);
-                            
+
                             string str = "SELECT s_party, Min(S_RUN) as MinRun, Max(S_RUN) as MaxRun FROM (SessionTrans) WHERE (s_party = '" + this.txtpartiname.Text + "') AND (s_checked = 0) AND (Session_ID = " + ses_id + ") GROUP BY s_party HAVING Min(S_RUN) > 0 AND Max(S_RUN) > 0";
                             OleDbCommand oleDbCommandBal = new OleDbCommand(str, Module1.conn);
                             OleDbDataReader oleDbReaderBal = oleDbCommandBal.ExecuteReader();
@@ -970,7 +970,7 @@ namespace YashAksh
                             {
                                 double after_selfld = Convert.ToDouble(oleDbDataReaderSession["SSession"]);
                                 double after_totalld = Convert.ToDouble(Operators.AddObject(oleDbDataReaderSession["ASession"], oleDbDataReaderSession["TSession"]));
-                                double totalcommi = Convert.ToDouble(oleDbDataReaderSession["SSessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["ASessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["TSessionCommi"]);
+                                double totalcommi = Convert.ToDouble(oleDbDataReaderSession["SSessionCommi"]); ////+ Convert.ToDouble(oleDbDataReaderSession["ASessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["TSessionCommi"]);
 
                                 string comm = Conversions.ToString(oleDbDataReaderSession["Comission"]);
                                 string status = Conversions.ToString(oleDbDataReaderSession["Status"]);
@@ -983,10 +983,13 @@ namespace YashAksh
 
                                 double num9 = Conversion.Val(yes) * Conversion.Val(after_selfld) / 100 - yes;
                                 double num10 = Conversion.Val(no) * Conversion.Val(after_selfld) / 100 - no;
-                                double num11 = num9 - num9 - num9;
-                                double num12 = num10 - num10 - num10;
-                                double num13 = Conversion.Val(num9) * Conversion.Val(after_totalld) / 100 - num9;
-                                double num14 = Conversion.Val(num10) * Conversion.Val(after_totalld) / 100 - num10;
+                                //double num11 = num9 - num9 - num9;
+                                //double num12 = num10 - num10 - num10;
+
+                                //double num13 = Conversion.Val(num9) * Conversion.Val(after_totalld) / 100 - num9;
+                                //double num14 = Conversion.Val(num10) * Conversion.Val(after_totalld) / 100 - num10;
+                                double num13 = num9;
+                                double num14 = num10;
 
                                 if (comm == "YES")
                                 {
@@ -1104,7 +1107,7 @@ namespace YashAksh
                                                 dt.Rows[dt.Rows.Count - 1][cell.ColumnIndex] = (0).ToString();
                                             }
                                         }
-                                    }                                    
+                                    }
                                     finalsessionamount = dt.AsEnumerable().Max(row => Convert.ToDouble(row["RG"]));
                                 }
                             }
@@ -1112,7 +1115,7 @@ namespace YashAksh
                             {
                                 sessionAmount += finalsessionamount;
                             }
-                        }                  
+                        }
                     }
                     /// End - For Session Balance Limit
 
@@ -1151,6 +1154,10 @@ namespace YashAksh
                         double exp2_total = 0, exp2_selfld = 0, exp2_afterldcommi = 0;
                         double exp3_total = 0, exp3_selfld = 0, exp3_afterldcommi = 0;
                         double exp4_total = 0, exp4_selfld = 0, exp4_afterldcommi = 0;
+
+                        numCell0 = 0;
+                        numCell1 = 0;
+                        numCell2 = 0;
 
                         exp1_total = exp1;
                         exp1_selfld = exp1 * smatch;
@@ -1215,12 +1222,13 @@ namespace YashAksh
                             exp4_afterldcommi = Conversion.Val(Operators.SubtractObject(exp4_afterldcommi, num1));
                         }
                         numCell3 = Convert.ToDouble(Module1.SetNumFormat(Operators.AddObject(Conversion.Val(RuntimeHelpers.GetObjectValue(numCell3)), Conversion.Val(exp4_afterldcommi)), this.txtnu.Text));
+                        nuCellFinal += Math.Max(numCell0, Math.Max(numCell1, numCell2));
                     }
                     ////End - For Match Balance LImit
-                    nuCellFinal = Math.Max(numCell0, Math.Max(numCell1, numCell2));
+                    //nuCellFinal = Math.Max(numCell0, Math.Max(numCell1, numCell2));
 
 
-                    this.Hours1 = Conversion.Val(nuCellFinal) + Conversion.Val(sessionAmount);                    
+                    this.Hours1 = Conversion.Val(nuCellFinal) + Conversion.Val(sessionAmount);
                     if (Hours1 > FinalBalanceLimit)
                     {
                         double limit = Hours1 - FinalBalanceLimit;

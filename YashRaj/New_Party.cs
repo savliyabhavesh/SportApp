@@ -102,7 +102,15 @@ namespace YashAksh
                         }
 
                         this.chkopbal = Conversion.Val(oleDbDataReader["OpeningBalance"]);
-                        txtOpeningBal.Text = Conversion.Val(oleDbDataReader["BalanceLimit"]) != 0 ? Conversions.ToString(oleDbDataReader["BalanceLimit"]) : "0";
+                        if (oleDbDataReader["BalanceLimit"] == System.DBNull.Value)
+                        {
+                            txtOpeningBal.Text = "0";
+                        }
+                        else
+                        {
+                            txtOpeningBal.Text = Conversion.Val(oleDbDataReader["BalanceLimit"]) != 0 ? Conversions.ToString(oleDbDataReader["BalanceLimit"]) : "0";
+                        }
+                        /////txtOpeningBal.Text = Conversion.Val(oleDbDataReader["BalanceLimit"]) != 0 ? Conversions.ToString(oleDbDataReader["BalanceLimit"]) : "0";
                         cmbMatchCommiType.Text = Conversions.ToString(oleDbDataReader["MatchCommiType"]);
                         txtRate.Text = Conversion.Val(oleDbDataReader["Rate"]) > 0 ? Conversions.ToString(oleDbDataReader["Rate"]) : "0";
 
@@ -671,14 +679,16 @@ namespace YashAksh
                 txtAAbandon.Enabled = flg;
                 txtATie.Enabled = flg;
                 txtACup.Enabled = flg;
-                txtASessionCommi.Enabled = flg;
+                
                 if (flg == true && cmbMatchCommiType.Text == "No Commission")
                 {
                     txtAMatchCommi.Enabled = false;
+                    txtASessionCommi.Enabled = false;
                 }
                 else
                 {
                     txtAMatchCommi.Enabled = flg;
+                    txtASessionCommi.Enabled = flg;
                 }
             }
             catch (Exception ex)
@@ -697,14 +707,16 @@ namespace YashAksh
                 txtTAbandon.Enabled = flg;
                 txtTTie.Enabled = flg;
                 txtTCup.Enabled = flg;
-                txtTSessionCommi.Enabled = flg;
+                
                 if (flg == true && cmbMatchCommiType.Text == "No Commission")
                 {
                     txtTMatchCommi.Enabled = false;
+                    txtTSessionCommi.Enabled = false;
                 }
                 else
                 {
                     txtTMatchCommi.Enabled = flg;
+                    txtTSessionCommi.Enabled = flg;
                 }
             }
             catch (Exception ex)
@@ -884,27 +896,45 @@ namespace YashAksh
                 this.txtSMatchCommi.Text = "";
                 this.txtAMatchCommi.Text = "";
                 this.txtTMatchCommi.Text = "";
+                this.txtSSessionCommi.Text = "";
+                this.txtASessionCommi.Text = "";
+                this.txtTSessionCommi.Text = "";
 
                 if (cmbMatchCommiType.Text == "No Commission")
                 {
                     this.txtSMatchCommi.Enabled = false;
                     this.txtSSessionCommi.Enabled = false;
                     this.txtAMatchCommi.Enabled = false;
+                    this.txtASessionCommi.Enabled = false;
                     this.txtTMatchCommi.Enabled = false;
+                    this.txtTSessionCommi.Enabled = false;
                 }
                 else
                 {
                     this.txtSMatchCommi.Enabled = true;
                     this.txtSSessionCommi.Enabled = true;
+
                     if (cmbAParty.Text != "")
+                    {
                         this.txtAMatchCommi.Enabled = true;
+                        this.txtASessionCommi.Enabled = true;
+                    }                        
                     else
+                    {
                         this.txtAMatchCommi.Enabled = false;
+                        this.txtASessionCommi.Enabled = false;
+                    }                        
 
                     if (cmbTParty.Text != "")
+                    {
                         this.txtTMatchCommi.Enabled = true;
+                        this.txtTSessionCommi.Enabled = true;
+                    }                        
                     else
+                    {
                         this.txtTMatchCommi.Enabled = false;
+                        this.txtTSessionCommi.Enabled = false;
+                    }                        
                 }
 
                 if (cmbMatchCommiType.Text == "Per Peti")

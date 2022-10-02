@@ -78,7 +78,7 @@
             this.txtname.TabIndex = 5;
             this.txtname.TextChanged += new System.EventHandler(this.txtname_TextChanged);
             this.txtname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtname_KeyDown);
-            this.txtname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtname_KeyPress);
+            this.txtname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtname_KeyPress);            
             // 
             // Button3
             // 

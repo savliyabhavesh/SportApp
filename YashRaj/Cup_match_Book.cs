@@ -57,7 +57,7 @@ namespace YashAksh
                 {
                     Module1.conn.Open();
                 }
-                string cmdText = "SELECT PartyMaster.PartyName, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.PMatch, SUM(CupTrans.m_team1) AS Expr1, SUM(CupTrans.m_team2) AS Expr2, SUM(CupTrans.m_team3) AS Expr3, SUM(CupTrans.m_team4) AS Expr4, SUM(CupTrans.m_team5) AS Expr5, SUM(CupTrans.m_team6) AS Expr6, SUM(CupTrans.m_team7) AS Expr7,  SUM(CupTrans.m_team8) AS Expr8, SUM(CupTrans.m_team9) AS Expr9, SUM(CupTrans.m_team10) AS Expr10, SUM(CupTrans.m_team11) AS Expr11, SUM(CupTrans.m_team12) AS Expr12,  SUM(CupTrans.m_team13) AS Expr13, SUM(CupTrans.m_team14) AS Expr14, SUM(CupTrans.m_team15) AS Expr15, CupTrans.m_checked, CupTrans.m_id FROM (PartyMaster INNER JOIN CupTrans ON PartyMaster.PartyName = CupTrans.m_party) GROUP BY PartyMaster.PartyName, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.PMatch, CupTrans.m_checked, CupTrans.m_id HAVING (CupTrans.m_checked <> 1) AND (CupTrans.m_id = " + this.TextBox1.Text + ") ORDER BY PartyMaster.PartyName";
+                string cmdText = "SELECT PartyMaster.PartyName, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, SUM(CupTrans.m_team1) AS Expr1, SUM(CupTrans.m_team2) AS Expr2, SUM(CupTrans.m_team3) AS Expr3, SUM(CupTrans.m_team4) AS Expr4, SUM(CupTrans.m_team5) AS Expr5, SUM(CupTrans.m_team6) AS Expr6, SUM(CupTrans.m_team7) AS Expr7,  SUM(CupTrans.m_team8) AS Expr8, SUM(CupTrans.m_team9) AS Expr9, SUM(CupTrans.m_team10) AS Expr10, SUM(CupTrans.m_team11) AS Expr11, SUM(CupTrans.m_team12) AS Expr12,  SUM(CupTrans.m_team13) AS Expr13, SUM(CupTrans.m_team14) AS Expr14, SUM(CupTrans.m_team15) AS Expr15, CupTrans.m_checked, CupTrans.m_id FROM (PartyMaster INNER JOIN CupTrans ON PartyMaster.PartyName = CupTrans.m_party) GROUP BY PartyMaster.PartyName, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, CupTrans.m_checked, CupTrans.m_id HAVING (CupTrans.m_checked <> 1) AND (CupTrans.m_id = " + this.TextBox1.Text + ") ORDER BY PartyMaster.PartyName";
                 OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
                 OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
                 double num3 = 0;
@@ -77,7 +77,7 @@ namespace YashAksh
                 double num31 = 0;
                 while (oleDbDataReader.Read())
                 {
-                    double num = Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["AMatch"])) + Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["PMatch"]));
+                    double num = Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["AMatch"])) + Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["TMatch"]));
                     int index = this.DataGridView1.Rows.Add();
                     this.DataGridView1.Rows[index].Cells[0].Value = RuntimeHelpers.GetObjectValue(oleDbDataReader["PartyName"]);
                     this.DataGridView1.Rows[index].Cells[1].Value = Module1.SetNumFormat(Conversion.Val(RuntimeHelpers.GetObjectValue(oleDbDataReader["Expr1"])), this.txtnu.Text);

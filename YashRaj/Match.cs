@@ -2361,7 +2361,7 @@ namespace YashAksh
                             {
                                 double after_selfld = Convert.ToDouble(oleDbDataReaderSession["SSession"]);
                                 double after_totalld = Convert.ToDouble(Operators.AddObject(oleDbDataReaderSession["ASession"], oleDbDataReaderSession["TSession"]));
-                                double totalcommi = Convert.ToDouble(oleDbDataReaderSession["SSessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["ASessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["TSessionCommi"]);
+                                double totalcommi = Convert.ToDouble(oleDbDataReaderSession["SSessionCommi"]); ////+ Convert.ToDouble(oleDbDataReaderSession["ASessionCommi"]) + Convert.ToDouble(oleDbDataReaderSession["TSessionCommi"]);
 
                                 string comm = Conversions.ToString(oleDbDataReaderSession["Comission"]);
                                 string status = Conversions.ToString(oleDbDataReaderSession["Status"]);
@@ -2374,10 +2374,13 @@ namespace YashAksh
 
                                 double num9 = Conversion.Val(yes) * Conversion.Val(after_selfld) / 100 - yes;
                                 double num10 = Conversion.Val(no) * Conversion.Val(after_selfld) / 100 - no;
-                                double num11 = num9 - num9 - num9;
-                                double num12 = num10 - num10 - num10;
-                                double num13 = Conversion.Val(num9) * Conversion.Val(after_totalld) / 100 - num9;
-                                double num14 = Conversion.Val(num10) * Conversion.Val(after_totalld) / 100 - num10;
+                                //double num11 = num9 - num9 - num9;
+                                //double num12 = num10 - num10 - num10;
+
+                                //double num13 = Conversion.Val(num9) * Conversion.Val(after_totalld) / 100 - num9;
+                                //double num14 = Conversion.Val(num10) * Conversion.Val(after_totalld) / 100 - num10;
+                                double num13 = num9;
+                                double num14 = num10;
 
                                 if (comm == "YES")
                                 {
@@ -2543,6 +2546,10 @@ namespace YashAksh
                         double exp3_total = 0, exp3_selfld = 0, exp3_afterldcommi = 0;
                         double exp4_total = 0, exp4_selfld = 0, exp4_afterldcommi = 0;
 
+                        numCell0 = 0;
+                        numCell1 = 0;
+                        numCell2 = 0;
+
                         exp1_total = exp1;
                         exp1_selfld = exp1 * smatch;
                         exp1_selfld = (exp1 * smatch) - (exp1 * smatch) - (exp1 * smatch);
@@ -2606,9 +2613,10 @@ namespace YashAksh
                             exp4_afterldcommi = Conversion.Val(Operators.SubtractObject(exp4_afterldcommi, num1));
                         }
                         numCell3 = Convert.ToDouble(Module1.SetNumFormat(Operators.AddObject(Conversion.Val(RuntimeHelpers.GetObjectValue(numCell3)), Conversion.Val(exp4_afterldcommi)), this.txtnu.Text));
+                        nuCellFinal += Math.Max(numCell0, Math.Max(numCell1, numCell2));
                     }
                     ////End - For Match Balance LImit
-                    nuCellFinal = Math.Max(numCell0, Math.Max(numCell1, numCell2));
+                    //nuCellFinal = Math.Max(numCell0, Math.Max(numCell1, numCell2));
 
 
                     this.Hours1 = Conversion.Val(nuCellFinal) + Conversion.Val(sessionAmount);
@@ -2642,27 +2650,6 @@ namespace YashAksh
                 Module1.conn.Close();
             }
         }
-
-        //private async Task GenrateGridRow(int run)
-        //{
-        //    try
-        //    {
-        //        this.datagridmen.Rows.Clear();
-        //        int num = 0;
-        //        int num2 = (int)(Math.Round(unchecked(run + 0.0)) - 1);
-        //        for (int i = num; i <= num2; i++)
-        //        {
-        //            this.datagridmen.Columns[0].Width = 50;
-        //            int index = this.datagridmen.Rows.Add();
-        //            this.datagridmen.Rows[index].Cells[0].Value = i;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        App.Utility.ErrorLog.LogError("Form3_SESSION->GenerateGridRow", ex.Message);
-        //        Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
-        //    }
-        //}
 
         private async Task GenrateGridRow_From_To(int from, int to)
         {
@@ -3194,7 +3181,8 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(amatchcommi) / 100;
-                                num501 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num501 = Conversion.Val(num111 + num112);
                             }
                             else
                             {                                
@@ -3206,7 +3194,8 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(amatchcommi) / 100;
-                                num502 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num502 = Conversion.Val(num111 + num112);
                             }
                             else
                             {
@@ -3218,7 +3207,8 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(amatchcommi) / 100;
-                                num503 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num503 = Conversion.Val(num111 + num112);
                             }
                             else
                             {
@@ -3230,7 +3220,8 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(amatchcommi) / 100;
-                                num504 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num504 = Conversion.Val(num111 + num112);
                             }
                             else
                             {
@@ -3245,7 +3236,8 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(tmatchcommi) / 100;
-                                num501 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num501 = Conversion.Val(num111 + num112);
                             }
                             else
                             {
@@ -3257,7 +3249,8 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(tmatchcommi) / 100;
-                                num502 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num502 = Conversion.Val(num111 + num112);
                             }
                             else
                             {
@@ -3269,7 +3262,8 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(tmatchcommi) / 100;
-                                num503 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num503 = Conversion.Val(num111 + num112);
                             }
                             else
                             {
@@ -3281,7 +3275,8 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(tmatchcommi) / 100;
-                                num504 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num504 = Conversion.Val(num111 + num112);
                             }
                             else
                             {
@@ -3299,7 +3294,9 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(amatchcommi) / 100;
-                                num501 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num501 = Conversion.Val(num111 + num222);
                             }
                             else
                             {
@@ -3311,7 +3308,9 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(amatchcommi) / 100;
-                                num502 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num502 = Conversion.Val(num111 + num222);
                             }
                             else
                             {
@@ -3323,7 +3322,9 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(amatchcommi) / 100;
-                                num503 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num503 = Conversion.Val(num111 + num222);
                             }
                             else
                             {
@@ -3335,7 +3336,9 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(amatchcommi) / 100;
-                                num504 = Conversion.Val(num111);                                
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num504 = Conversion.Val(num111 + num222);
                             }
                             else
                             {
@@ -3350,7 +3353,9 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(tmatchcommi) / 100;
-                                num501 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num501 = Conversion.Val(num111 + num222);
                             }
                             else
                             {
@@ -3362,7 +3367,9 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(tmatchcommi) / 100;
-                                num502 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num502 = Conversion.Val(num111 + num222);
                             }
                             else
                             {
@@ -3374,7 +3381,9 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(tmatchcommi) / 100;
-                                num503 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num503 = Conversion.Val(num111 + num222);
                             }
                             else
                             {
@@ -3386,7 +3395,9 @@ namespace YashAksh
                             {
                                 double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
                                 double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(tmatchcommi) / 100;
-                                num504 = Conversion.Val(num111);
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num504 = Conversion.Val(num111 + num222);
                             }
                             else
                             {
@@ -3455,9 +3466,9 @@ namespace YashAksh
 
         public async Task Agent2()
         {
-            if (this.ComboBox3.Text == "")
+            if (this.ComboBox1.Text == "")
                 return;
-            
+
             try
             {
                 if (Module1.conn.State == ConnectionState.Closed)
@@ -3468,66 +3479,303 @@ namespace YashAksh
                 this.DataGridView7.Rows.Add();
                 string cmdText = string.Concat(new string[]
                 {
-                    "SELECT PartyMaster.PartyName, PartyMaster.AParty, PartyMaster.AMatch, MAX(PartyMaster.SMatchCommi) AS SMatchCommi, SUM(MatchTrans.m_team1) AS Expr1, SUM(MatchTrans.m_team2) AS Expr2, SUM(MatchTrans.m_team3) AS Expr3, SUM(MatchTrans.m_team4) AS Expr4, MatchTrans.m_id, MatchTrans.m_checked, PartyMaster.SMatch, PartyMaster.TParty, PartyMaster.TMatch FROM (PartyMaster INNER JOIN MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) WHERE (MatchTrans.m_checked <> 1) GROUP BY PartyMaster.PartyName, PartyMaster.AParty, PartyMaster.AMatch, MatchTrans.m_id, MatchTrans.m_checked, PartyMaster.SMatch, PartyMaster.TParty, PartyMaster.TMatch HAVING (MatchTrans.m_id = ",
+                    "SELECT * FROM (",
+                    "SELECT PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, SUM(MatchTrans.m_team1) AS Expr1, SUM(MatchTrans.m_team2) AS Expr2, SUM(MatchTrans.m_team3) AS Expr3, SUM(MatchTrans.m_team4) AS Expr4, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType FROM (PartyMaster INNER JOIN  MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) GROUP BY PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType HAVING (MatchTrans.m_checked = 0) AND (MatchTrans.m_id = ",
                     this.testnu.Text.ToString(),
                     ") AND (PartyMaster.AParty = '",
                     this.ComboBox3.Text,
-					//"' OR PartyMaster.PartyName = '",
-					//this.ComboBox3.Text,
-					"' OR PartyMaster.TParty = '",
+                    "' OR PartyMaster.TParty = '",
                     this.ComboBox3.Text,
-                    "')"
+                    "') AND (PartyMaster.MatchCommiType IN ('No Commission','Match Total Minus'))",
+                    " UNION ALL ",
+                    "SELECT PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, (MatchTrans.m_team1) AS Expr1, (MatchTrans.m_team2) AS Expr2, (MatchTrans.m_team3) AS Expr3, (MatchTrans.m_team4) AS Expr4, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType FROM (PartyMaster INNER JOIN  MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) WHERE (MatchTrans.m_checked = 0) AND (MatchTrans.m_id = ",
+                    this.testnu.Text.ToString(),
+                    ") AND (PartyMaster.AParty = '",
+                    this.ComboBox3.Text,
+                    "' OR PartyMaster.TParty = '",
+                    this.ComboBox3.Text,
+                    "') AND (PartyMaster.MatchCommiType IN ('Entry Wise'))",
+                    ") ORDER BY PartyName"
                 });
+
                 OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
                 OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-                double num9 = 0, num10 = 0, num11 = 0, num12 = 0, smatchcommi = 0;
 
+                double num501 = 0, num502 = 0, num503 = 0, num504 = 0;
                 while (oleDbDataReader.Read())
                 {
-                    smatchcommi = Conversion.Val(oleDbDataReader["SMatchCommi"]);
 
-                    double num = Convert.ToDouble(Conversion.Val(oleDbDataReader["Expr1"]) * Conversion.Val(oleDbDataReader["SMatch"]) / 100);
-                    double num2 = Convert.ToDouble(Conversion.Val(oleDbDataReader["Expr2"]) * Conversion.Val(oleDbDataReader["SMatch"]) / 100);
-                    double num3 = Convert.ToDouble(Conversion.Val(oleDbDataReader["Expr3"]) * Conversion.Val(oleDbDataReader["SMatch"]) / 100);
-                    double num4 = Convert.ToDouble(Conversion.Val(oleDbDataReader["Expr4"]) * Conversion.Val(oleDbDataReader["SMatch"]) / 100);
+                    double smatch = Convert.ToDouble(oleDbDataReader["SMatch"].ToString());
+                    double amatch = Convert.ToDouble(oleDbDataReader["AMatch"].ToString());
+                    double tmatch = Convert.ToDouble(oleDbDataReader["TMatch"].ToString());
 
-                    double num5 = Conversion.Val(oleDbDataReader["Expr1"]) - Conversion.Val(num);
-                    double num6 = Conversion.Val(oleDbDataReader["Expr2"]) - Conversion.Val(num2);
-                    double num7 = Conversion.Val(oleDbDataReader["Expr3"]) - Conversion.Val(num3);
-                    double num8 = Conversion.Val(oleDbDataReader["Expr4"]) - Conversion.Val(num4);
+                    double smatchcommi = Convert.ToDouble(oleDbDataReader["SMatchCommi"].ToString());
+                    double amatchcommi = Convert.ToDouble(oleDbDataReader["AMatchCommi"].ToString());
+                    double tmatchcommi = Convert.ToDouble(oleDbDataReader["TMatchCommi"].ToString());
+                    double totalcommi = Conversion.Val(smatchcommi) + Conversion.Val(amatchcommi) + Conversion.Val(tmatchcommi);
 
-                    if (Operators.CompareString(oleDbDataReader["PartyName"].ToString(), this.ComboBox3.Text, false) == 0)
+                    string party = oleDbDataReader["PartyName"].ToString();
+                    string aparty = oleDbDataReader["AParty"].ToString();
+                    string tparty = oleDbDataReader["TParty"].ToString();
+                    string status = oleDbDataReader["Status"].ToString();
+
+                    double num9 = 0, num10 = 0, num11 = 0, num12 = 0;
+                    num9 = Convert.ToDouble(oleDbDataReader["Expr1"]);
+                    num10 = Convert.ToDouble(oleDbDataReader["Expr2"]);
+                    num11 = Convert.ToDouble(oleDbDataReader["Expr3"]);
+                    num12 = Convert.ToDouble(oleDbDataReader["Expr4"]);
+
+                    double afterldamt1 = 0, afterldamt2 = 0, afterldamt3 = 0, afterldamt4 = 0;
+                    afterldamt1 = Conversion.Val(num9) - (Conversion.Val(num9) * Conversion.Val(smatch) / 100);
+                    afterldamt2 = Conversion.Val(num10) - (Conversion.Val(num10) * Conversion.Val(smatch) / 100);
+                    afterldamt3 = Conversion.Val(num11) - (Conversion.Val(num11) * Conversion.Val(smatch) / 100);
+                    afterldamt4 = Conversion.Val(num12) - (Conversion.Val(num12) * Conversion.Val(smatch) / 100);
+
+                    if (Operators.CompareString(status, "Booky", false) == 0)
                     {
-                        num9 += num;
-                        num10 += num2;
-                        num11 += num3;
-                        num12 += num4;
-                    }
-                    if (Operators.CompareString(oleDbDataReader["TParty"].ToString(), this.ComboBox3.Text, false) == 0)
-                    {
-                        num9 += Convert.ToDouble(Conversion.Val(num5) * Conversion.Val(oleDbDataReader["TMatch"]) / 100);
-                        num10 += Convert.ToDouble(Conversion.Val(num6) * Conversion.Val(oleDbDataReader["TMatch"]) / 100);
-                        num11 += Convert.ToDouble(Conversion.Val(num7) * Conversion.Val(oleDbDataReader["TMatch"]) / 100);
-                        num12 += Convert.ToDouble(Conversion.Val(num8) * Conversion.Val(oleDbDataReader["TMatch"]) / 100);
-                    }
-                    if (Operators.CompareString(oleDbDataReader["AParty"].ToString(), this.ComboBox3.Text, false) == 0)
-                    {
-                        num9 += Convert.ToDouble(Conversion.Val(num5) * Conversion.Val(oleDbDataReader["AMatch"]) / 100);
-                        num10 += Convert.ToDouble(Conversion.Val(num6) * Conversion.Val(oleDbDataReader["AMatch"]) / 100);
-                        num11 += Convert.ToDouble(Conversion.Val(num7) * Conversion.Val(oleDbDataReader["AMatch"]) / 100);
-                        num12 += Convert.ToDouble(Conversion.Val(num8) * Conversion.Val(oleDbDataReader["AMatch"]) / 100);
+                        if (Operators.CompareString(aparty, null, false) != 0)
+                        {
+                            if (num9 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(amatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num501 = Conversion.Val(num111 + num112);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+                                num501 = Conversion.Val(num101);
+                            }
+
+                            if (num10 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(amatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num502 = Conversion.Val(num111 + num112);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+                                num502 = Conversion.Val(num101);
+                            }
+
+                            if (num11 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(amatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num503 = Conversion.Val(num111 + num112);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+                                num503 = Conversion.Val(num101);
+                            }
+
+                            if (num12 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(amatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num504 = Conversion.Val(num111 + num112);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+                                num504 = Conversion.Val(num101);
+                            }
+                        }
+
+                        if (Operators.CompareString(tparty, null, false) != 0)
+                        {
+                            if (num9 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(tmatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num501 = Conversion.Val(num111 + num112);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+                                num501 = Conversion.Val(num101);
+                            }
+
+                            if (num10 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(tmatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num502 = Conversion.Val(num111 + num112);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+                                num502 = Conversion.Val(num101);
+                            }
+
+                            if (num11 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(tmatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num503 = Conversion.Val(num111 + num112);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+                                num503 = Conversion.Val(num101);
+                            }
+
+                            if (num12 < 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(tmatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                num504 = Conversion.Val(num111 + num112);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+                                num504 = Conversion.Val(num101);
+                            }
+                        }
                     }
 
+                    if (Operators.CompareString(status, "Regular", false) == 0)
+                    {
+                        if (Operators.CompareString(aparty, null, false) != 0)
+                        {
+                            if (num9 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(amatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num501 = Conversion.Val(num111 + num222);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+                                num501 = Conversion.Val(num101);
+                            }
+
+                            if (num10 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(amatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num502 = Conversion.Val(num111 + num222);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+                                num502 = Conversion.Val(num101);
+                            }
+
+                            if (num11 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(amatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num503 = Conversion.Val(num111 + num222);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+                                num503 = Conversion.Val(num101);
+                            }
+
+                            if (num12 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(amatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num504 = Conversion.Val(num111 + num222);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+                                num504 = Conversion.Val(num101);
+                            }
+                        }
+
+                        if (Operators.CompareString(tparty, null, false) != 0)
+                        {
+                            if (num9 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(tmatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num501 = Conversion.Val(num111 + num222);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+                                num501 = Conversion.Val(num101);
+                            }
+
+                            if (num10 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(tmatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num502 = Conversion.Val(num111 + num222);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+                                num502 = Conversion.Val(num101);
+                            }
+
+                            if (num11 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(tmatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num503 = Conversion.Val(num111 + num222);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+                                num503 = Conversion.Val(num101);
+                            }
+
+                            if (num12 > 0)
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+                                double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(tmatchcommi) / 100;
+                                double num112 = Conversion.Val(num101) * Conversion.Val(totalcommi) / 100;
+                                double num222 = Conversion.Val(num112) - Conversion.Val(num112) - Conversion.Val(num112);
+                                num504 = Conversion.Val(num111 + num222);
+                            }
+                            else
+                            {
+                                double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+                                num504 = Conversion.Val(num101);
+                            }
+                        }
+                    }
+
+                    double num13 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[0].Value);
+                    double num14 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[1].Value);
+                    double num15 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[2].Value);
+                    double num16 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[3].Value);
+
+                    this.DataGridView7.Rows[0].Cells[0].Value = Module1.SetNumFormat((Conversion.Val(num13) + Conversion.Val(num501)), this.txtnu.Text);
+                    this.DataGridView7.Rows[0].Cells[1].Value = Module1.SetNumFormat((Conversion.Val(num14) + Conversion.Val(num502)), this.txtnu.Text);
+                    this.DataGridView7.Rows[0].Cells[2].Value = Module1.SetNumFormat((Conversion.Val(num15) + Conversion.Val(num503)), this.txtnu.Text);
+                    this.DataGridView7.Rows[0].Cells[3].Value = Module1.SetNumFormat((Conversion.Val(num16) + Conversion.Val(num504)), this.txtnu.Text);
                 }
-                double num13 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[0].Value);
-                double num14 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[1].Value);
-                double num15 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[2].Value);
-                double num16 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[3].Value);
 
-                this.DataGridView7.Rows[0].Cells[0].Value = Module1.SetNumFormat(Conversion.Val(num13) + Conversion.Val(num9), this.txtnu.Text);
-                this.DataGridView7.Rows[0].Cells[1].Value = Module1.SetNumFormat(Conversion.Val(num14) + Conversion.Val(num10), this.txtnu.Text);
-                this.DataGridView7.Rows[0].Cells[2].Value = Module1.SetNumFormat(Conversion.Val(num15) + Conversion.Val(num11), this.txtnu.Text);
-                this.DataGridView7.Rows[0].Cells[3].Value = Module1.SetNumFormat(Conversion.Val(num16) + Conversion.Val(num12), this.txtnu.Text);
 
                 if (Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[0].Value, 0, false))
                 {
@@ -3573,6 +3821,341 @@ namespace YashAksh
                 Module1.conn.Close();
             }
         }
+
+        //public async Task Agent2()
+        //{
+        //    if (this.ComboBox3.Text == "")
+        //        return;
+
+        //    try
+        //    {
+        //        if (Module1.conn.State == ConnectionState.Closed)
+        //        {
+        //            Module1.conn.Open();
+        //        }
+        //        this.DataGridView7.Rows.Clear();
+        //        this.DataGridView7.Rows.Add();
+        //        string cmdText = string.Concat(new string[]
+        //        {
+        //            "SELECT * FROM (",
+        //            "SELECT PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, SUM(MatchTrans.m_team1) AS Expr1, SUM(MatchTrans.m_team2) AS Expr2, SUM(MatchTrans.m_team3) AS Expr3, SUM(MatchTrans.m_team4) AS Expr4, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType FROM (PartyMaster INNER JOIN  MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) GROUP BY PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType HAVING (MatchTrans.m_checked = 0) AND (MatchTrans.m_id = ",
+        //            this.testnu.Text.ToString(),
+        //            ") AND (PartyMaster.AParty = '",
+        //            this.ComboBox3.Text,
+        //            "' OR PartyMaster.TParty = '",
+        //            this.ComboBox3.Text,
+        //            "') AND (PartyMaster.MatchCommiType IN ('No Commission','Match Total Minus'))",
+        //            " UNION ALL ",
+        //            "SELECT PartyMaster.SMatchCommi, PartyMaster.AMatchCommi, PartyMaster.TMatchCommi, PartyMaster.SMatch, PartyMaster.AParty, PartyMaster.AMatch, PartyMaster.TParty, PartyMaster.TMatch, PartyMaster.PartyName, (MatchTrans.m_team1) AS Expr1, (MatchTrans.m_team2) AS Expr2, (MatchTrans.m_team3) AS Expr3, (MatchTrans.m_team4) AS Expr4, MatchTrans.m_checked, MatchTrans.m_id, PartyMaster.Status, PartyMaster.MatchCommiType FROM (PartyMaster INNER JOIN  MatchTrans ON PartyMaster.PartyName = MatchTrans.m_party) WHERE (MatchTrans.m_checked = 0) AND (MatchTrans.m_id = ",
+        //            this.testnu.Text.ToString(),
+        //            ") AND (PartyMaster.AParty = '",
+        //            this.ComboBox3.Text,
+        //            "' OR PartyMaster.TParty = '",
+        //            this.ComboBox3.Text,
+        //            "') AND (PartyMaster.MatchCommiType IN ('Entry Wise'))",
+        //            ") ORDER BY PartyName"
+        //        });
+
+        //        OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
+        //        OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+
+        //        double num501 = 0, num502 = 0, num503 = 0, num504 = 0;
+        //        while (oleDbDataReader.Read())
+        //        {
+
+        //            double smatch = Convert.ToDouble(oleDbDataReader["SMatch"].ToString());
+        //            double amatch = Convert.ToDouble(oleDbDataReader["AMatch"].ToString());
+        //            double tmatch = Convert.ToDouble(oleDbDataReader["TMatch"].ToString());
+
+        //            //double smatchcommi = Convert.ToDouble(oleDbDataReader["SMatchCommi"].ToString());
+        //            double amatchcommi = Convert.ToDouble(oleDbDataReader["AMatchCommi"].ToString());
+        //            double tmatchcommi = Convert.ToDouble(oleDbDataReader["TMatchCommi"].ToString());
+        //            //double totalcommi = Conversion.Val(smatchcommi) + Conversion.Val(amatchcommi) + Conversion.Val(tmatchcommi);
+
+        //            string party = oleDbDataReader["PartyName"].ToString();
+        //            string aparty = oleDbDataReader["AParty"].ToString();
+        //            string tparty = oleDbDataReader["TParty"].ToString();
+        //            string status = oleDbDataReader["Status"].ToString();
+
+        //            double num9 = 0, num10 = 0, num11 = 0, num12 = 0;
+        //            num9 = Convert.ToDouble(oleDbDataReader["Expr1"]);
+        //            num10 = Convert.ToDouble(oleDbDataReader["Expr2"]);
+        //            num11 = Convert.ToDouble(oleDbDataReader["Expr3"]);
+        //            num12 = Convert.ToDouble(oleDbDataReader["Expr4"]);
+
+        //            double afterldamt1 = 0, afterldamt2 = 0, afterldamt3 = 0, afterldamt4 = 0;
+        //            afterldamt1 = Conversion.Val(num9) - (Conversion.Val(num9) * Conversion.Val(smatch) / 100);
+        //            afterldamt2 = Conversion.Val(num10) - (Conversion.Val(num10) * Conversion.Val(smatch) / 100);
+        //            afterldamt3 = Conversion.Val(num11) - (Conversion.Val(num11) * Conversion.Val(smatch) / 100);
+        //            afterldamt4 = Conversion.Val(num12) - (Conversion.Val(num12) * Conversion.Val(smatch) / 100);
+
+        //            if (Operators.CompareString(status, "Booky", false) == 0)
+        //            {
+        //                if (Operators.CompareString(aparty, null, false) != 0)
+        //                {
+        //                    if (num9 < 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(amatchcommi) / 100;
+        //                        num501 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+        //                        num501 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num10 < 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(amatchcommi) / 100;
+        //                        num502 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+        //                        num502 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num11 < 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(amatchcommi) / 100;
+        //                        num503 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+        //                        num503 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num12 < 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(amatchcommi) / 100;
+        //                        num504 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+        //                        num504 = Conversion.Val(num101);
+        //                    }
+        //                }
+
+        //                if (Operators.CompareString(tparty, null, false) != 0)
+        //                {
+        //                    if (num9 < 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(tmatchcommi) / 100;
+        //                        num501 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+        //                        num501 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num10 < 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(tmatchcommi) / 100;
+        //                        num502 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+        //                        num502 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num11 < 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(tmatchcommi) / 100;
+        //                        num503 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+        //                        num503 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num12 < 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(tmatchcommi) / 100;
+        //                        num504 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+        //                        num504 = Conversion.Val(num101);
+        //                    }
+        //                }
+        //            }
+
+        //            if (Operators.CompareString(status, "Regular", false) == 0)
+        //            {
+        //                if (Operators.CompareString(aparty, null, false) != 0)
+        //                {
+        //                    if (num9 > 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(amatchcommi) / 100;
+        //                        num501 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt1) * Conversion.Val(amatch) / 100;
+        //                        num501 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num10 > 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(amatchcommi) / 100;
+        //                        num502 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt2) * Conversion.Val(amatch) / 100;
+        //                        num502 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num11 > 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(amatchcommi) / 100;
+        //                        num503 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt3) * Conversion.Val(amatch) / 100;
+        //                        num503 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num12 > 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(amatchcommi) / 100;
+        //                        num504 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt4) * Conversion.Val(amatch) / 100;
+        //                        num504 = Conversion.Val(num101);
+        //                    }
+        //                }
+
+        //                if (Operators.CompareString(tparty, null, false) != 0)
+        //                {
+        //                    if (num9 > 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt1) * Conversion.Val(tmatchcommi) / 100;
+        //                        num501 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt1) * Conversion.Val(tmatch) / 100;
+        //                        num501 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num10 > 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt2) * Conversion.Val(tmatchcommi) / 100;
+        //                        num502 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt2) * Conversion.Val(tmatch) / 100;
+        //                        num502 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num11 > 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt3) * Conversion.Val(tmatchcommi) / 100;
+        //                        num503 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt3) * Conversion.Val(tmatch) / 100;
+        //                        num503 = Conversion.Val(num101);
+        //                    }
+
+        //                    if (num12 > 0)
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+        //                        double num111 = Conversion.Val(num101) + Conversion.Val(afterldamt4) * Conversion.Val(tmatchcommi) / 100;
+        //                        num504 = Conversion.Val(num111);
+        //                    }
+        //                    else
+        //                    {
+        //                        double num101 = Conversion.Val(afterldamt4) * Conversion.Val(tmatch) / 100;
+        //                        num504 = Conversion.Val(num101);
+        //                    }
+        //                }
+        //            }
+
+        //            double num13 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[0].Value);
+        //            double num14 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[1].Value);
+        //            double num15 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[2].Value);
+        //            double num16 = Convert.ToDouble(this.DataGridView7.Rows[0].Cells[3].Value);
+
+        //            this.DataGridView7.Rows[0].Cells[0].Value = Module1.SetNumFormat((Conversion.Val(num13) + Conversion.Val(num501)), this.txtnu.Text);
+        //            this.DataGridView7.Rows[0].Cells[1].Value = Module1.SetNumFormat((Conversion.Val(num14) + Conversion.Val(num502)), this.txtnu.Text);
+        //            this.DataGridView7.Rows[0].Cells[2].Value = Module1.SetNumFormat((Conversion.Val(num15) + Conversion.Val(num503)), this.txtnu.Text);
+        //            this.DataGridView7.Rows[0].Cells[3].Value = Module1.SetNumFormat((Conversion.Val(num16) + Conversion.Val(num504)), this.txtnu.Text);
+        //        }
+
+
+        //        if (Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[0].Value, 0, false))
+        //        {
+        //            this.DataGridView7.Rows[0].Cells[0].Style.ForeColor = Color.Red;
+        //        }
+        //        else
+        //        {
+        //            this.DataGridView7.Rows[0].Cells[0].Style.ForeColor = Color.Green;
+        //        }
+        //        if (Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[1].Value, 0, false))
+        //        {
+        //            this.DataGridView7.Rows[0].Cells[1].Style.ForeColor = Color.Red;
+        //        }
+        //        else
+        //        {
+        //            this.DataGridView7.Rows[0].Cells[1].Style.ForeColor = Color.Green;
+        //        }
+        //        if (Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[2].Value, 0, false))
+        //        {
+        //            this.DataGridView7.Rows[0].Cells[2].Style.ForeColor = Color.Red;
+        //        }
+        //        else
+        //        {
+        //            this.DataGridView7.Rows[0].Cells[2].Style.ForeColor = Color.Green;
+        //        }
+        //        if (Operators.ConditionalCompareObjectLess(this.DataGridView7.Rows[0].Cells[3].Value, 0, false))
+        //        {
+        //            this.DataGridView7.Rows[0].Cells[3].Style.ForeColor = Color.Red;
+        //        }
+        //        else
+        //        {
+        //            this.DataGridView7.Rows[0].Cells[3].Style.ForeColor = Color.Green;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        DataGridView7.ClearSelection();
+        //        Module1.conn.Close();
+        //    }
+        //}
+               
 
         public void Customer_OpningBalance()
         {

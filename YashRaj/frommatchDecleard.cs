@@ -82,6 +82,10 @@ namespace YashAksh
                         this.txtmatch.Items.Add("Abandon");
                         this.txtmatch.Items.Add("Tie");
                     }
+                    else
+                    {
+                        strTime = Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime);
+                    }
                 }
             }
             catch (Exception ex)

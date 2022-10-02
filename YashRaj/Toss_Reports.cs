@@ -422,5 +422,20 @@ namespace YashAksh
             }
         }
 
+        private void Toss_Reports_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Escape)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+            }
+        }
     }
 }
