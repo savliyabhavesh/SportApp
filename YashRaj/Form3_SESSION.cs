@@ -902,7 +902,14 @@ namespace YashAksh
                 OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
                 while (oleDbDataReader1.Read())
                 {
-                    BalanceLimit = Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["BalanceLimit"]));
+                    if (oleDbDataReader1["BalanceLimit"] == System.DBNull.Value)
+                    {
+                        BalanceLimit = 0;
+                    }
+                    else
+                    {
+                        BalanceLimit = Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["BalanceLimit"]));
+                    }
                 }
                 if (BalanceLimit > 0)
                 {

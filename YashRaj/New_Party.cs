@@ -679,16 +679,14 @@ namespace YashAksh
                 txtAAbandon.Enabled = flg;
                 txtATie.Enabled = flg;
                 txtACup.Enabled = flg;
-                
+                txtASessionCommi.Enabled = flg;
                 if (flg == true && cmbMatchCommiType.Text == "No Commission")
                 {
                     txtAMatchCommi.Enabled = false;
-                    txtASessionCommi.Enabled = false;
                 }
                 else
                 {
                     txtAMatchCommi.Enabled = flg;
-                    txtASessionCommi.Enabled = flg;
                 }
             }
             catch (Exception ex)
@@ -707,16 +705,14 @@ namespace YashAksh
                 txtTAbandon.Enabled = flg;
                 txtTTie.Enabled = flg;
                 txtTCup.Enabled = flg;
-                
+                txtTSessionCommi.Enabled = flg;
                 if (flg == true && cmbMatchCommiType.Text == "No Commission")
                 {
                     txtTMatchCommi.Enabled = false;
-                    txtTSessionCommi.Enabled = false;
                 }
                 else
                 {
                     txtTMatchCommi.Enabled = flg;
-                    txtTSessionCommi.Enabled = flg;
                 }
             }
             catch (Exception ex)
@@ -725,6 +721,62 @@ namespace YashAksh
                 Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
             }
         }
+
+        //public void EnableDisableAgentTextBox(bool flg)
+        //{
+        //    try
+        //    {
+        //        txtAMatch.Enabled = flg;
+        //        txtASession.Enabled = flg;
+        //        txtAAbandon.Enabled = flg;
+        //        txtATie.Enabled = flg;
+        //        txtACup.Enabled = flg;
+
+        //        if (flg == true && cmbMatchCommiType.Text == "No Commission")
+        //        {
+        //            txtAMatchCommi.Enabled = false;
+        //            txtASessionCommi.Enabled = false;
+        //        }
+        //        else
+        //        {
+        //            txtAMatchCommi.Enabled = flg;
+        //            txtASessionCommi.Enabled = flg;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+        //        Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+        //    }
+        //}
+
+        //public void EnableDisableThirdPartyTextBox(bool flg)
+        //{
+        //    try
+        //    {
+        //        txtTMatch.Enabled = flg;
+        //        txtTSession.Enabled = flg;
+        //        txtTAbandon.Enabled = flg;
+        //        txtTTie.Enabled = flg;
+        //        txtTCup.Enabled = flg;
+
+        //        if (flg == true && cmbMatchCommiType.Text == "No Commission")
+        //        {
+        //            txtTMatchCommi.Enabled = false;
+        //            txtTSessionCommi.Enabled = false;
+        //        }
+        //        else
+        //        {
+        //            txtTMatchCommi.Enabled = flg;
+        //            txtTSessionCommi.Enabled = flg;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+        //        Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+        //    }
+        //}
 
         private void cmbAParty_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -896,45 +948,25 @@ namespace YashAksh
                 this.txtSMatchCommi.Text = "";
                 this.txtAMatchCommi.Text = "";
                 this.txtTMatchCommi.Text = "";
-                this.txtSSessionCommi.Text = "";
-                this.txtASessionCommi.Text = "";
-                this.txtTSessionCommi.Text = "";
 
                 if (cmbMatchCommiType.Text == "No Commission")
                 {
                     this.txtSMatchCommi.Enabled = false;
-                    this.txtSSessionCommi.Enabled = false;
                     this.txtAMatchCommi.Enabled = false;
-                    this.txtASessionCommi.Enabled = false;
                     this.txtTMatchCommi.Enabled = false;
-                    this.txtTSessionCommi.Enabled = false;
                 }
                 else
                 {
                     this.txtSMatchCommi.Enabled = true;
-                    this.txtSSessionCommi.Enabled = true;
-
                     if (cmbAParty.Text != "")
-                    {
                         this.txtAMatchCommi.Enabled = true;
-                        this.txtASessionCommi.Enabled = true;
-                    }                        
                     else
-                    {
                         this.txtAMatchCommi.Enabled = false;
-                        this.txtASessionCommi.Enabled = false;
-                    }                        
 
                     if (cmbTParty.Text != "")
-                    {
                         this.txtTMatchCommi.Enabled = true;
-                        this.txtTSessionCommi.Enabled = true;
-                    }                        
                     else
-                    {
                         this.txtTMatchCommi.Enabled = false;
-                        this.txtTSessionCommi.Enabled = false;
-                    }                        
                 }
 
                 if (cmbMatchCommiType.Text == "Per Peti")
@@ -956,6 +988,73 @@ namespace YashAksh
             {
                 App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
             }
+
+            //try
+            //{
+            //    this.txtRate.Text = "";
+            //    this.txtSMatchCommi.Text = "";
+            //    this.txtAMatchCommi.Text = "";
+            //    this.txtTMatchCommi.Text = "";
+            //    this.txtSSessionCommi.Text = "";
+            //    this.txtASessionCommi.Text = "";
+            //    this.txtTSessionCommi.Text = "";
+
+            //    if (cmbMatchCommiType.Text == "No Commission")
+            //    {
+            //        this.txtSMatchCommi.Enabled = false;
+            //        this.txtSSessionCommi.Enabled = false;
+            //        this.txtAMatchCommi.Enabled = false;
+            //        this.txtASessionCommi.Enabled = false;
+            //        this.txtTMatchCommi.Enabled = false;
+            //        this.txtTSessionCommi.Enabled = false;
+            //    }
+            //    else
+            //    {
+            //        this.txtSMatchCommi.Enabled = true;
+            //        this.txtSSessionCommi.Enabled = true;
+
+            //        if (cmbAParty.Text != "")
+            //        {
+            //            this.txtAMatchCommi.Enabled = true;
+            //            this.txtASessionCommi.Enabled = true;
+            //        }                        
+            //        else
+            //        {
+            //            this.txtAMatchCommi.Enabled = false;
+            //            this.txtASessionCommi.Enabled = false;
+            //        }                        
+
+            //        if (cmbTParty.Text != "")
+            //        {
+            //            this.txtTMatchCommi.Enabled = true;
+            //            this.txtTSessionCommi.Enabled = true;
+            //        }                        
+            //        else
+            //        {
+            //            this.txtTMatchCommi.Enabled = false;
+            //            this.txtTSessionCommi.Enabled = false;
+            //        }                        
+            //    }
+
+            //    if (cmbMatchCommiType.Text == "Per Peti")
+            //    {
+            //        this.txtRate.Enabled = true;
+            //        this.lblSMatchCommi.Text = "₹";
+            //        this.lblAMatchCommi.Text = "₹";
+            //        this.lblTMatchCommi.Text = "₹";
+            //    }
+            //    else
+            //    {
+            //        this.txtRate.Enabled = false;
+            //        this.lblSMatchCommi.Text = "%";
+            //        this.lblAMatchCommi.Text = "%";
+            //        this.lblTMatchCommi.Text = "%";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+            //}
         }
 
         private void txtOpeningBal_KeyDown(object sender, KeyEventArgs e)
