@@ -571,16 +571,16 @@ namespace YashAksh
                     OleDbDataReader oleDbDataRdr = oleDbCmd.ExecuteReader();
                     if (!oleDbDataRdr.Read())
                     {
-                        string cmdText = "SELECT Id,tns_Party FROM Trans WHERE (tns_Type IN ('CR','DR')) AND (tns_IsAuto = 1) AND (tns_ModifyID = " + modifyid + ")";
-                        OleDbCommand oleDbCommand3 = new OleDbCommand(cmdText, Module1.conn);
-                        OleDbDataReader oleDbDataReader3 = oleDbCommand3.ExecuteReader();
-                        if (!oleDbDataReader3.Read())
-                        {
+                        //string cmdText = "SELECT Id,tns_Party FROM Trans WHERE (tns_Type IN ('CR','DR')) AND (tns_IsAuto = 1) AND (tns_ModifyID = " + modifyid + ")";
+                        //OleDbCommand oleDbCommand3 = new OleDbCommand(cmdText, Module1.conn);
+                        //OleDbDataReader oleDbDataReader3 = oleDbCommand3.ExecuteReader();
+                        //if (!oleDbDataReader3.Read())
+                        //{
                             if (Interaction.MsgBox("Do you want to delete this Record", MsgBoxStyle.YesNo, null) == MsgBoxResult.Yes)
                             {
                                 if (Interaction.MsgBox("Are you sure want to delete this Entry", MsgBoxStyle.YesNo, null) == MsgBoxResult.Yes)
                                 {
-                                    cmdText = "select tns_ModifyID,tns_chk from Trans where tns_ModifyID=" + modifyid + " and tns_chk='1'";
+                                    string cmdText = "select tns_ModifyID,tns_chk from Trans where tns_ModifyID=" + modifyid + " and tns_chk='1'";
                                     OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
                                     OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
                                     if (oleDbDataReader.Read())
@@ -596,11 +596,11 @@ namespace YashAksh
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            Interaction.MsgBox("Cannot Delete Auto Entry? Please Try Another..?", MsgBoxStyle.OkOnly, null);
-                        }
+                        //}
+                        //else
+                        //{
+                        //    Interaction.MsgBox("Cannot Delete Auto Entry? Please Try Another..?", MsgBoxStyle.OkOnly, null);
+                        //}
                     }
                     else
                     {

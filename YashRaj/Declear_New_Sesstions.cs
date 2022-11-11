@@ -26,6 +26,68 @@ namespace YashAksh
             this.InitializeComponent();
         }
 
+        // Token: 0x0600097F RID: 2431 RVA: 0x002E0434 File Offset: 0x002DE834
+        private void Declear_New_Sesstions_Activated(object sender, EventArgs e)
+        {
+            this.txtrun.Focus();
+        }
+
+        // Token: 0x06000980 RID: 2432 RVA: 0x002E0444 File Offset: 0x002DE844
+        private void Declear_New_Sesstions_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                int Matchid = 0;
+                this._my_Positions();
+                if (Module1.conn.State == ConnectionState.Closed)
+                {
+                    Module1.conn.Open();
+                }
+                string cmdText = "Select * from ewSession where Sr_No=" + Conversions.ToString(Module1.nehaid) + "";
+                OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
+                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
+                if (oleDbDataReader.Read())
+                {
+                    this.Label2.Text = Conversions.ToString(oleDbDataReader[1]) + " - " + Conversions.ToString(oleDbDataReader[3]);
+                    this.txtdate.Text = oleDbDataReader["Dt"].ToString();
+                    Matchid = Convert.ToInt32(oleDbDataReader["Match_ID"]);
+                }
+                else
+                {
+                    Interaction.MsgBox("Record No", MsgBoxStyle.OkOnly, null);
+                }
+
+
+                string cmdText1 = "Select * from Newmatch where Sr_No=" + Conversions.ToString(Matchid) + "";
+                OleDbCommand oleDbCommand1 = new OleDbCommand(cmdText1, Module1.conn);
+                OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
+                if (oleDbDataReader1.Read())
+                {
+                    //if (Convert.ToString(oleDbDataReader1["Type"]) == "TEST")
+                    //{
+                    //    this.txtdate.Text = Conversions.ToString(DateAndTime.Now.Date);
+                    //}
+                    
+                    strTime = oleDbDataReader1["entry_time"].ToString();                 
+                    if (strTime == "")
+                    {
+                        strTime = Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime);
+                    }
+                }
+                this.txtrun.Focus();
+                this.txtrun.Focus();
+            }
+            catch (Exception ex)
+            {
+                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+            }
+            finally
+            {
+                Module1.conn.Close();
+            }
+        }
+
         // Token: 0x06000976 RID: 2422 RVA: 0x002DCA38 File Offset: 0x002DAE38
         private void Save_Click(object sender, EventArgs e)
         {
@@ -762,60 +824,7 @@ namespace YashAksh
             {
             }
         }
-
-        // Token: 0x0600097F RID: 2431 RVA: 0x002E0434 File Offset: 0x002DE834
-        private void Declear_New_Sesstions_Activated(object sender, EventArgs e)
-        {
-            this.txtrun.Focus();
-        }
-
-        // Token: 0x06000980 RID: 2432 RVA: 0x002E0444 File Offset: 0x002DE844
-        private void Declear_New_Sesstions_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                int Matchid = 0;
-                this._my_Positions();
-                if (Module1.conn.State == ConnectionState.Closed)
-                {
-                    Module1.conn.Open();
-                }
-                string cmdText = "Select * from ewSession where Sr_No=" + Conversions.ToString(Module1.nehaid) + "";
-                OleDbCommand oleDbCommand = new OleDbCommand(cmdText, Module1.conn);
-                OleDbDataReader oleDbDataReader = oleDbCommand.ExecuteReader();
-                if (oleDbDataReader.Read())
-                {
-                    this.Label2.Text = Conversions.ToString(oleDbDataReader[1]) + " - " + Conversions.ToString(oleDbDataReader[3]);
-                    this.txtdate.Text = oleDbDataReader["Dt"].ToString();
-                    Matchid = Convert.ToInt32(oleDbDataReader["Match_ID"]);
-                }
-                else
-                {
-                    Interaction.MsgBox("Record No", MsgBoxStyle.OkOnly, null);
-                }
-
-
-                string cmdText1 = "Select * from Newmatch where Sr_No=" + Conversions.ToString(Matchid) + "";
-                OleDbCommand oleDbCommand1 = new OleDbCommand(cmdText1, Module1.conn);
-                OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
-                if (oleDbDataReader1.Read())
-                {
-                    strTime = oleDbDataReader1["entry_time"].ToString();
-                }
-                this.txtrun.Focus();
-                this.txtrun.Focus();
-            }
-            catch (Exception ex)
-            {
-                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
-                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
-            }
-            finally
-            {
-                Module1.conn.Close();
-            }
-        }
-
+                
         // Token: 0x06000981 RID: 2433 RVA: 0x002E0558 File Offset: 0x002DE958
         private void Button2_Click(object sender, EventArgs e)
         {

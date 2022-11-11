@@ -1509,7 +1509,7 @@ namespace YashAksh
                 {
                     Module1.name1 = this.txtpartiname.Text;
                     this.Partposion1();
-                   // this.Customer_OpningBalance();
+                    this.Customer_OpningBalance();
                 }
             }
             catch (Exception ex)
@@ -2250,10 +2250,10 @@ namespace YashAksh
                 {
                     this.cmbteam.Text = this.Team2.ToString();
                 }
-                //else if (e.KeyCode == Keys.NumPad3)
-                //{
-                //	this.cmbteam.Text = this.Team3.ToString();
-                //}
+                else if (e.KeyCode == Keys.NumPad3)
+                {
+                    this.cmbteam.Text = this.Team3.ToString();
+                }
                 //else if (e.KeyCode == Keys.NumPad4)
                 //{
                 //	this.cmbteam.Text = this.Team4.ToString();
@@ -2273,8 +2273,8 @@ namespace YashAksh
             }
             catch (Exception ex)
             {
-                App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
-                Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
+                //App.Utility.ErrorLog.LogError(BaseService.GetMethodDetails(), ex.Message);
+                //Interaction.MsgBox(ex.Message, MsgBoxStyle.OkOnly, null);
             }
         }
 
@@ -3857,15 +3857,18 @@ namespace YashAksh
                 //{
                 //	num += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader["Expr1"]));
                 //}
-                string cmdText1 = "SELECT PartyMaster.PartyName,  PartyMaster.BalanceLimit FROM PartyMaster WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
-                OleDbCommand oleDbCommand1 = new OleDbCommand(cmdText1, Module1.conn);
-                OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
-                while (oleDbDataReader1.Read())
-                {
-                    num1 += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["BalanceLimit"]));
-                }
 
-                this.lblOP.Text = Module1.SetNumFormat(Conversion.Val(num - num1), this.txtnu.Text);
+                //string cmdText1 = "SELECT PartyMaster.PartyName,  PartyMaster.BalanceLimit FROM PartyMaster WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
+                //OleDbCommand oleDbCommand1 = new OleDbCommand(cmdText1, Module1.conn);
+                //OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
+                //while (oleDbDataReader1.Read())
+                //{
+                //    num1 += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["BalanceLimit"]));
+                //}
+
+                //this.lblOP.Text = Module1.SetNumFormat(Conversion.Val(num - num1), this.txtnu.Text);
+
+                this.lblOP.Text = Module1.SetNumFormat(Conversion.Val(num), this.txtnu.Text);
                 if (Convert.ToDouble(this.lblOP.Text) < 0.0)
                 {
                     this.lblOP.ForeColor = Color.Red;

@@ -79,6 +79,10 @@ namespace YashAksh
                     {
                         this.txtdate.Text = oleDbDataReader["Date1"].ToString();
                         strTime = oleDbDataReader["entry_time"].ToString();
+                        if (strTime == "")
+                        {
+                            strTime = Strings.FormatDateTime(DateAndTime.TimeOfDay, DateFormat.LongTime);
+                        }
                         this.txtmatch.Items.Add("Abandon");
                         this.txtmatch.Items.Add("Tie");
                     }

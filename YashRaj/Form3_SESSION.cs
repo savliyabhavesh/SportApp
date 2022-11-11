@@ -1659,15 +1659,18 @@ namespace YashAksh
                 {
                     num += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader["ColsingBalanceAmount"]));
                 }
-                string cmdText1 = "SELECT PartyMaster.PartyName,  PartyMaster.OpeningBalance FROM PartyMaster WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
-                OleDbCommand oleDbCommand1 = new OleDbCommand(cmdText1, Module1.conn);
-                OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
-                while (oleDbDataReader1.Read())
-                {
-                    num1 += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["OpeningBalance"]));
-                }
 
-                this.lblOP.Text = Module1.SetNumFormat(Conversion.Val(num - num1), this.txtnu.Text);
+                //string cmdText1 = "SELECT PartyMaster.PartyName,  PartyMaster.OpeningBalance FROM PartyMaster WHERE (PartyMaster.PartyName = '" + this.txtpartiname.Text + "') ORDER BY PartyMaster.PartyName";
+                //OleDbCommand oleDbCommand1 = new OleDbCommand(cmdText1, Module1.conn);
+                //OleDbDataReader oleDbDataReader1 = oleDbCommand1.ExecuteReader();
+                //while (oleDbDataReader1.Read())
+                //{
+                //    num1 += Convert.ToDouble(RuntimeHelpers.GetObjectValue(oleDbDataReader1["OpeningBalance"]));
+                //}
+
+                //this.lblOP.Text = Module1.SetNumFormat(Conversion.Val(num - num1), this.txtnu.Text);
+
+                this.lblOP.Text = Module1.SetNumFormat(Conversion.Val(num), this.txtnu.Text);
                 if (Convert.ToDouble(this.lblOP.Text) < 0.0)
                 {
                     this.lblOP.ForeColor = Color.Red;
@@ -2199,13 +2202,13 @@ namespace YashAksh
                     {
                         this.txtmodeKL.SelectedItem = "L";
                     }
-                    if (e.KeyCode == Keys.NumPad2)
-                    {
-                        this.txtmodeKL.SelectedItem = "Y";
-                    }
-                    if (e.KeyCode == Keys.NumPad2)
+                    if (e.KeyCode == Keys.NumPad3)
                     {
                         this.txtmodeKL.SelectedItem = "N";
+                    }
+                    if (e.KeyCode == Keys.NumPad4)
+                    {
+                        this.txtmodeKL.SelectedItem = "Y";
                     }
                 }
                 catch (Exception ex)
@@ -2691,7 +2694,7 @@ namespace YashAksh
                     Module1.CustBalance = 0.0;
                     Module1.TotalAmount = 0.0;
                     Module1.TotalAmount += Convert.ToDouble(this.txtamount.Text);
-                    //this.Customer_OpningBalance();
+                    this.Customer_OpningBalance();
                 }
             }
             catch (Exception ex)
